@@ -1,0 +1,23 @@
+.modal__overlay {
+	@apply absolute top-0 right-0 left-0 bottom-0 w-full h-screen bg-[#f9f9f980] invisible opacity-0 overflow-hidden pointer-events-none;
+    transition: 200ms ease-in;
+
+    &__visible {
+        @apply visible opacity-100 pointer-events-auto;     
+    }
+}
+
+.modal {
+	@apply absolute right-0 w-[400px] h-screen flex flex-col border p-5 bg-white;
+    transform: translateX(100%);
+    transition: 200ms transform ease-in;
+    transform-origin: right;
+
+    &__show {
+        transform: translateX(0);
+    }
+
+	&__header {
+		@apply flex items-start justify-between;
+	}
+}

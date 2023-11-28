@@ -1,0 +1,11 @@
+.container {
+    @apply flex items-center gap-1;
+}
+
+.input {
+    @apply cursor-pointer;
+}
+
+.label {
+    @apply text-base cursor-pointer;
+}

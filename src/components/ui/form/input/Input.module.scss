@@ -1,0 +1,19 @@
+.label {
+    @apply relative text-[12px] px-2;
+}
+
+.input { 
+    @apply relative w-full border rounded-[var(--rounded)] px-3 py-[6px] font-Lora text-sm font-medium;
+
+    &:focus {
+        @apply outline-1 outline-[var(--green)];
+    }
+}
+
+.full {
+    @apply rounded-full;
+}
+
+.small {
+    @apply px-3 py-[2px];
+}

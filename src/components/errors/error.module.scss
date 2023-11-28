@@ -1,0 +1,11 @@
+.error {
+    @apply place-self-center flex flex-col items-center;
+
+    &__logo {
+        @apply text-2xl font-medium text-center pb-5;
+    }
+
+    &__descr {
+        @apply text-[var(--grey)] pb-5;
+    }
+}

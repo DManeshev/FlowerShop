@@ -1,0 +1,22 @@
+.toast {
+	@apply absolute bottom-5 right-4 rounded-[var(--rounded)] py-2 px-3 bg-green-600 z-10 opacity-0 invisible overflow-hidden shadow-md;
+	transform: translateY(calc(100% + 20px));
+	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.25, 1.35);
+
+	& svg {
+		width: 20px;
+		height: 20px;
+		cursor: pointer;
+		& path {
+			stroke: white;
+		}
+	}
+}
+
+.content {
+	@apply flex items-center gap-10;
+}
+
+.message {
+	@apply text-xl text-white;
+}

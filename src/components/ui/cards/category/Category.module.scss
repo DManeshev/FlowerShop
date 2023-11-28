@@ -1,0 +1,15 @@
+.card {
+    @apply relative w-full h-full overflow-hidden rounded-xl bg-[var(--grey)];
+
+    &__image {
+        @apply relative pb-[133%];
+
+        & img {
+            @apply object-contain;
+        }
+    }
+
+    &__title {
+        @apply absolute top-0 p-3 font-semibold;
+    }
+}

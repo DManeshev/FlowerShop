@@ -1,0 +1,29 @@
+.card {
+    @apply flex items-center gap-5 border-b pb-3;
+
+    &__image {
+        @apply relative h-[100px] w-[80px] flex-shrink-0;
+
+        & img {
+            @apply object-cover rounded-[var(--rounded)];
+        }
+    }
+}
+
+.basket {
+    @apply border p-1 rounded-full bg-[#e5e7eb] cursor-pointer;
+
+    &__active {
+        @apply bg-[var(--green)];
+
+        & svg path {
+            @apply stroke-white;
+        }
+    }
+
+    &:hover,
+    &:hover svg path {
+        @apply stroke-[var(--green)] bg-white;
+        transition: .3s ease-in;
+    }
+}

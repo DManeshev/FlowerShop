@@ -1,0 +1,21 @@
+.quantity {
+    @apply flex items-center;
+
+    &__input {
+        @apply w-10 px-1 font-Lora text-center
+    }
+}
+
+.circle {
+    @apply rounded-full bg-[var(--grey)] p-1 cursor-pointer;
+
+    &:hover svg path {
+        @apply stroke-[var(--hover-color)];
+        transition: .4s ease-in;
+    }
+}
+
+
+.small {
+    @apply px-2 py-1 gap-0
+}

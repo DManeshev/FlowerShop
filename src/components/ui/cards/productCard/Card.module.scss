@@ -1,0 +1,59 @@
+.card {
+    @apply relative flex flex-col border rounded-[var(--rounded)] p-4;
+}
+
+.image {
+    @apply relative w-full h-[240px] mb-3;
+
+    & img {
+        @apply rounded-[var(--rounded)] object-cover;
+    }
+
+    &__hidden {
+        @apply opacity-0 invisible;
+        transition: all .3s ease-in;
+    }
+
+    &:hover &__hidden {
+        @apply opacity-100 visible;
+    }
+}
+
+.logo {
+    @apply text-base text-[var(--black)] pb-1;
+}
+
+.description {
+    @apply text-sm text-[var(--black)] pb-2 overflow-hidden whitespace-nowrap text-ellipsis;
+}
+
+.section__price {
+    @apply flex items-center justify-between;
+}
+
+.price {
+    @apply text-xl font-semibold;
+}
+
+.basket {
+    @apply border p-1 rounded-full bg-[#e5e7eb] cursor-pointer;
+
+    &:hover,
+    &:hover svg path {
+        @apply stroke-[var(--green)] bg-white;
+        transition: .3s ease-in;
+    }
+}
+
+
+@media screen and (max-width: 905px) {
+    .image {
+        @apply h-[300px];
+    }          
+}
+
+@media screen and (max-width: 605px) {
+    .image {
+        @apply h-[240px];
+    }          
+}

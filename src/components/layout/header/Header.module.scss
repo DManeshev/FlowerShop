@@ -1,0 +1,63 @@
+.header {
+	@apply sticky top-0 w-full max-w-[1540px] bg-white z-50;
+	transition: top 0.5s ease-out;
+	-webkit-box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+	-moz-box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+	box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+
+	&__hide {
+		@apply -top-[150px];
+	}
+}
+
+.container {
+	@apply border-b px-3 py-2;
+}
+
+// Основная часть шапки
+.main {
+	@apply grid items-center gap-5;
+	grid-template-columns: auto 1fr auto;
+}
+
+
+.cart,
+.user {
+	@apply relative cursor-pointer;
+}
+
+.cart__quantity {
+	@apply absolute top-[-6px] right-[-6px] w-4 h-4 grid place-content-center rounded-full bg-[var(--green)] text-xs font-Lora font-bold;
+}
+
+.modal__content {
+	@apply flex flex-col gap-4;
+	height: calc(100vh - 90px);
+}
+.card__container {
+	@apply flex-grow flex flex-col gap-4 overflow-auto;
+}
+.total {
+	@apply border-t border-b py-4 flex items-center justify-between font-Lora font-bold mb-5;
+}
+
+// modal auth
+.auth__modal {
+	@apply absolute top-8 -right-3 w-[250px] border rounded-[var(--rounded)] bg-white;
+}
+.auth__content {
+	@apply p-3;
+}
+.auth__form {
+	@apply flex flex-col items-center gap-2;
+}
+.auth__item {
+	@apply flex items-center justify-between w-full border-b pb-2 mb-2 last:mb-0 hover:text-[var(--green)];
+
+	transition: all 0.3s ease-in;
+
+    &:hover path {
+		@apply fill-[var(--hover-color)];
+		transition: all 0.3s ease-in;
+	}
+}

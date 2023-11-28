@@ -1,0 +1,48 @@
+.footer {
+    @apply mt-auto;
+    -webkit-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6);
+    -moz-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6);
+    box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6);
+}
+
+.container {
+    @apply flex items-center justify-between py-2;
+}
+
+.image {
+    @apply object-cover;
+    aspect-ratio: 3/2;
+}
+
+.link {
+    @apply text-lg underline;
+    transition: color .3s ease-in;
+    
+    &:hover {
+        color: var(--hover-color);
+    }
+}
+
+.social svg path {
+    fill: var(--black);
+
+    &:hover  {
+        fill: var(--hover-color);
+        stroke: var(--hover-color);
+        transition: all .3s ease-in;
+    }
+}
+
+.copyright {
+    @apply text-sm text-center;
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        @apply flex-col gap-5;
+    }
+
+    .link {
+        @apply text-base;
+    }
+}

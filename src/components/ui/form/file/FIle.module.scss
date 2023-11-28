@@ -1,0 +1,13 @@
+.input {
+	@apply hidden;
+}
+
+.label {
+	@apply inline-flex items-center gap-1
+    border border-[var(--dark-green)] rounded-md text-[var(--hover-color)]
+    py-2 px-4 
+    text-sm font-bold 
+    cursor-pointer hover:bg-[var(--hover-color)] hover:text-white;
+
+    transition: .4s ease-in;
+}

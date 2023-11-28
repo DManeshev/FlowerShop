@@ -1,0 +1,33 @@
+.card {
+    @apply flex items-start gap-5 border-b pb-3;
+
+    &__image {
+        @apply relative h-[100px] w-[80px] flex-shrink-0;
+
+        & img {
+            @apply object-cover rounded-[var(--rounded)];
+        }
+    }
+}
+
+.label {
+    @apply font-Lora text-sm;
+}
+.text {
+    @apply font-Lora text-base font-medium;
+}
+
+.delete {
+    @apply border p-1 rounded-full bg-[#e5e7eb] cursor-pointer;
+    transition: .3s ease-in;
+
+    &:hover,
+    &:hover svg {
+        @apply stroke-[var(--red)] bg-white;
+        transition: .3s ease-in;
+    }
+}
+
+.quantity {
+    @apply text-base font-Lora;
+}

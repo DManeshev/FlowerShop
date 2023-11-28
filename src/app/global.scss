@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+@import url('https://db.onlinewebfonts.com/c/13ab13418f633c1b0516fed6e30bedbc?family=Suisse+Int%27l');
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+
+:root {
+	--black: #404040;
+	--green: #6a983c;
+	--dark-green: #46760a;
+	--hover-color: #81b948;
+	--red: #e5704b;
+	--dark-red: #ce6443;
+	--hover-red-color: #ea8c6e;
+	--grey: #f2f2f2;
+	--light-grey: #f1f1f1;
+	--disabled-color: #959495;
+	--rounded: 8px;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	@apply bg-[var(--grey)];
+	// font-family: 'Lora', serif;
+	font-family: 'Berkshire Swash', cursive;
+	font-size: 16px;
+	color: var(--black);
+}
+
+main {
+	@apply relative max-w-[1144px] w-full;
+}
+
+.desctop {
+	@apply flex justify-center gap-6 px-6 pb-6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.wrapper {
+	@apply max-w-[1260px] m-auto relative flex flex-col min-h-screen;
+	// max-w-[1540px]
+}
+
+.container {
+	@apply px-5 max-w-full flex-grow;
+}
+
+.catalog {
+	@apply flex items-start gap-4 mt-5 flex-grow;
+
+	&__cards {
+		@apply w-full grid gap-[2vw] pb-10;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	}
+}
+
+.banner__logo {
+	@apply absolute top-1/2 left-10 text-white mb-auto w-[650px];
+	font-size: 36px !important;
+	line-height: 120% !important;
+}
+
+textarea {
+	@apply resize-none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	/* display: none; <- Crashes Chrome on hover */
+	-webkit-appearance: none;
+	margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type='number'] {
+	-moz-appearance: textfield; /* Firefox */
+}
+
+.glass {
+	@apply absolute top-0 w-full h-full z-[1];
+	background: rgba(255, 255, 255, 0.2);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(1px);
+	-webkit-backdrop-filter: blur(1px);
+}
+
+.scrollbar {
+	&::-webkit-scrollbar {
+		width: 5px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		box-shadow: inset 0 0 6px var(--dark-green);
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: var(--light-grey);
+		outline: 1px solid var(--light-grey);
+	}
+}
+
+/* @media screen and (max-width: 991px) */
+
+@media screen and (max-width: 767px) {
+	.catalog {
+		@apply flex-col;
+
+		&__cards {
+			grid-template-columns: repeat(auto-fit, minmax(229px, 1fr));
+		}
+	}
+
+	.banner__logo {
+		@apply left-5 w-[465px];
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.catalog__cards {
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	}
+
+	.banner__logo {
+		@apply top-1/3 w-auto;
+		font-size: 28px !important;
+	}
+}

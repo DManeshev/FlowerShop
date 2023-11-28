@@ -1,0 +1,24 @@
+.link {
+    @apply flex items-center justify-center gap-2 border-2 border-[var(--dark-green)] rounded-[var(--rounded)] bg-[var(--green)] px-3 py-2;
+    
+    & span {
+        @apply text-base text-white;
+    }
+
+    &:hover {
+        background-color: var(--hover-color);;
+        transition: .4s ease-in;
+    }
+}
+
+.large {
+    @apply px-10 py-3
+}
+
+.small {
+    @apply px-2 py-[2px];
+
+    & span {
+        @apply text-sm;
+    }
+}

@@ -1,0 +1,20 @@
+.container {
+    @apply w-full relative;
+}
+
+.modal {
+    @apply absolute w-full max-h-[165px] bg-white mt-1 border border-[var(--green)] rounded-md overflow-auto z-10;
+
+    &::-webkit-scrollbar {
+        @apply hidden;
+    }
+
+    &__item {
+        @apply flex items-center py-1 px-2 border-b border-b-[var(--grey)] text-black font-Lora last:border-none cursor-pointer;
+        transition: all .2s ease-in;
+
+        &:hover {
+            @apply bg-[var(--light-grey)];
+        }
+    }
+}

@@ -1,0 +1,69 @@
+.wrapper {
+    @apply flex items-start gap-8
+}
+
+.info {
+    @apply flex-grow border rounded-[var(--rounded)] p-4 mb-5 last:mb-0;
+}
+
+.products__section {
+    @apply flex-shrink-0 border w-[450px] flex flex-col rounded-[var(--rounded)];
+}
+.product {
+    @apply flex items-start gap-5 border-b last:border-none p-4;
+
+    &__image {
+        @apply rounded-[var(--rounded)];
+    }
+
+    &__text {
+        @apply text-base;
+    }
+
+    &__price {
+        @apply font-Lora font-semibold text-[var(--green)];
+    }
+
+    &__quantity {
+        @apply text-base font-Lora;
+    } 
+}
+
+.tab {
+    @apply relative px-2 pb-1 cursor-pointer;
+
+    &__underline {
+        @apply absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[var(--green)]
+    }
+}
+
+.date {
+    @apply w-full h-[34px] px-5 border rounded-[var(--rounded)] font-Lora;
+}
+
+.address__descr {
+    @apply pt-1 pl-2 text-[12px];
+}
+.selfcall {
+    @apply col-span-4 text-[var(--disabled-color)] text-sm;
+}
+
+@media screen and (max-width: 991px) {
+    .products {
+        @apply w-[350px]
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .wrapper {
+        @apply flex-col;
+    }
+
+    .info {
+        @apply w-full;
+    }
+
+    .products {
+        @apply w-full;
+    }
+}

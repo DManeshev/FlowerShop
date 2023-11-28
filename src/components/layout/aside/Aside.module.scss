@@ -1,0 +1,73 @@
+.aside {
+    @apply flex-shrink-0 w-full max-w-[255px] max-h-full ;
+
+    &__container {
+        @apply flex flex-col gap-4;
+    }
+
+    &__header {
+        @apply flex items-center gap-3 pt-9 pb-4 pl-4 rounded-b-5 bg-white ;
+    }
+
+    &__logo {
+        @apply text-xl font-semibold uppercase;
+        transition: 0.3s ease-out;
+    
+        &:hover {
+            @apply text-[var(--hover-color)];
+        }
+    }
+
+    .phone {
+        @apply font-Lora text-base font-semibold;
+        transition: color 0.3s ease-in;
+    
+        &:hover {
+            @apply text-[var(--hover-color)];
+        }
+    }
+}
+
+.category {
+    @apply w-full flex flex-col p-4 rounded-5 bg-white;
+
+    &__child {
+        @apply ml-7;
+    }
+
+    &__container {
+        @apply py-1;
+    }
+
+    &__details {
+        @apply flex items-center gap-2 cursor-pointer;
+
+        &:hover .category__title {
+            @apply text-[var(--green)]
+        }
+    }
+
+    &__link {
+        @apply flex items-center gap-2 py-1 cursor-pointer;
+
+        &:hover .category__title {
+            @apply text-[var(--green)]
+        }
+    }
+
+    &__img {
+        @apply flex items-center justify-center w-6 h-6 rounded-full bg-[var(--grey)];
+
+        &__container {
+            @apply relative w-5 h-5 rounded-full;
+
+            & img {
+                @apply object-cover;
+            }
+        }
+    }
+    
+    &__title {
+        @apply text-lg font-medium;
+    }
+}

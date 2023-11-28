@@ -1,0 +1,10 @@
+.delete {
+    @apply border p-1 rounded-full bg-[#e5e7eb] cursor-pointer;
+    transition: .3s ease-in;
+
+    &:hover,
+    &:hover svg path {
+        @apply stroke-[var(--red)] bg-white;
+        transition: .3s ease-in;
+    }
+}

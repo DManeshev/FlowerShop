@@ -1,0 +1,45 @@
+.filters {
+    @apply relative w-[250px] flex flex-col items-start self-start flex-shrink-0;
+}
+
+.icon {
+    @apply hidden rounded-full p-1 bg-[#e5e7eb] cursor-pointer z-[2];
+
+    & svg path {
+        @apply fill-[var(--green)]
+    }
+}
+
+.container {
+    @apply relative flex flex-col items-start gap-10 opacity-100 visible bg-white pt-0 px-0 pb-0 rounded-[var(--rounded)];
+}
+
+@media screen and (max-width: 767px) {
+    .filters {
+        @apply self-end;
+    }
+
+    .icon {
+        @apply block self-end;
+    }
+
+    .container {
+        @apply absolute right-0 opacity-0 invisible pt-10 px-2 pb-2 bg-[#e5e7eb] z-[1];
+        animation-name: scale;
+        transition: .4s ease-in;
+    }
+
+    .show {
+        @apply opacity-100 visible;
+    }
+}
+
+@keyframes scale {
+    from { 
+        transform: scale(0%);
+    }
+    
+    to {
+        transform: scale(100%);
+    }
+}
