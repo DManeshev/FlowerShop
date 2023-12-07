@@ -2,22 +2,14 @@ import type { PropsWithChildren } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FaXmark } from 'react-icons/fa6'
 
-import { overlayVariants, mobileMenuVariants } from '@/utils/animation.variants'
+import { overlayVariants, drawerMobileVariants } from '@/utils/animation.variants'
+import { IDrawer } from '@/types/drawer.interface'
 
-import styles from './MobileDrawer.module.scss'
+import styles from './Drawer.module.scss'
 
-interface IMobileDrawer extends PropsWithChildren<unknown> {
-	isOpen: boolean
-	closeCart: () => void
-}
-
-export default function MobileDrawer({
-	isOpen,
-	closeCart,
-	children
-}: IMobileDrawer) {
+export default function DrawerMobile({ isOpen, close, children }: IDrawer) {
 	return (
-		<AnimatePresence mode="wait" onExitComplete={closeCart}>
+		<AnimatePresence mode="wait" onExitComplete={close}>
 			{isOpen && (
 				<motion.div
 					className="overlay"
@@ -25,27 +17,27 @@ export default function MobileDrawer({
 					animate={'isOpen'}
 					exit={'exit'}
 					variants={overlayVariants}
+					transition={{
+                        delayChildren: 0
+                    }}
 				>
 					<motion.div
 						className={styles.BasketMobile}
-						variants={mobileMenuVariants}
+						variants={drawerMobileVariants}
 						transition={{
-							type: 'spring',
-							damping: 30,
-							stiffness: 400
+							ease: 'linear',
+                            duration: 0.6
 						}}
 					>
 						<div className={styles.BasketMobile__close}>
 							<button
 								className={styles.BasketMobile__closeBtn}
-								onClick={closeCart}
+								onClick={close}
 							>
 								<FaXmark />
 							</button>
 						</div>
-                        <div className={styles.BasketMobile__body}>
-						    {children}
-                        </div>
+						<div className={styles.BasketMobile__body}>{children}</div>
 					</motion.div>
 				</motion.div>
 			)}

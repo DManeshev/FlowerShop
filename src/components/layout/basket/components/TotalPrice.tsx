@@ -24,16 +24,14 @@ export default function TotalPrice({ total, closeCart }: ITotalPrice) {
 				</div>
 			</div>
 
-			{/* <Button
+			<Button
 				title="Перейти к оформлению"
 				size="large"
 				onClick={() => {
-					router.push('/cart')
+					router.push('/checkout')
                     closeCart()
 				}}
-			/> */}
-
-            <Link href={`/${name}`} locale='/'>asssss</Link>
+			/>
 		</div>
 	)
 }

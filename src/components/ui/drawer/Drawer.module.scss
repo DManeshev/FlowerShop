@@ -1,3 +1,22 @@
+.BasketDesctop {
+    @apply fixed right-0 top-0 w-[1024px] flex flex-col m-8 rounded-8 bg-white overflow-hidden;
+    height: calc(100vh - 64px);
+    max-height: calc(100vh - 64px);
+
+    &__close {
+        @apply fixed top-6 right-6;
+    }
+
+    &__closeBtn {
+        @apply w-10 h-10 flex items-center justify-center rounded-full p-1 bg-[var(--dark-grey)];
+    }
+
+    &__body {
+        @apply flex gap-6 px-6 overflow-hidden;
+    }
+}
+
+
 .BasketMobile {
     @apply fixed top-10 w-full flex flex-col rounded-t-8 p-4 bg-white overflow-hidden;
     max-height: calc(100% - 40px);

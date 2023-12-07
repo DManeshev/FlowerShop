@@ -9,7 +9,7 @@ import { useTypedSelector } from '@/hooks/useTypedSelector'
 import Heading from '@/components/ui/heading/Heading'
 import AsideMap from './AsideMap'
 import CartCard from '@/components/ui/cards/cartCard/Card'
-import MobileDrawer from '../mobile/mobileDrawer/MobileDrawer'
+import DrawerMobile from '@/components/ui/drawer/DrawerMobile'
 import BasketMobileBtn from './components/BasketMobileBtn'
 
 import styles from './Basket.module.scss'
@@ -64,7 +64,7 @@ export default function Basket({}: IBasket) {
 				</div>
 			</aside>
 
-			<MobileDrawer isOpen={isOpenCart} closeCart={() => setIsOpenCart(false)}>
+			<DrawerMobile isOpen={isOpenCart} close={() => setIsOpenCart(false)}>
 				<div className='flex-grow flex flex-col gap-4'>
 					{cart.map(item => (
 						<CartCard key={item.product.id} {...item} />
@@ -72,7 +72,7 @@ export default function Basket({}: IBasket) {
 				</div>
 
 				<TotalPrice total={total} closeCart={() => setIsOpenCart(false)} />
-			</MobileDrawer>
+			</DrawerMobile>
 
 			{cart.length > 0 ? (
 				<BasketMobileBtn openMobileCart={handleOpenMobileCart} total={total} />

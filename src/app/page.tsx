@@ -16,7 +16,7 @@ const getCategories = async () => {
 }
 
 export default async function HomePage() {
-	const data = await getCategories();
-	
+	const data = await getCategories()
+
 	return <Home categories={data} />
 }

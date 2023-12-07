@@ -14,15 +14,17 @@ export default function PageLayoutNavigation() {
 	const directories = pathname.split('/')
 	const lastDirectories = directories[directories.length - 1]
 
+	const isShowNavigation = pathname === '/' || pathname === '/checkout'
+
 	const { data } = useQuery(
 		[`get subcategory ${lastDirectories}`],
 		() => CategoryService.getSubcategoryBySlug(lastDirectories),
-		{ select: ({ data }) => data }
+		{ select: ({ data }) => data, enabled: !isShowNavigation }
 	)
 
 	return (
 		<>
-			{pathname === '/' ? (
+			{isShowNavigation ? (
 				<></>
 			) : (
 				<div className={styles.navigation}>

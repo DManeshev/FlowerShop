@@ -1,8 +1,23 @@
-'use client'
+import { CategoryService } from '@/services/category/category.service'
 
-import Checkout from "./Checkout"
+import Home from '../home/Home'
+import Checkout from './Checkout'
 
-export default function CheckoutPage() {
+export const revalidate = 3600
 
-    return <Checkout />
+const getCategories = async () => {
+	const { data } = await CategoryService.getAll()
+
+	return data
+}
+
+export default async function CheckoutPage() {
+	const data = await getCategories()
+
+	return (
+		<>
+			<Home categories={data} />
+			<Checkout />
+		</>
+	)
 }

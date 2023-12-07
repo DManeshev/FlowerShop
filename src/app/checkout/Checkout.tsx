@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -12,17 +13,18 @@ import { IOrder } from '@/types/order.interface'
 
 import SubHeading from '@/components/ui/heading/SubHeading'
 import CustomLink from '@/components/ui/btn/link/Link'
-import CheckoutProduct from './(components)/CheckoutProduct'
 import CheckoutForm from './(components)/CheckoutForm'
+import DrawerDesctop from '@/components/ui/drawer/DrawerDesctop'
+import CheckoutProduct from './(components)/CheckoutProduct'
 
 import styles from './Checkout.module.scss'
-import { useCallback } from 'react'
-import Modal from '@/components/ui/modal/Modal'
 
 interface ICheckout {}
 
 export default function Checkout({}: ICheckout) {
 	const { cart } = useTypedSelector(state => state.cart)
+
+	const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(true)
 
 	const { mutate } = useMutation(OrderService.placeOrder)
 	const router = useRouter()
@@ -73,8 +75,14 @@ export default function Checkout({}: ICheckout) {
 		[mutate]
 	)
 
+	const handleCloseDrawer = () => {
+		setIsOpenDrawer(false)
+		router.push('/')
+	}
+
 	return (
-		<div className="overlay">
+		<DrawerDesctop isOpen={isOpenDrawer} close={handleCloseDrawer}>
+			asdfsdfsdf
 			{/* <form className={styles.wrapper} onSubmit={handleSubmit(checkoutOrder)}>
 				<CheckoutForm
 					register={register}
@@ -85,9 +93,6 @@ export default function Checkout({}: ICheckout) {
 
 				<CheckoutProduct cart={cart} delivery={getValues('delivery')} />
 			</form> */}
-			<Modal isOpen={true} close={() => console.log(12)}>
-				asadasdsa
-			</Modal>
-		</div>
+		</DrawerDesctop>
 	)
 }

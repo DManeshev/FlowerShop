@@ -4,9 +4,15 @@ export const overlayVariants = {
 	exit: { opacity: 0 }
 }
 
-export const mobileMenuVariants = {
-	initial: { y: '100% . . ' },
-	isOpen: { y: 0 },
-	exit: { y: '100%' }
+export const drawerMobileVariants = {
+	initial: { translateY: '100%' },
+	isOpen: { translateY: 0 },
+	exit: { translateY: '100%' }
+}
+
+export const drawerDesctopVariants = {
+	initial: { translateX: '200%' },
+	isOpen: { translateX: 0 },
+	inexititial: { translateX: '200%' },
 }
  
