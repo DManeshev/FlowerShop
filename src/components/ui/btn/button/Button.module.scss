@@ -1,12 +1,9 @@
 .btn {
-	@apply flex items-center justify-center gap-1 border-2 rounded-[var(--rounded)];
+	@apply flex items-center justify-center gap-1 border-2 rounded-full;
+	transition: background-color 0.4s ease-in;
 
 	& span {
-		@apply text-sm text-white font-semibold;
-	}
-
-	&:hover {
-		transition: 0.4s ease-in;
+		@apply text-sm text-white font-bold;
 	}
 }
 
@@ -30,5 +27,9 @@
 	@apply px-3 py-1;
 }
 .large {
-	@apply px-6 py-2;
+	@apply px-6 py-3;
+
+	& span {
+		@apply text-base;
+	}
 }

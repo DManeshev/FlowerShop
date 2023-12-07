@@ -4,10 +4,10 @@ import Heading from "@/components/ui/heading/Heading"
 
 export default function NotFound() {
     return (
-        <main>
-            <Heading title="Страница не найдена"/>
+        <div className='not__found'>
+            <Heading title="Страница не найдена" className="text-[var(--green)] font-bold" />
 
             <Link href='/'>Главная</Link>
-        </main>
+        </div>
     )
 }

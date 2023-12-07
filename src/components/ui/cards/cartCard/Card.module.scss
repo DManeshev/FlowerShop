@@ -1,20 +1,33 @@
 .card {
-    @apply flex items-start gap-5 border-b pb-3;
+    @apply h-full flex items-start gap-3 border-b pb-3;
 
     &__image {
-        @apply relative h-[100px] w-[80px] flex-shrink-0;
+        @apply relative h-[85px] w-[85px] flex-shrink-0;
 
         & img {
             @apply object-cover rounded-[var(--rounded)];
         }
     }
+
+    &__info {
+        @apply h-full w-full flex flex-col justify-between;
+    }
+
+    &__header {
+        @apply flex items-start justify-between gap-2;
+    }
+
+    &__title {
+        @apply font-bold;
+    }
+
+    &__footer {
+        @apply flex gap-3;
+    }
 }
 
 .label {
     @apply font-Lora text-sm;
-}
-.text {
-    @apply font-Lora text-base font-medium;
 }
 
 .delete {

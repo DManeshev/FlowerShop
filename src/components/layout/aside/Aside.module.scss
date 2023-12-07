@@ -1,8 +1,8 @@
 .aside {
-    @apply flex-shrink-0 w-full max-w-[255px] max-h-full ;
+    @apply hidden flex-shrink-0 w-full max-w-[245px] max-h-full;
 
     &__container {
-        @apply flex flex-col gap-4;
+        @apply fixed w-full max-w-[245px] max-h-full flex flex-col gap-4 z-[1];
     }
 
     &__header {
@@ -29,7 +29,7 @@
 }
 
 .category {
-    @apply w-full flex flex-col p-4 rounded-5 bg-white;
+    @apply w-full h-screen mb-5 flex flex-col p-4 rounded-5 bg-white;
 
     &__child {
         @apply ml-7;
@@ -69,5 +69,11 @@
     
     &__title {
         @apply text-lg font-medium;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .aside {
+        @apply block;
     }
 }

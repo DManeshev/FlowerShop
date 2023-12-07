@@ -6,7 +6,8 @@ import { getSiteUrl } from '@/config/url.config'
 import { SITE_NAME } from '@/constants/seo.constants'
 
 import Aside from '@/components/layout/aside/Aside'
-import Footer from '@/components/layout/footer/Footer'
+import Basket from '@/components/layout/basket/Basket'
+import PageLayout from '@/components/layout/pageLayout/PageLayout'
 
 import './global.scss'
 
@@ -26,22 +27,11 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
 				<Providers>
 					<div className="desctop">
 						<Aside />
-						<main>{children}</main>
-						<div className="w-[350px] flex-shrink">
-							asda
-							{/* ТУТ БУДЕТ КАРТА */}
-							{/* <div className={styles.map}>
-                        <Image
-                          src={mapmark}
-                          width={12}
-                          height={24}
-                          alt="Местоположение магазина Твои цветы"
-                        />
-                        г. Чебоксары, Чебоксарский пр-кт, 27
-                      </div> */}
-						</div>
-						{/* <Footer /> */}
-					</div>
+
+						<PageLayout>{children}</PageLayout>
+						
+						<Basket />
+					</div> 
 				</Providers>
 			</body>
 		</html>

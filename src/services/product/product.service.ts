@@ -1,6 +1,5 @@
 import { axiosClassic, instance } from "@/api/api.interceptor";
 import { getProductUrl } from "@/config/url.config";
-import { EnumCategory } from "@/types/enum/category.enum";
 import { IFlower, IProduct, TypePaginationProducts } from "@/types/product.interface";
 import { TypeProductDataFilters } from "./product.types";
 import { IYandexFile } from "@/types/yandexfile.interface";
@@ -28,9 +27,16 @@ export const ProductService = {
         })
     },
 
-    async getByCategory(categoryName: EnumCategory) {
+    async getByCategory(categoryName: string) {
         return axiosClassic<IProduct[]>({
             url: getProductUrl(`/by-category/${categoryName}`),
+            method: 'GET'
+        })
+    },
+
+    async getBySubcategory(subcategorySlug: string) {
+        return axiosClassic<IProduct[]>({
+            url: getProductUrl(`/by-subcategory/${subcategorySlug}`),
             method: 'GET'
         })
     },

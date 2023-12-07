@@ -1,4 +1,4 @@
-import { productCategory } from '@/types/enum/category.enum'
+
 import { productStatus } from '@/types/enum/productStatus.enum'
 
 export const productStatusFind = (value: string): string => {
@@ -9,8 +9,8 @@ export const productStatusFind = (value: string): string => {
 }
 
 export const productCategoryFind = (value: string): string => {
-	const category = productCategory.find(item => item.id === value)
+	// const category = productCategory.find(item => item.id === value)
 
-	if (category) return category.name
+	// if (category) return category.name
 	return 'Категория не найдена'
 }

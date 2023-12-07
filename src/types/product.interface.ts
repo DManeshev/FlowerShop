@@ -1,4 +1,3 @@
-import { EnumCategory } from './enum/category.enum'
 import { EnumProductStatus } from './enum/productStatus.enum'
 
 export interface IProduct {
@@ -9,9 +8,8 @@ export interface IProduct {
 	description?: string
 	images: string[]
 	price: number
-	category: EnumCategory
-	categoryName?: string
-	subCategory: string
+	categoryId: string
+	subcategoryId: string
 	status: EnumProductStatus
 	statusName?: string
 	isDelivery: boolean

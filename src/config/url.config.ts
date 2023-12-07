@@ -9,5 +9,3 @@ export const getAuthUrl = (path: string): string => `/auth${path}`
 export const getProductUrl = (path: string): string => `/products${path}`
 
 export const getOrderUrl = (path: string): string => `/orders${path}`
-
-export const getUserUrl = (path: string): string => `/users${path}`

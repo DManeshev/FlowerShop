@@ -17,6 +17,7 @@ import CheckoutForm from './(components)/CheckoutForm'
 
 import styles from './Checkout.module.scss'
 import { useCallback } from 'react'
+import Modal from '@/components/ui/modal/Modal'
 
 interface ICheckout {}
 
@@ -73,9 +74,8 @@ export default function Checkout({}: ICheckout) {
 	)
 
 	return (
-		<main className="container py-5">
-			<form className={styles.wrapper} onSubmit={handleSubmit(checkoutOrder)}>
-				{/* Информация */}
+		<div className="overlay">
+			{/* <form className={styles.wrapper} onSubmit={handleSubmit(checkoutOrder)}>
 				<CheckoutForm
 					register={register}
 					errors={errors}
@@ -83,9 +83,11 @@ export default function Checkout({}: ICheckout) {
 					watch={watch}
 				/>
 
-				{/* Заказ */}
 				<CheckoutProduct cart={cart} delivery={getValues('delivery')} />
-			</form>
-		</main>
+			</form> */}
+			<Modal isOpen={true} close={() => console.log(12)}>
+				asadasdsa
+			</Modal>
+		</div>
 	)
 }

@@ -7,7 +7,6 @@ import { IEmailPassword } from '@/store/user/user.interface'
 import SubHeading from '@/components/ui/heading/SubHeading'
 import Field from '@/components/ui/form/input/Input'
 
-import styles from './Header.module.scss'
 import Button from '@/components/ui/btn/button/Button'
 
 interface IAuthHeader {}
@@ -38,7 +37,7 @@ export default function AuthHeader({}: IAuthHeader) {
 		<>
 			<SubHeading title="Войти" className="text-center !pb-2" />
 
-			<form className={styles.auth__form} onSubmit={handleSubmit(onSumbit)}>
+			<form onSubmit={handleSubmit(onSumbit)}>
                 <Field
                     type="email"
                     label="Email"

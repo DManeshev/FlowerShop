@@ -1,12 +1,12 @@
 .card {
-    @apply relative flex flex-col border rounded-[var(--rounded)] p-4;
+    @apply relative w-full h-full flex flex-col items-start;
 }
 
 .image {
-    @apply relative w-full h-[240px] mb-3;
+    @apply relative w-full pb-[100%];
 
     & img {
-        @apply rounded-[var(--rounded)] object-cover;
+        @apply rounded-5 object-cover;
     }
 
     &__hidden {
@@ -20,40 +20,18 @@
 }
 
 .logo {
-    @apply text-base text-[var(--black)] pb-1;
-}
-
-.description {
-    @apply text-sm text-[var(--black)] pb-2 overflow-hidden whitespace-nowrap text-ellipsis;
+    @apply text-base text-[var(--black)];
+    letter-spacing: .02px;
 }
 
 .section__price {
-    @apply flex items-center justify-between;
-}
+    @apply h-8 flex items-center gap-1 rounded-full px-3 bg-[var(--grey)] mt-[6px] cursor-pointer;
+    transition: background-color .3s ease-in;
 
-.price {
-    @apply text-xl font-semibold;
-}
-
-.basket {
-    @apply border p-1 rounded-full bg-[#e5e7eb] cursor-pointer;
-
-    &:hover,
-    &:hover svg path {
-        @apply stroke-[var(--green)] bg-white;
-        transition: .3s ease-in;
+    &:hover {
+        @apply bg-[var(--dark-grey)]
     }
 }
-
-
-@media screen and (max-width: 905px) {
-    .image {
-        @apply h-[300px];
-    }          
-}
-
-@media screen and (max-width: 605px) {
-    .image {
-        @apply h-[240px];
-    }          
+.price {
+    @apply font-Lora text-lg font-bold text-[var(--green)];
 }

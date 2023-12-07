@@ -1,0 +1,40 @@
+.navigation {
+    @apply flex items-center gap-3 pb-5 bg-white;
+    flex-flow: row nowrap;
+
+    &__btn {
+        @apply h-9 flex items-center justify-center p-4 rounded-full bg-[var(--grey)] cursor-pointer;
+        transition: background-color 0.3s ease-in;
+
+        &:hover {
+            @apply bg-[var(--dark-grey)];
+        }
+    }
+
+    &__name {
+        @apply text-3xl font-Lora font-bold;
+        letter-spacing: -.6px;
+    }
+}
+
+.search {
+	@apply sticky top-0 flex flex-col gap-4 pt-6 bg-[var(--grey)] z-[2];
+
+    &__container {
+        @apply py-2 px-3 bg-white rounded-t-8;
+    }
+}
+
+.content {
+	@apply relative z-[2] flex flex-col flex-grow rounded-b-8 pb-6 px-3 pt-4 bg-white;
+}
+
+@media screen and (min-width: 1024px) {
+    .search__container {
+        @apply p-6;
+    }
+
+	.content {
+		@apply px-6 pt-2;
+	}
+}

@@ -11,7 +11,7 @@ export const CategoryCard = memo(({ name, slug, icon, image }: TypeCategoryCard)
 	return (
 		<div className={styles.card}>
 			<div className={styles.card__image}>
-                <Image src={icon} alt='name' fill />
+                <Image src={icon} alt={name} fill />
 			</div>
             <span className={styles.card__title}>{name}</span>
 		</div>

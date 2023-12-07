@@ -1,17 +1,30 @@
+.container {
+    @apply relative w-full flex flex-col;
+}
+
+.icon {
+    @apply absolute;
+}
+
+.input__layout + .icon  {
+    @apply top-[15px] left-4;
+}
+
 .label {
     @apply relative text-[12px] px-2;
 }
 
 .input { 
-    @apply relative w-full border rounded-[var(--rounded)] px-3 py-[6px] font-Lora text-sm font-medium;
+    @apply relative w-full border rounded-[var(--rounded)] px-3 py-2 font-Lora text-sm font-medium;
+
+    &__layout {
+        @apply border-none rounded-full px-10 py-3 bg-[var(--grey)];
+    }
+
 
     &:focus {
         @apply outline-1 outline-[var(--green)];
     }
-}
-
-.full {
-    @apply rounded-full;
 }
 
 .small {

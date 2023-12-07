@@ -1,4 +1,4 @@
-import { useState, useRef, use } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
@@ -7,8 +7,6 @@ import { useActions } from '@/hooks/useAction'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
 import AuthHeader from './AuthHeader'
-
-import styles from './Header.module.scss'
 
 interface IAuthHeaderBtn {}
 
@@ -23,7 +21,7 @@ export default function AuthHeaderBtn({}: IAuthHeaderBtn) {
 	useOnClickOutside(modalRef, () => setAuthModal(false))
 
 	return (
-		<div className={styles.user}>
+		<div>
 			<svg
 				width="24"
 				height="24"
@@ -49,19 +47,17 @@ export default function AuthHeaderBtn({}: IAuthHeaderBtn) {
 			</svg>
 			{authModal ? (
 				<motion.div
-					className={styles.auth__modal}
 					initial={{ y: 10, x: '0', opacity: 0 }}
 					animate={{ y: 0, opacity: 1 }}
 					exit={{ y: 0, x: 0, opacity: 0 }}
 					transition={{ duration: 0.3 }}
 					ref={modalRef}
 				>
-					<div className={styles.auth__content}>
+					<div>
 						{user ? (
 							<>
 								<Link
 									href="/dashboard"
-									className={styles.auth__item}
 									onClick={() => setAuthModal(false)}
 								>
 									Профиль
@@ -80,7 +76,6 @@ export default function AuthHeaderBtn({}: IAuthHeaderBtn) {
 									</svg>
 								</Link>
 								<div
-									className={styles.auth__item}
 									onClick={() => {
 										logout()
 										setAuthModal(false)

@@ -71,7 +71,7 @@ export default function Aside() {
 									onClick={() =>
 										subCategories.length > 0
 											? openSubcategory(id)
-											: router.push(`category/${slug}`)
+											: router.push(`/category/${slug}`)
 									}
 								>
 									<div className={styles.category__img}>
@@ -92,7 +92,7 @@ export default function Aside() {
 										>
 											{subCategories?.map(sub => (
 												<Link
-													href={`category/${sub.slug}`}
+													href={`/category/${sub.slug}`}
 													className={styles.category__link}
 												>
 													<div className={styles.category__img}>

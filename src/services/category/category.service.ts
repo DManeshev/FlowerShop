@@ -12,9 +12,16 @@ export const CategoryService = {
 		})
 	},
 
-	async getByCategory(categoryId: number) {
+	async getSubcategoryByCategory(categoryId: number) {
 		return axiosClassic<ICategory[]>({
 			url: `${SUBCATEGORY_URL}/by-category/${categoryId}`,
+			method: 'GET'
+		})
+	},
+
+	async getSubcategoryBySlug(slug: string) {
+		return axiosClassic<ICategory>({
+			url: `${SUBCATEGORY_URL}/by-slug/${slug}`,
 			method: 'GET'
 		})
 	}

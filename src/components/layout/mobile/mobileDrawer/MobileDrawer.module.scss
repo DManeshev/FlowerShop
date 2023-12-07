@@ -1,0 +1,18 @@
+.BasketMobile {
+    @apply fixed top-10 w-full flex flex-col rounded-t-8 p-4 bg-white overflow-hidden;
+    max-height: calc(100% - 40px);
+    height: calc(100% - 40px);
+    box-shadow: 0 0 10px 5px rgba(0,0,0,.1);
+
+    &__close {
+        @apply fixed right-3;
+    }
+
+    &__closeBtn {
+        @apply w-8 h-8 flex items-center justify-center rounded-full p-1 bg-[var(--dark-grey)];
+    }
+
+    &__body {
+        @apply flex flex-col flex-grow pt-14 overflow-auto;
+    }
+}

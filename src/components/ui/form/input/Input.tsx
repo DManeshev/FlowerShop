@@ -1,4 +1,5 @@
-import { InputHTMLAttributes, ReactNode, forwardRef } from 'react'
+import { InputHTMLAttributes, ReactElement, ReactNode, forwardRef } from 'react'
+import { IconType } from 'react-icons'
 
 import styles from './Input.module.scss'
 import clsx from 'clsx'
@@ -8,12 +9,16 @@ interface IField extends InputHTMLAttributes<HTMLInputElement> {
 	classes?: string
 	error?: string
 	children?: ReactNode
+	icon?: ReactElement<IconType>
 }
 
 const Field = forwardRef<HTMLInputElement, IField>(
-	({ type = 'text', label, error, classes = '', children, ...rest }, ref) => {
+	(
+		{ type = 'text', label, error, classes = '', children, icon, ...rest },
+		ref
+	) => {
 		return (
-			<div className="flex flex-col w-full">
+			<div className={styles.container}>
 				{label ? <label className={styles.label}>{label}</label> : null}
 
 				<input
@@ -22,6 +27,8 @@ const Field = forwardRef<HTMLInputElement, IField>(
 					className={clsx(styles.input, styles[classes])}
 					{...rest}
 				/>
+
+				{icon && <div className={styles.icon}>{icon}</div>}
 
 				{children}
 

@@ -9,7 +9,6 @@ import {
 	EnumProductStatus,
 	productStatus
 } from '@/types/enum/productStatus.enum'
-import { EnumCategory, productCategory } from '@/types/enum/category.enum'
 import { IList } from '@/types/list.interface'
 
 import { ProductService } from '@/services/product/product.service'
@@ -45,7 +44,7 @@ export default function ProductActions({ action }: IProductActions) {
 			onSuccess({ data }) {
 				reset({
 					...data,
-					categoryName: productCategoryFind(data.category),
+					// categoryName: productCategoryFind(data.categoryId),
 					statusName: productStatusFind(data.status),
 					isDeliveryName: data.isDelivery ? 'Да' : 'Нет',
 					flowersNames: data.flowers.map(({ name }) => name).join(', ')
@@ -140,7 +139,7 @@ export default function ProductActions({ action }: IProductActions) {
 	}
 
 	const onSubmit: SubmitHandler<IProduct> = async data => {
-		delete data.categoryName
+		// delete data.categoryName
 		delete data.statusName
 		delete data.flowersNames
 		delete data.isDeliveryName
@@ -245,29 +244,29 @@ export default function ProductActions({ action }: IProductActions) {
 
 				<SubHeading title="Категория" className="!pb-3 text-[var(--green)]" />
 				<div className={styles.grid__container}>
-					<Select
+					{/* <Select
 						selectList={productCategory}
 						label="Категория"
 						{...formRegister('categoryName', {
 							required: 'Поле Категория обязательное'
 						})}
 						handleChange={({ id, name }) => {
-							setValue('category', id as EnumCategory)
+							setValue('categoryId', id)
 							setValue('categoryName', name)
 						}}
 						placeholder="Выберите категорию товара"
 						error={errors.categoryName?.message}
-					/>
-					<Field
+					/> */}
+					{/* <Field
 						label="Подкатегория"
 						placeholder="Введите подкатегорию"
 						{...formRegister('subCategory', {
 							required: 'Поле Подкатегория обязательное'
 						})}
 						error={errors.subCategory?.message}
-					/>
+					/> */}
 
-					{watch('category') === EnumCategory.BOUQUET ? (
+					{/* {watch('category') === EnumCategory.BOUQUET ? (
 						<SelectMultiple
 							selectList={flowers || []}
 							checkedList={watch('flowers')}
@@ -279,7 +278,7 @@ export default function ProductActions({ action }: IProductActions) {
 							handleChange={item => handleMultipleSelect(item)}
 							error={errors.flowersNames?.message}
 						/>
-					) : null}
+					) : null} */}
 				</div>
 
 				<SubHeading title="Прочее" className="!pb-3 text-[var(--green)]" />
