@@ -1,5 +1,5 @@
 .label {
-    @apply grid gap-3 text-base cursor-pointer;
+    @apply grid items-center gap-3 text-lg cursor-pointer;
     grid-template-columns: 1em auto;
 
     &__disabled {

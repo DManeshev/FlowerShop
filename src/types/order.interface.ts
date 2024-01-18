@@ -7,13 +7,15 @@ interface IOrderItem {
 }
 
 export interface IOrder {
-    id: number
-    createdAt: string
-    status: EnumOrderStatus
+    id?: number
+    createdAt?: string
+    status?: EnumOrderStatus
     name: string
     phone: string
-    commentary? : string
-    delivery: string
+    commentary?: string
+    address: string
+    flat: string
+    hallway?: string
     deliveryDate: string
     deliveryTime: string
     items: IOrderItem[]

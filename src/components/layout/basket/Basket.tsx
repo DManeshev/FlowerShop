@@ -1,34 +1,36 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { FaBasketShopping } from 'react-icons/fa6'
+import { useEffect, useRef } from 'react'
+import { useOnClickOutside, useMediaQuery } from 'usehooks-ts'
 
 import { useTypedSelector } from '@/hooks/useTypedSelector'
+import { useActions } from '@/hooks/useAction'
 
-import Heading from '@/components/ui/heading/Heading'
 import AsideMap from './AsideMap'
 import CartCard from '@/components/ui/cards/cartCard/Card'
+import TotalPrice from './components/TotalPrice'
+import EmptyBasket from './components/EmptyBasket'
 import DrawerMobile from '@/components/ui/drawer/DrawerMobile'
-import BasketMobileBtn from './components/BasketMobileBtn'
 
 import styles from './Basket.module.scss'
-import TotalPrice from './components/TotalPrice'
 
-interface IBasket {}
+export default function Basket() {
+	const { cart, isOpenCart } = useTypedSelector(state => state.cart)
+	const { openCart } = useActions()
 
-export default function Basket({}: IBasket) {
-	const { cart } = useTypedSelector(state => state.cart)
+	const refDrawer = useRef<HTMLDivElement>(null)
+	const matches = useMediaQuery('(min-width: 1024px)')
 
-	const [isOpenCart, setIsOpenCart] = useState<boolean>(false)
+	useEffect(() => {
+		if (isOpenCart) document.body.classList.add('scrollbar__body')
+		else document.body.classList.remove('scrollbar__body')
+	}, [isOpenCart])
 
-	const router = useRouter()
+	useOnClickOutside(refDrawer, () => openCart(false))
 
 	const total = cart.reduce((result, item) => {
 		return result + item.product.price * item.quantity
 	}, 0)
-
-	const handleOpenMobileCart = () => setIsOpenCart(!isOpenCart)
 
 	return (
 		<>
@@ -49,33 +51,35 @@ export default function Basket({}: IBasket) {
 									))}
 								</div>
 
-								<TotalPrice total={total} closeCart={() => setIsOpenCart(false)} />
+								<TotalPrice total={total} closeCart={() => openCart(false)} />
 							</div>
 						) : (
-							<div className="h-full flex flex-col items-center justify-center">
-								<FaBasketShopping size={125} color="var(--green)" />
-								<Heading
-									title="В Корзине ничего нет"
-									className="font-bold text-[var(--green)]"
-								/>
-							</div>
+							<EmptyBasket />
 						)}
 					</div>
 				</div>
 			</aside>
 
-			<DrawerMobile isOpen={isOpenCart} close={() => setIsOpenCart(false)}>
-				<div className='flex-grow flex flex-col gap-4'>
-					{cart.map(item => (
-						<CartCard key={item.product.id} {...item} />
-					))}
-				</div>
+			{!matches ? (
+				<DrawerMobile
+					ref={refDrawer}
+					isOpen={isOpenCart}
+					close={() => openCart(false)}
+				>
+					<div className="flex-grow flex flex-col gap-4 pt-10">
+						{cart.length > 0 ? (
+							<>
+								{cart.map(item => (
+									<CartCard key={item.product.id} {...item} />
+								))}
+							</>
+						) : (
+							<EmptyBasket />
+						)}
+					</div>
 
-				<TotalPrice total={total} closeCart={() => setIsOpenCart(false)} />
-			</DrawerMobile>
-
-			{cart.length > 0 ? (
-				<BasketMobileBtn openMobileCart={handleOpenMobileCart} total={total} />
+					<TotalPrice total={total} closeCart={() => openCart(false)} />
+				</DrawerMobile>
 			) : null}
 		</>
 	)

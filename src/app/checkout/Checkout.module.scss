@@ -1,69 +1,78 @@
-.wrapper {
-    @apply relative flex items-start gap-8
+.form {
+    @apply flex flex-col flex-1 gap-5;
+
+    &__container {
+        @apply border-b border-b-[var(--green)] pb-5;
+    }
+
+    &__fields {
+        @apply grid grid-cols-2 gap-3 mb-3;
+    }
+
+    &__map {
+        @apply relative h-80 rounded-5 overflow-hidden mb-3;
+    }
+
+    &__address {
+        @apply font-Lora text-[22px] font-bold pb-3;
+    }
+
+    &__date {
+        @apply w-full h-[38px] py-2 px-3 border rounded-[var(--rounded)] font-Lora text-sm;
+    }
+
+    &__descr {
+        @apply text-sm;
+    }
+
+    &__error {
+        @apply text-sm text-[var(--red)] font-Lora font-bold;
+    }
 }
 
-.info {
-    @apply flex-grow border rounded-[var(--rounded)] p-4 mb-5 last:mb-0;
-}
+.payment {
+    @apply flex flex-col flex-1 gap-5;
 
-.products__section {
-    @apply flex-shrink-0 border w-[450px] flex flex-col rounded-[var(--rounded)];
-}
-.product {
-    @apply flex items-start gap-5 border-b last:border-none p-4;
+    &__container {
+        @apply w-full flex flex-col items-start gap-3;
+    }
 
-    &__image {
-        @apply rounded-[var(--rounded)];
+    &__info {
+        @apply w-full flex items-start gap-3 border-b border-b-[var(--dark-grey)] pb-1;
+    }
+
+    &__label {
+        @apply text-lg font-semibold text-[var(--green)]; 
     }
 
     &__text {
-        @apply text-base;
-    }
-
-    &__price {
-        @apply font-Lora font-semibold text-[var(--green)];
-    }
-
-    &__quantity {
-        @apply text-base font-Lora;
-    } 
-}
-
-.tab {
-    @apply relative px-2 pb-1 cursor-pointer;
-
-    &__underline {
-        @apply absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[var(--green)]
+        @apply font-Lora text-lg;
     }
 }
 
-.date {
-    @apply w-full h-[34px] px-5 border rounded-[var(--rounded)] font-Lora;
-}
-
-.address__descr {
-    @apply pt-1 pl-2 text-[12px];
-}
 .selfcall {
     @apply col-span-4 text-[var(--disabled-color)] text-sm;
 }
 
-@media screen and (max-width: 991px) {
-    .products {
-        @apply w-[350px]
+.total {
+    @apply self-center flex flex-col items-center mb-4;
+
+    &__text {
+        @apply text-[var(--disabled-color)] font-bold;
+    }
+
+    &__price {
+        @apply font-Lora text-2xl font-bold;
     }
 }
 
-@media screen and (max-width: 767px) {
-    .wrapper {
-        @apply flex-col;
-    }
+.price {
+    @apply font-Lora font-bold text-lg;
+}
 
-    .info {
-        @apply w-full;
-    }
 
-    .products {
-        @apply w-full;
+@media screen and (min-width: 768px) {
+    .form__fields {
+        @apply grid-cols-4;
     }
 }

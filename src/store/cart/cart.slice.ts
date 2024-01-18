@@ -6,10 +6,12 @@ import { includeInCart } from '@/utils/includeInCart'
 
 interface IInitialState {
 	cart: ICart[]
+	isOpenCart: boolean
 }
 
 const initialState: IInitialState = {
-	cart: []
+	cart: [],
+	isOpenCart: false
 }
 
 export const cartSlice = createSlice({
@@ -45,6 +47,10 @@ export const cartSlice = createSlice({
 			if (typeof findProductInCart !== 'boolean') {
 				findProductInCart.quantity = count === 0 ? 1 : count
 			}
+		},
+
+		openCart(state, action: PayloadAction<boolean>) {
+			state.isOpenCart = action.payload
 		}
 	}
 })

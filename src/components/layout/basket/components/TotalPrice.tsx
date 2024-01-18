@@ -12,8 +12,7 @@ interface ITotalPrice {
 
 export default function TotalPrice({ total, closeCart }: ITotalPrice) {
 	const router = useRouter()
-
-    const name = 'asdsad'
+	
 	return (
 		<div className="w-full flex flex-col">
 			<div className={styles.total}>
@@ -31,6 +30,7 @@ export default function TotalPrice({ total, closeCart }: ITotalPrice) {
 					router.push('/checkout')
                     closeCart()
 				}}
+				disabled={total === 0}
 			/>
 		</div>
 	)

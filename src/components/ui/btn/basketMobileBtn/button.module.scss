@@ -1,0 +1,22 @@
+.basketMobileBtn {
+    @apply fixed bottom-8 right-5 w-28 h-12 flex flex-col z-20;
+
+    &__btn {
+        @apply w-full h-full rounded-full px-6 bg-[var(--green)] cursor-pointer;
+        transition: background-color .3s ease-in;
+
+        & span {
+            @apply font-Lora text-white text-lg font-semibold;
+        }
+
+        &:hover {
+            @apply bg-[var(--dark-green)]
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .basketMobileBtn {
+        @apply hidden;
+    }
+}

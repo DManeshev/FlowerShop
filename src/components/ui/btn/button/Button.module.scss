@@ -5,6 +5,10 @@
 	& span {
 		@apply text-sm text-white font-bold;
 	}
+
+	&:disabled {
+		@apply border-none opacity-60;
+	}
 }
 
 // theme

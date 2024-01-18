@@ -25,6 +25,10 @@
     &:focus {
         @apply outline-1 outline-[var(--green)];
     }
+
+    &:disabled {
+        @apply bg-[var(--grey)]
+    }
 }
 
 .small {

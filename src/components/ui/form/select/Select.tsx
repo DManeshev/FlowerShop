@@ -40,7 +40,7 @@ const Select = forwardRef<HTMLInputElement, ISelect>(
 				/>
 				{error && <div className="text-red-600 text-[12px]">{error}</div>}
 				<motion.div
-					className={`${styles.modal}`}
+					className={styles.modal}
 					animate={open ? 'open' : 'closed'}
 					variants={{
 						open: { height: 'auto', opacity: 1 },

@@ -16,5 +16,5 @@ export const OrderService = {
 			url: '/orders',
 			data
 		})
-	}
+	},
 }

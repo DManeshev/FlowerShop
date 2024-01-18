@@ -3,7 +3,7 @@
 }
 
 .modal {
-    @apply absolute w-full max-h-[165px] bg-white mt-1 border border-[var(--green)] rounded-md overflow-auto z-10;
+    @apply absolute w-full max-h-[165px] bg-white mt-1 border border-[var(--green)] rounded-lg overflow-auto z-10;
 
     &::-webkit-scrollbar {
         @apply hidden;

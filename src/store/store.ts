@@ -12,6 +12,7 @@ import {
 import { toastSlice } from './toast/toast.slice'
 import { userSlice } from './user/user.slice'
 import { cartSlice } from './cart/cart.slice'
+import { orderSlice } from './order/order.slice'
 
 const isClient = typeof window !== 'undefined'
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
 	cart: cartSlice.reducer,
 	user: userSlice.reducer,
 	toast: toastSlice.reducer,
+	order: orderSlice.reducer,
 })
 
 let mainReducer = rootReducer

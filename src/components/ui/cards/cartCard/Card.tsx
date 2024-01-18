@@ -33,7 +33,7 @@ export default function Card({ product, quantity }: ICart) {
 
                 <div className={styles.card__info}>
                     <div className={styles.card__header}>
-                        <p className={styles.card__title}>{product.name}</p>
+                        <h2 className={styles.card__title}>{product.name}</h2>
 
                         <div className={styles.delete} onClick={deleteProductFromCart}>
                             <TbTrash />
@@ -43,7 +43,7 @@ export default function Card({ product, quantity }: ICart) {
                     <div className={styles.card__footer}>
                         <div className={styles.quantity}>{quantity}x</div>
 
-                        <div className='ml-auto flex gap-1 font-Lora font-bold text-[var(--green)]'>
+                        <div className='ml-auto flex gap-1 text-lg font-Lora font-bold text-[var(--green)]'>
                             <div className={styles.price}>{quantity * product.price}</div>
                             <span>&#8381; </span>
                         </div>

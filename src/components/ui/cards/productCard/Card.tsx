@@ -1,15 +1,17 @@
 'use client'
 
-import { MouseEvent, MouseEventHandler, memo } from 'react'
+import { MouseEvent, memo } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { FaPlus } from 'react-icons/fa6'
+import { useRouter } from 'next/navigation'
 
 import { useActions } from '@/hooks/useAction'
 
 import { IProduct } from '@/types/product.interface'
 
 import styles from './Card.module.scss'
+import Product from '@/app/product/[slug]/Product'
 
 const Card = memo(function Card(props: IProduct) {
 	const { id, createdAt, name, slug, description, images, price, categoryId } =
@@ -17,7 +19,12 @@ const Card = memo(function Card(props: IProduct) {
 
 	const { addToCart } = useActions()
 
-	const openProductCard = () => console.log('click on card')
+	const router = useRouter()
+
+	const openProductCard = () => {
+		// router.push(`/product/${slug}`)
+		window.history.pushState({}, "", `/product/${slug}`)
+	}
 
 	const handleAddToCart = (event: MouseEvent<HTMLDivElement>) => {
 		event.stopPropagation()

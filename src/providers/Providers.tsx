@@ -18,13 +18,16 @@ const queryClient = new QueryClient({
 	}
 })
 
+const API_KEY_MAP = 'beefb397-21cb-401f-9560-23e0a245ba6b'
+
+
 export default function Providers({ children }: PropsWithChildren<unknown>) {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<ReduxProvider store={store}>
 				<PersistGate loading={null} persistor={persistor}>
 					<AuthProvider>
-						<YMaps>
+						<YMaps query={{ apikey: API_KEY_MAP, load: "geocode" }}>
 							{children}
 						</YMaps>
 					</AuthProvider>

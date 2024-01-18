@@ -1,10 +1,10 @@
 .BasketDesctop {
-    @apply fixed right-0 top-0 w-[1024px] flex flex-col m-8 rounded-8 bg-white overflow-hidden;
+    @apply fixed right-0 top-0 w-[900px] flex flex-col m-8 rounded-8 bg-white overflow-hidden;
     height: calc(100vh - 64px);
     max-height: calc(100vh - 64px);
 
     &__close {
-        @apply fixed top-6 right-6;
+        @apply fixed top-6 right-6 z-[2];
     }
 
     &__closeBtn {
@@ -12,7 +12,7 @@
     }
 
     &__body {
-        @apply flex gap-6 px-6 overflow-hidden;
+        @apply h-full flex flex-col gap-6 p-6 overflow-auto;
     }
 }
 
@@ -24,7 +24,7 @@
     box-shadow: 0 0 10px 5px rgba(0,0,0,.1);
 
     &__close {
-        @apply fixed right-3;
+        @apply fixed right-3 z-[2];
     }
 
     &__closeBtn {
@@ -32,6 +32,6 @@
     }
 
     &__body {
-        @apply flex flex-col flex-grow pt-14 overflow-auto;
+        @apply flex flex-col flex-grow overflow-auto;
     }
 }

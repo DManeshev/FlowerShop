@@ -7,7 +7,7 @@
 }
 
 .info {
-    @apply rounded-[50px] bg-white py-3 px-5 flex items-center justify-center;
+    @apply flex-1 w-full rounded-[50px] bg-white py-3 px-5 flex items-center justify-center;
 
     &__map {
         @apply flex items-center gap-2 cursor-pointer;
@@ -42,30 +42,9 @@
     }
 }
 
-.basketMobileBtn {
-    @apply fixed bottom-8 right-5 w-28 h-12 flex flex-col z-50;
-
-    &__btn {
-        @apply w-full h-full rounded-full px-6 bg-[var(--green)] cursor-pointer;
-        transition: background-color .3s ease-in;
-
-        & span {
-            @apply font-Lora text-white text-lg font-semibold;
-        }
-
-        &:hover {
-            @apply bg-[var(--dark-green)]
-        }
-    }
-}
-
 @media screen and (min-width: 1024px) {
     .aside {
         @apply block;
-    }
-
-    .basketMobileBtn {
-        @apply hidden;
     }
 
     .BasketMobile {

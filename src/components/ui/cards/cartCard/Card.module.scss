@@ -2,7 +2,7 @@
     @apply h-full flex items-start gap-3 border-b pb-3;
 
     &__image {
-        @apply relative h-[85px] w-[85px] flex-shrink-0;
+        @apply relative h-[100px] w-[100px] flex-shrink-0;
 
         & img {
             @apply object-cover rounded-[var(--rounded)];
@@ -18,7 +18,7 @@
     }
 
     &__title {
-        @apply font-bold;
+        @apply text-2xl font-bold;
     }
 
     &__footer {
@@ -42,5 +42,5 @@
 }
 
 .quantity {
-    @apply text-base font-Lora;
+    @apply text-lg font-Lora;
 }
