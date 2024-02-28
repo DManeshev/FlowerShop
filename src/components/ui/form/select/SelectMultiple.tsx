@@ -6,8 +6,8 @@ import {
 	ChangeEvent
 } from 'react'
 import { motion } from 'framer-motion'
+import { useOnClickOutside } from 'usehooks-ts'
 
-import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { IList } from '@/types/list.interface'
 
 import Field from '../input/Input'
