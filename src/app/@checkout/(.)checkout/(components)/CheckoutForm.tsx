@@ -44,7 +44,7 @@ export default function CheckoutForm() {
 
 	const fullAddress = `${watch('address')}, ${watch('flat')}`
 
-	const handleClick = e => {
+	const handleClick = (e: any) => {
 		const newCoords = e.get('coords')
 		setCoords(newCoords)
 
@@ -52,16 +52,23 @@ export default function CheckoutForm() {
 			const firstGeoObject = res.geoObjects.get(0)
 
 			const newAddress = [
+				/* @ts-ignore */
 				firstGeoObject.getLocalities().length
-					? firstGeoObject.getLocalities()
-					: firstGeoObject.getAdministrativeAreas(),
+					? /* @ts-ignore */
+					  firstGeoObject.getLocalities()
+					: /* @ts-ignore */
+					  firstGeoObject.getAdministrativeAreas(),
+				/* @ts-ignore */
 				firstGeoObject.getThoroughfare() || firstGeoObject.getPremise(),
+				/* @ts-ignore */
 				firstGeoObject.getPremiseNumber()
 			]
 				.filter(Boolean)
 				.join(', ')
 
-			placemarkRef.current.getMap().hint.open(newCoords, newAddress)
+			if (placemarkRef.current)
+				/* @ts-ignore */
+				placemarkRef.current.getMap().hint.open(newCoords, newAddress)
 
 			setValue('address', newAddress)
 		})
@@ -104,9 +111,11 @@ export default function CheckoutForm() {
 						defaultState={{ center: coords, zoom: 12 }}
 						width="100%"
 						height="100%"
+						/* @ts-ignore */
 						instanceRef={mapRef}
 						onClick={handleClick}
 					>
+						{/* @ts-ignore */}
 						<Placemark instanceRef={placemarkRef} geometry={coords} />
 					</Map>
 				</div>
