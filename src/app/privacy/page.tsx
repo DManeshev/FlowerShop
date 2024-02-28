@@ -29,7 +29,7 @@ export default function PrivacyPage() {
 							1.2. Настоящая политика Оператора в отношении обработки
 							персональных данных (далее — Политика) применяется ко всей
 							информации, которую Оператор может получить о посетителях
-							веб-сайта <Link href='/' className='text-[var(--green)]'>https://yourflowers21</Link>.
+							веб-сайта <Link href='/' className='text-[var(--purple)]'>https://yourflowers21</Link>.
 						</li>
 					</ol>
 				</li>
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
 							2.3. Веб-сайт — совокупность графических и информационных
 							материалов, а также программ для ЭВМ и баз данных, обеспечивающих
 							их доступность в сети интернет по сетевому адресу 
-							<Link href='/' className='text-[var(--green)]'>https://yourflowers21</Link>.
+							<Link href='/' className='text-[var(--purple)]'>https://yourflowers21</Link>.
 						</li>
 						<li>
 							2.4. Информационная система персональных данных — совокупность
@@ -85,7 +85,7 @@ export default function PrivacyPage() {
 						<li>
 							2.8. Персональные данные — любая информация, относящаяся прямо или
 							косвенно к определенному или определяемому Пользователю веб-сайта
-							<Link href='/' className='text-[var(--green)]'>https://yourflowers21</Link>.{' '}
+							<Link href='/' className='text-[var(--purple)]'>https://yourflowers21</Link>.{' '}
 						</li>
 						<li>
 							2.9. Персональные данные, разрешенные субъектом персональных
@@ -99,7 +99,7 @@ export default function PrivacyPage() {
 						</li>
 						<li>
 							2.10. Пользователь — любой посетитель веб-сайта
-							<Link href='/' className='text-[var(--green)]'>https://yourflowers21</Link>.
+							<Link href='/' className='text-[var(--purple)]'>https://yourflowers21</Link>.
 						</li>
 						<li>
 							2.11. Предоставление персональных данных — действия, направленные
@@ -467,7 +467,7 @@ export default function PrivacyPage() {
 						</li>
 						<li>
 							12.3. Актуальная версия Политики в свободном доступе расположена в
-							сети Интернет по адресу <Link href='/' className='text-[var(--green)]'>https://yourflowers21</Link>/privacy.
+							сети Интернет по адресу <Link href='/' className='text-[var(--purple)]'>https://yourflowers21</Link>/privacy.
 						</li>
 					</ol>
 				</li>

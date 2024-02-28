@@ -2,7 +2,7 @@
     @apply flex flex-col flex-1 gap-5;
 
     &__container {
-        @apply border-b border-b-[var(--green)] pb-5;
+        @apply border-b border-b-[var(--purple)] pb-5;
     }
 
     &__fields {
@@ -14,7 +14,7 @@
     }
 
     &__address {
-        @apply font-Lora text-[22px] font-bold pb-3;
+        @apply font-Lora text-[20px] font-bold pb-3;
     }
 
     &__date {
@@ -42,11 +42,11 @@
     }
 
     &__label {
-        @apply text-lg font-semibold text-[var(--green)]; 
+        @apply text-base font-semibold text-[var(--purple)]; 
     }
 
     &__text {
-        @apply font-Lora text-lg;
+        @apply font-Lora text-base;
     }
 }
 
@@ -74,5 +74,14 @@
 @media screen and (min-width: 768px) {
     .form__fields {
         @apply grid-cols-4;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .payment__label {
+        @apply text-lg;
+    }
+    .payment__text {
+        @apply text-lg;
     }
 }

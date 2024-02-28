@@ -1,11 +1,10 @@
 import { ProductService } from '@/services/product/product.service'
 
 import Product from './Product'
-
 interface IProductSlugPage {
-	params: {
-		slug: string
-	}
+    params: {
+        slug: string
+    }
 }
 
 const getProductBySlug = async (slug: string) => {
@@ -13,20 +12,8 @@ const getProductBySlug = async (slug: string) => {
 
     return product
 }
+export default async function ProductDetailPage({ params }: IProductSlugPage) {
+    const { data } = await getProductBySlug(params.slug)
 
-const getProductsBySubcategorySlug = async (slug: string) => {
-	const { data: products } = await ProductService.getBySubcategory(slug)
-
-	return products
-}
-
-export default async function ProductPage({ params }: IProductSlugPage) {
-	const { data } = await getProductBySlug(params.slug)
-	// const products = await getProductsBySubcategorySlug()
-
-    console.log(params)
-	// return <Product {...data} />
-	return (
-		<div>asdfsdf</div>
-	)
+    return <Product {...data} />
 }

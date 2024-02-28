@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useMediaQuery, useOnClickOutside } from 'usehooks-ts'
 
@@ -17,27 +17,19 @@ export default function Checkout() {
 		cart: { cart },
 		order
 	} = useTypedSelector(state => state)
-
-	const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(true)
+	
+	const [isOpen, setIsOpen] = useState<boolean>(true);
+	
+	useEffect(() => {
+		if (isOpen) document.body.classList.add('scrollbar__body')
+		else document.body.classList.remove('scrollbar__body')
+	}, [isOpen])
 
 	const router = useRouter()
 	const matches = useMediaQuery('(min-width: 1024px)')
 	const refDrawer = useRef<HTMLDivElement>(null)
 
-	useEffect(() => {
-		if (isOpenDrawer) document.body.classList.add('scrollbar__body')
-		else document.body.classList.remove('scrollbar__body')
-	}, [isOpenDrawer])
-
-	useOnClickOutside(refDrawer, () => {
-		setIsOpenDrawer(false)
-		router.push('/')
-	})
-
-	const handleCloseDrawer = () => {
-		setIsOpenDrawer(false)
-		router.push('/')
-	}
+	useOnClickOutside(refDrawer, () => router.push('/'))
 
 	const content = !order.isPayment ? <CheckoutForm /> : <Payment cart={cart} />
 
@@ -46,16 +38,18 @@ export default function Checkout() {
 			{matches ? (
 				<DrawerDesctop
 					ref={refDrawer}
-					isOpen={isOpenDrawer}
-					close={handleCloseDrawer}
+					isOpen={isOpen}
+					isPage={true}
+					closeDrawer={() => router.back()}
 				>
 					{cart.length > 0 ? content : <EmptyBasket />}
 				</DrawerDesctop>
 			) : (
 				<DrawerMobile
 					ref={refDrawer}
-					isOpen={isOpenDrawer}
-					close={handleCloseDrawer}
+					isOpen={isOpen}
+					isPage={true}
+					closeDrawer={() => router.back()}
 				>
 					{cart.length > 0 ? content : <EmptyBasket />}
 				</DrawerMobile>

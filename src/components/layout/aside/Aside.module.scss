@@ -43,7 +43,7 @@
         @apply flex items-center gap-2 cursor-pointer;
 
         &:hover .category__title {
-            @apply text-[var(--green)]
+            @apply text-[var(--purple)]
         }
     }
 
@@ -51,7 +51,7 @@
         @apply flex items-center gap-2 py-1 cursor-pointer;
 
         &:hover .category__title {
-            @apply text-[var(--green)]
+            @apply text-[var(--purple)]
         }
     }
 

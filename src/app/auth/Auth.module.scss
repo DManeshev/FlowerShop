@@ -1,0 +1,11 @@
+.auth {
+    @apply w-full flex flex-col items-center;
+}
+
+.form {
+    @apply w-full flex flex-col gap-3;
+}
+
+@media screen and (min-width: 1024px) {
+   
+}

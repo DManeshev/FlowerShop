@@ -1,3 +1,5 @@
+'use client'
+
 import { ChangeEvent, useState, MouseEvent } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { TbTrash } from 'react-icons/tb'
@@ -14,7 +16,7 @@ import { IList } from '@/types/list.interface'
 import { ProductService } from '@/services/product/product.service'
 import { useFlowerQuery } from '@/hooks/useQueries/useFlowerQuery'
 import { useProductQuery } from '@/hooks/useQueries/useProductQuery'
-import { productCategoryFind, productStatusFind } from '@/utils/statusFind'
+import { productStatusFind } from '@/utils/statusFind'
 
 import File from '@/components/ui/form/file/File'
 import Field from '@/components/ui/form/input/Input'
@@ -189,7 +191,7 @@ export default function ProductActions({ action }: IProductActions) {
 			>
 				<SubHeading
 					title="Основаная информация"
-					className="!pb-3 text-[var(--green)]"
+					className="!pb-3 text-[var(--purple)]"
 				/>
 				<div className={styles.grid__container}>
 					<Field
@@ -242,7 +244,7 @@ export default function ProductActions({ action }: IProductActions) {
 					</div>
 				</div>
 
-				<SubHeading title="Категория" className="!pb-3 text-[var(--green)]" />
+				<SubHeading title="Категория" className="!pb-3 text-[var(--purple)]" />
 				<div className={styles.grid__container}>
 					{/* <Select
 						selectList={productCategory}
@@ -281,7 +283,7 @@ export default function ProductActions({ action }: IProductActions) {
 					) : null} */}
 				</div>
 
-				<SubHeading title="Прочее" className="!pb-3 text-[var(--green)]" />
+				<SubHeading title="Прочее" className="!pb-3 text-[var(--purple)]" />
 				<div className={styles.grid__container}>
 					<Select
 						selectList={productStatus}

@@ -8,8 +8,8 @@ export interface IProduct {
 	description?: string
 	images: string[]
 	price: number
-	categoryId: string
-	subcategoryId: string
+	categoryId: number
+	subcategoryId: number
 	status: EnumProductStatus
 	statusName?: string
 	isDelivery: boolean

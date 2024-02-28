@@ -10,14 +10,11 @@ import styles from './PageLayout.module.scss'
 export default function PageLayout({ children }: PropsWithChildren<unknown>) {
 	return (
 		<main className='main'>
-			{/* search */}
-			<PageLayoutSearch />
+			{/* <PageLayoutSearch /> */}
 
-			{/* main */}
+			<PageLayoutNavigation />
+
 			<div className={styles.content}>
-				{/* breadcrumbs */}
-				<PageLayoutNavigation />
-
 				{children}
 
 				<BasketMobileBtn />

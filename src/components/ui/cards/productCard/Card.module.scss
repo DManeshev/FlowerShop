@@ -1,9 +1,18 @@
 .card {
     @apply relative w-full h-full flex flex-col items-start cursor-pointer;
+
+    &__logo {
+        @apply text-lg;
+        letter-spacing: .02px;
+    }
+
+    &__price {
+        @apply flex gap-1 font-Lora text-lg font-bold text-[var(--purple)];
+    }
 }
 
 .image {
-    @apply relative w-full pb-[100%];
+    @apply relative w-full pb-[100%] mb-2;
 
     & img {
         @apply rounded-5 object-cover;
@@ -19,9 +28,8 @@
     }
 }
 
-.logo {
-    @apply text-base text-[var(--black)];
-    letter-spacing: .02px;
+.section {
+    @apply w-full flex flex-col items-center justify-between;
 }
 
 .section__price {
@@ -32,6 +40,4 @@
         @apply bg-[var(--dark-grey)]
     }
 }
-.price {
-    @apply font-Lora text-lg font-bold text-[var(--green)];
-}
+

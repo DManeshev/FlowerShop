@@ -23,23 +23,33 @@ export const cartSlice = createSlice({
 			action: PayloadAction<{ product: IProduct; quantity: number }>
 		) {
 			const { product, quantity } = action.payload
-
 			const findProductInCart = state.cart.find(
 				item => item.product.id === product.id
 			)
+
+			if (findProductInCart) return
+
+			state.cart.push({
+				product,
+				quantity: quantity === 0 ? 1 : quantity
+			})
+		},
+
+		removeFromCart(state, action: PayloadAction<{ id: number }>) {
+			const { id } = action.payload
+			const findProductInCart = state.cart.find(item => item.product.id === id)
 
 			if (findProductInCart) {
 				state.cart = state.cart.filter(
 					item => item.product.id !== findProductInCart.product.id
 				)
-			} else
-				state.cart.push({
-					product,
-					quantity: quantity === 0 ? 1 : quantity
-				})
+			}
 		},
 
-		changeProductQuantity(state, action: PayloadAction<{id: number, count: number}>) {
+		changeProductQuantity(
+			state,
+			action: PayloadAction<{ id: number; count: number }>
+		) {
 			const { id, count } = action.payload
 
 			const findProductInCart = includeInCart({ cart: state.cart, id })

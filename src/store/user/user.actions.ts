@@ -3,6 +3,7 @@ import { removeFromStorage } from '@/services/auth/auth.helper'
 import { AuthService } from '@/services/auth/auth.service'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { IAuthResponse, IEmailPassword } from './user.interface'
+import { AxiosError } from 'axios'
 
 export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
 	'auth/register',
@@ -19,13 +20,20 @@ export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
 
 export const login = createAsyncThunk<IAuthResponse, IEmailPassword>(
 	'auth/login',
-	async (data, thunkApi) => {
+	async (data, { rejectWithValue }) => {
 		try {
 			const response = await AuthService.main('login', data)
 
 			return response
 		} catch (error) {
-			return thunkApi.rejectWithValue(error)
+			if (error instanceof AxiosError) {
+				if (!error.response) {
+					throw error
+				}
+				return rejectWithValue(error.response.data)
+			}
+
+			throw error
 		}
 	}
 )
@@ -45,7 +53,7 @@ export const checkAuth = createAsyncThunk<IAuthResponse>(
 			if (errorCatch(error) === 'jwt expired') {
 				thunkApi.dispatch(logout())
 			}
-			
+
 			return thunkApi.rejectWithValue(error)
 		}
 	}

@@ -34,7 +34,7 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	const isAdminRoute = pathname.startsWith(ADMIN_PANEL_URL)
 
 	if (!isProtectedRoute && !isAdminRoute) return <>{children}</>
-	
+
 	if (user?.isAdmin) return <>{children}</>
 
 	if (user && isProtectedRoute) return <>{children}</>

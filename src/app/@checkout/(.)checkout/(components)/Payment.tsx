@@ -29,32 +29,32 @@ export default function Payment({ cart }: ICheckoutPayment) {
 		return result + item.product.price * item.quantity
 	}, 0)
 
-	const checkoutOrder = useCallback(() => {
-		let { isNotDelivery, isPayment, ...rest } = order
-
-		const orderObject = {
-			...rest,
-			items: cart.map(({ product, quantity }) => ({
-				productId: product.id,
-				price: product.price,
-				quantity
-			}))
-		}
-		
-		mutate(orderObject, {
-			onSuccess: ({ data }, variables, context) => {
-				router.push(data.confirmation.confirmation_url)
-			},
-			onError: (error, variables, context) => {
-				console.log(error)
-			}
-		})
-	}, [mutate])
+//	const checkoutOrder = useCallback(() => {
+//		let { isNotDelivery, isPayment, ...rest } = order
+//
+//		const orderObject = {
+//			...rest,
+//			items: cart.map(({ product, quantity }) => ({
+//				productId: product.id,
+//				price: product.price,
+//				quantity
+//			}))
+//		}
+//		
+//		mutate(orderObject, {
+//			onSuccess: ({ data }, variables, context) => {
+//				router.push(data.confirmation.confirmation_url)
+//			},
+//			onError: (error, variables, context) => {
+//				console.log(error)
+//			}
+//		})
+//	}, [mutate])
 
 	return (
 		<div className={styles.payment}>
 			<div className={styles.payment__container}>
-				<Heading title="Информация о клиенте" />
+				<Heading title="Информация о заказе" />
 
 				<div className={styles.payment__info}>
 					<div className={styles.payment__label}>Имя:</div>
@@ -104,7 +104,8 @@ export default function Payment({ cart }: ICheckoutPayment) {
 						<span>&#8381; </span>
 					</div>
 				</div>
-				<Button title="Оплатить" size="large" onClick={checkoutOrder} />
+				{/*onClick={checkoutOrder}*/}
+				<Button title="Оплатить" size="large" /> 
 			</div>
 		</div>
 	)

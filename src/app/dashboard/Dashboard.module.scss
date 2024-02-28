@@ -1,67 +1,73 @@
 .dashboard {
-	@apply flex flex-grow gap-5;
+	@apply w-full h-full flex items-start gap-10 pt-5;
 }
 
-.aside {
-	@apply flex flex-col w-52 border-r;
+.nav {
+	@apply h-full flex flex-col w-52 border-r;
 
-	&__item {
-		@apply flex items-center gap-2 border-b p-2 cursor-pointer hover:text-[var(--green)];
+	&__link {
+		@apply flex items-center gap-2 border-b p-2 cursor-pointer hover:text-[var(--purple)];
 		transition: all 0.3s ease-in;
 	}
 }
-.active {
-	@apply text-[var(--green)] border-b-[var(--green)];
-}
 
 .content {
-	@apply flex-grow overflow-hidden;
+	@apply flex-grow;
 }
 
-.form {
-	@apply relative;
 
-	&__disabled::before {
-		@apply absolute w-full h-full z-[1];
-		content: '';
-		background-color: rgba(255, 255, 255, .5);
-	}
+// .active {
+// 	@apply text-[var(--purple)] border-b-[var(--purple)];
+// }
 
-	&__btns {
-		@apply flex justify-end gap-5 mt-16;
-	}
-}
+// .content {
+// 	@apply flex-grow overflow-hidden;
+// }
 
-.grid__container {
-	@apply grid grid-cols-2 gap-3 mb-5;
+// .form {
+// 	@apply relative;
 
-	&:nth-child(6) {
-		@apply mb-0;
-	}
-}
+// 	&__disabled::before {
+// 		@apply absolute w-full h-full z-[1];
+// 		content: '';
+// 		background-color: rgba(255, 255, 255, .5);
+// 	}
 
-.images {
-	@apply grid gap-4 mt-3;
-	grid-template-columns: repeat(auto-fit, minmax(20ch, 20ch));
-}
-.image {
-	--gallery-aspect-ratio: 3/4;
+// 	&__btns {
+// 		@apply flex justify-end gap-5 mt-16;
+// 	}
+// }
 
-	@apply relative w-full;
+// .grid__container {
+// 	@apply grid grid-cols-2 gap-3 mb-5;
 
-	& img {
-		@apply object-cover rounded-md;
-	}
+// 	&:nth-child(6) {
+// 		@apply mb-0;
+// 	}
+// }
 
-	&__delete {
-		@apply absolute right-3 top-3 border rounded-full bg-white p-1 cursor-pointer;
+// .images {
+// 	@apply grid gap-4 mt-3;
+// 	grid-template-columns: repeat(auto-fit, minmax(20ch, 20ch));
+// }
+// .image {
+// 	--gallery-aspect-ratio: 3/4;
 
-		&:hover svg {
-			@apply stroke-[var(--red)];
-			transition: 0.4s ease-in
-		}
-	}
-}
+// 	@apply relative w-full;
+
+// 	& img {
+// 		@apply object-cover rounded-md;
+// 	}
+
+// 	&__delete {
+// 		@apply absolute right-3 top-3 border rounded-full bg-white p-1 cursor-pointer;
+
+// 		&:hover svg {
+// 			@apply stroke-[var(--red)];
+// 			transition: 0.4s ease-in
+// 		}
+// 	}
+// }
 
 .head__cell {
 	@apply border border-black p-1 font-Lora;
@@ -70,56 +76,53 @@
 	@apply border p-1 font-Lora text-center;
 }
 
-/* @media screen and (max-width: 991px) */
-@media screen and (max-width: 767px) {
-	.dashboard {
-		@apply flex-col;
-	}
-	.aside {
-		@apply w-full flex-row justify-between overflow-x-auto border-r-0 border-b scroll-smooth;
-		-ms-overflow-style: none;
-		scrollbar-width: none;
+// /* @media screen and (max-width: 991px) */
+// @media screen and (max-width: 767px) {
+// 	.aside {
+// 		@apply w-full flex-row justify-between overflow-x-auto border-r-0 border-b scroll-smooth;
+// 		-ms-overflow-style: none;
+// 		scrollbar-width: none;
 
-		&::-webkit-scrollbar {
-			display: none;
-		}
-	
-		&__item {
-			@apply w-[200px] flex-shrink-0 border-b-0;
-		}
-	}
+// 		&::-webkit-scrollbar {
+// 			display: none;
+// 		}
 
-	.images {
-		grid-template-columns: repeat(auto-fit, minmax(20ch, 0fr));
-	}
-}
+// 		&__item {
+// 			@apply w-[200px] flex-shrink-0 border-b-0;
+// 		}
+// 	}
 
-@media screen and (max-width: 500px) {
-	.form__btns {
-		@apply flex-col gap-3 mt-16;
-	}
-	.grid__container {
-		@apply grid-cols-1;
-	}
+// 	.images {
+// 		grid-template-columns: repeat(auto-fit, minmax(20ch, 0fr));
+// 	}
+// }
 
-	.images {
-		grid-template-columns: repeat(auto-fit, minmax(15ch, 0fr));
-	}
-}
+// @media screen and (max-width: 500px) {
+// 	.form__btns {
+// 		@apply flex-col gap-3 mt-16;
+// 	}
+// 	.grid__container {
+// 		@apply grid-cols-1;
+// 	}
 
-@media screen and (max-width: 360px) {
-	.images {
-		grid-template-columns: repeat(auto-fit, minmax(15ch, 1fr));
-	}
-}
+// 	.images {
+// 		grid-template-columns: repeat(auto-fit, minmax(15ch, 0fr));
+// 	}
+// }
 
-@supports (aspect-ratio: 1) {
-	.image {
-		aspect-ratio: var(--gallery-aspect-ratio);
-		height: auto;
-		& img {
-			aspect-ratio: var(--gallery-aspect-ratio);
-			height: auto;
-		}
-	}
-}
+// @media screen and (max-width: 360px) {
+// 	.images {
+// 		grid-template-columns: repeat(auto-fit, minmax(15ch, 1fr));
+// 	}
+// }
+
+// @supports (aspect-ratio: 1) {
+// 	.image {
+// 		aspect-ratio: var(--gallery-aspect-ratio);
+// 		height: auto;
+// 		& img {
+// 			aspect-ratio: var(--gallery-aspect-ratio);
+// 			height: auto;
+// 		}
+// 	}
+// }

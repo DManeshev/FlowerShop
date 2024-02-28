@@ -1,8 +1,8 @@
 .error {
-    @apply place-self-center flex flex-col items-center;
+    @apply place-self-center flex flex-col items-center justify-center;
 
     &__logo {
-        @apply text-2xl font-medium text-center pb-5;
+        @apply text-xl font-medium text-center pb-5;
     }
 
     &__descr {

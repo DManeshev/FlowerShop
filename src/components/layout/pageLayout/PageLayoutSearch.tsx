@@ -12,13 +12,13 @@ interface IPageLayoutSearch {}
 export default function PageLayoutSearch({}: IPageLayoutSearch) {
 	return (
 		<div className={styles.search}>
-			<div className={styles.search__container}>
+			{/* <div className={styles.search__container}>
 				<Field
 					placeholder="Искать в Твоих цветах"
 					classes="input__layout"
 					icon={<FaSearch />}
 				/>
-			</div>
+			</div> */}
 		</div>
 	)
 }

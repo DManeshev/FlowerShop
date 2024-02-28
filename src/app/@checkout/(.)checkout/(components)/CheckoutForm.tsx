@@ -167,7 +167,7 @@ export default function CheckoutForm() {
 				) : null}
 
 				<Checkbox
-					label="Самовызов"
+					label="Заберу с магазина"
 					checked={isNotDelivery}
 					onChange={changeDelivery}
 				/>
@@ -214,7 +214,7 @@ export default function CheckoutForm() {
 				<Link
 					href="/privacy"
 					target="_blank"
-					className="pl-1 text-sm text-[var(--green)] underline"
+					className="pl-1 text-sm text-[var(--purple)] underline"
 				>
 					политике конфиденциальности.
 				</Link>

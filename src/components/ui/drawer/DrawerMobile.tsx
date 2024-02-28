@@ -1,6 +1,8 @@
-import { forwardRef, type PropsWithChildren } from 'react'
+import { forwardRef } from 'react'
+import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FaXmark } from 'react-icons/fa6'
+import clsx from 'clsx'
 
 import {
 	overlayVariants,
@@ -9,49 +11,53 @@ import {
 import { IDrawer } from '@/types/drawer.interface'
 
 import styles from './Drawer.module.scss'
-import clsx from 'clsx'
 
 const DrawerMobile = forwardRef<HTMLDivElement, IDrawer>(
-	({ isOpen, close, children }, ref) => {
+	({ isOpen, isPage = false, closeDrawer, children }, ref) => {
+		const pathname = usePathname()
+
+		if (pathname === '/' && isPage) return null
 		return (
-			<AnimatePresence mode="wait" onExitComplete={close}>
+			<>
 				{isOpen && (
-					<motion.div
-						className="overlay"
-						initial={'initial'}
-						animate={'isOpen'}
-						exit={'exit'}
-						variants={overlayVariants}
-						transition={{
-							delayChildren: 0
-						}}
-					>
+					<AnimatePresence mode="wait" onExitComplete={closeDrawer}>
 						<motion.div
-							ref={ref}
-							className={styles.BasketMobile}
-							variants={drawerMobileVariants}
+							className="overlay"
+							initial={'initial'}
+							animate={'isOpen'}
+							exit={'exit'}
+							variants={overlayVariants}
 							transition={{
-								ease: 'linear',
-								duration: 0.6
+								delayChildren: 0
 							}}
 						>
-							<div className={styles.BasketMobile__close}>
-								<button
-									className={styles.BasketMobile__closeBtn}
-									onClick={close}
-								>
-									<FaXmark />
-								</button>
-							</div>
-							<div
-								className={clsx(styles.BasketMobile__body, 'scrollbar--hide')}
+							<motion.div
+								ref={ref}
+								className={styles.BasketMobile}
+								variants={drawerMobileVariants}
+								transition={{
+									ease: 'linear',
+									duration: 0.6
+								}}
 							>
-								{children}
-							</div>
+								<div className={styles.BasketMobile__close}>
+									<button
+										className={styles.BasketMobile__closeBtn}
+										onClick={closeDrawer}
+									>
+										<FaXmark />
+									</button>
+								</div>
+								<div
+									className={clsx(styles.BasketMobile__body, 'scrollbar--hide')}
+								>
+									{children}
+								</div>
+							</motion.div>
 						</motion.div>
-					</motion.div>
+					</AnimatePresence>
 				)}
-			</AnimatePresence>
+			</>
 		)
 	}
 )

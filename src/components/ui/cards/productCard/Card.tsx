@@ -1,69 +1,44 @@
 'use client'
 
-import { MouseEvent, memo } from 'react'
+import { memo } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { FaPlus } from 'react-icons/fa6'
-import { useRouter } from 'next/navigation'
-
-import { useActions } from '@/hooks/useAction'
 
 import { IProduct } from '@/types/product.interface'
 
 import styles from './Card.module.scss'
-import Product from '@/app/product/[slug]/Product'
 
-const Card = memo(function Card(props: IProduct) {
+export const ProductCard = memo(function Card(props: IProduct) {
 	const { id, createdAt, name, slug, description, images, price, categoryId } =
 		props
 
-	const { addToCart } = useActions()
-
-	const router = useRouter()
-
-	const openProductCard = () => {
-		// router.push(`/product/${slug}`)
-		window.history.pushState({}, "", `/product/${slug}`)
-	}
-
-	const handleAddToCart = (event: MouseEvent<HTMLDivElement>) => {
-		event.stopPropagation()
-
-		addToCart({ product: props, quantity: 1 })
-	}
-
 	return (
-		<motion.div
-			className={styles.card}
-			initial={{ opacity: 0, scale: 0.5 }}
-			animate={{ opacity: 1, scale: 1 }}
-			transition={{ delay: 0.2, duration: 0.8, ease: [0, 0.71, 0.2, 1.01] }}
-			onClick={openProductCard}
-		>
-			<div className={styles.image}>
-				<Image
-					src={images[0]}
-					alt={name}
-					fill
-					priority
-					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-				/>
-			</div>
-
-			<section className={styles.section}>
-				<div className="pt-[6px]">
-					<h2 className={styles.logo}>{name}</h2>
+		<Link href={`/product/${slug}`}>
+			<motion.div
+				className={styles.card}
+				initial={{ opacity: 0, scale: 0.5 }}
+				animate={{ opacity: 1, scale: 1 }}
+				transition={{ delay: 0.2, duration: 0.8, ease: [0, 0.71, 0.2, 1.01] }}
+			>
+				<div className={styles.image}>
+					<Image
+						src={images[0]}
+						alt={name}
+						fill
+						priority
+						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+					/>
 				</div>
 
-				<div className={styles.section__price} onClick={handleAddToCart}>
-					<div className={styles.price}>{price}</div>
-					<div className={styles.basket}>
-						<FaPlus size={18} color="var(--green)" />
+				<section className={styles.section}>
+					<h2 className={styles.card__logo}>{name}</h2>
+					<div className={styles.card__price}>
+						<span>{price}</span>
+						<span>&#8381; </span>
 					</div>
-				</div>
-			</section>
-		</motion.div>
+				</section>
+			</motion.div>
+		</Link>
 	)
 })
-
-export default Card

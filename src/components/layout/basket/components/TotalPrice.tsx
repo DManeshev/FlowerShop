@@ -28,7 +28,7 @@ export default function TotalPrice({ total, closeCart }: ITotalPrice) {
 				size="large"
 				onClick={() => {
 					router.push('/checkout')
-                    closeCart()
+					closeCart()
 				}}
 				disabled={total === 0}
 			/>

@@ -1,5 +1,5 @@
 .link {
-    @apply flex items-center justify-center gap-2 border-2 border-[var(--dark-green)] rounded-[var(--rounded)] bg-[var(--green)] px-3 py-2;
+    @apply flex items-center justify-center gap-2 border-2 border-[var(--dark-purple)] rounded-[var(--rounded)] bg-[var(--purple)] px-3 py-2;
     
     & span {
         @apply text-base text-white;

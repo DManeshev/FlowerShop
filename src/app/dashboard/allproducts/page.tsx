@@ -1,4 +1,7 @@
-import { ProductService } from '@/services/product/product.service'
+'use client'
+
+import { useState } from 'react'
+import { useProductQuery } from '@/hooks/useQueries/useProductQuery'
 import {
 	createColumnHelper,
 	useReactTable,
@@ -9,16 +12,16 @@ import {
 	SortingState
 } from '@tanstack/react-table'
 import { TbArrowsSort } from 'react-icons/tb'
+import { FaPlus } from 'react-icons/fa'
+import { useRouter } from 'next/navigation'
 
 import { IProduct } from '@/types/product.interface'
 import { dateFormat } from '@/utils/dateFormat'
-import { productCategoryFind, productStatusFind } from '@/utils/statusFind'
+import { productStatusFind } from '@/utils/statusFind'
+
+import Button from '@/components/ui/btn/button/Button'
 
 import styles from '../Dashboard.module.scss'
-import { useState } from 'react'
-import { useProductQuery } from '@/hooks/useQueries/useProductQuery'
-
-interface IAllOrders {}
 
 const columnHelper = createColumnHelper<IProduct>()
 
@@ -42,14 +45,15 @@ const columns = [
 		cell: info => info.getValue(),
 		size: 50
 	}),
-	columnHelper.accessor('category', {
+	columnHelper.accessor('categoryId', {
 		header: () => 'Категория',
-		cell: info => productCategoryFind(info.getValue()),
-		size: 100
+		cell: info => info.getValue(),
+		size: 50
 	}),
-	columnHelper.accessor('subCategory', {
+	columnHelper.accessor('subcategoryId', {
 		header: () => 'Подкатегория',
-		cell: info => info.getValue()
+		cell: info => info.getValue(),
+		size: 50
 	}),
 	columnHelper.accessor('description', {
 		header: () => 'Описание',
@@ -58,10 +62,11 @@ const columns = [
 	})
 ]
 
-export default function AllOrders({}: IAllOrders) {
+export default function DashboardAllProducts() {
 	const { data, isLoading } = useProductQuery()
 
 	const [sorting, setSorting] = useState<SortingState>([])
+	const router = useRouter()
 
 	const table = useReactTable({
 		data: data ? data.products : [],
@@ -76,10 +81,16 @@ export default function AllOrders({}: IAllOrders) {
 
 	return (
 		<>
+			<div className="flex justify-between items-center mb-5">
+				<div className="text-2xl text-[var(--dark-purple)]">Товары</div>
+
+				<Button title="Добавить заказ" icon={<FaPlus color="white" />} onClick={() => router.push('/dashboard/product')} />
+			</div>
+
 			{isLoading ? (
 				<div>Loading</div>
 			) : (
-				<div className='overflow-auto'>
+				<div className="overflow-auto">
 					<table className="w-full">
 						<thead>
 							{table.getHeaderGroups().map(headerGroup => (
@@ -96,11 +107,11 @@ export default function AllOrders({}: IAllOrders) {
 													: flexRender(
 															header.column.columnDef.header,
 															header.getContext()
-													)}
+													  )}
 												<TbArrowsSort
 													onClick={header.column.getToggleSortingHandler()}
-													color="var(--green)"
-													cursor='pointer'
+													color="var(--purple)"
+													cursor="pointer"
 												/>
 											</div>
 										</th>
@@ -113,7 +124,10 @@ export default function AllOrders({}: IAllOrders) {
 								<tr key={row.id}>
 									{row.getVisibleCells().map(cell => (
 										<td key={cell.id} className={styles.body__cell}>
-											{flexRender(cell.column.columnDef.cell, cell.getContext())}
+											{flexRender(
+												cell.column.columnDef.cell,
+												cell.getContext()
+											)}
 										</td>
 									))}
 								</tr>

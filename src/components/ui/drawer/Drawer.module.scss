@@ -1,5 +1,5 @@
 .BasketDesctop {
-    @apply fixed right-0 top-0 w-[900px] flex flex-col m-8 rounded-8 bg-white overflow-hidden;
+    @apply fixed right-0 top-0 flex flex-col m-8 rounded-8 bg-white overflow-hidden;
     height: calc(100vh - 64px);
     max-height: calc(100vh - 64px);
 

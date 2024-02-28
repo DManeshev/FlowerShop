@@ -12,6 +12,13 @@ export const CategoryService = {
 		})
 	},
 
+	async getById(id: number) {
+		return axiosClassic<ICategory>({
+			url: `${URL}/${id}`,
+			method: 'GET'
+		})
+	},
+
 	async getSubcategoryByCategory(categoryId: number) {
 		return axiosClassic<ICategory[]>({
 			url: `${SUBCATEGORY_URL}/by-category/${categoryId}`,
@@ -22,6 +29,13 @@ export const CategoryService = {
 	async getSubcategoryBySlug(slug: string) {
 		return axiosClassic<ICategory>({
 			url: `${SUBCATEGORY_URL}/by-slug/${slug}`,
+			method: 'GET'
+		})
+	},
+
+	async getSubcategoryById(subcategoryId: number) {
+		return axiosClassic<ICategory>({
+			url: `${SUBCATEGORY_URL}/${subcategoryId}`,
 			method: 'GET'
 		})
 	}

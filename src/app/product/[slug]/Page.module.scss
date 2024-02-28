@@ -1,0 +1,121 @@
+.product {
+	@apply h-full flex flex-col items-start gap-5;
+
+	&__images {
+		@apply w-full;
+	}
+
+	&__content {
+		@apply w-full flex flex-col flex-grow;
+	}
+
+	&__attribute {
+		@apply flex items-start flex-wrap gap-x-5 gap-y-2 border-b py-4;
+
+		&__text {
+			@apply text-[var(--purple)] font-bold;
+		}
+	}
+
+	&__description {
+		@apply border-b py-4;
+	}
+
+	&__basket {
+		@apply flex flex-col gap-3 pt-4;
+
+		& span {
+			@apply font-Lora text-3xl font-bold text-[var(--purple)];
+		}
+	}
+
+    &__price {
+        @apply flex self-center gap-1;
+    }
+}
+
+.image {
+	@apply relative w-full h-[350px];
+}
+
+
+@media screen and (min-width: 500px) {
+	.image {
+		@apply h-[600px];
+	}
+}
+@media screen and (min-width: 768px) {
+	.product {
+		@apply h-[350px] flex-row gap-10;
+
+		&__images {
+			@apply w-[350px];
+		}
+
+		&__content {
+			@apply h-full;
+		}
+
+		&__attribute {
+			@apply justify-between;
+		}
+
+		&__basket {
+			@apply flex-row flex-1 items-end justify-between pt-0;
+		}
+
+        &__price {
+            @apply self-end;
+        }
+	}
+
+	.image {
+		@apply w-[350px] h-[350px];
+	}
+}
+
+@media screen and (min-width: 1024px) {
+    .product {
+		@apply h-full flex-col gap-4;
+
+		&__images {
+			@apply self-center w-[400px];
+		}
+
+		&__basket {
+			@apply pt-4;
+		}
+	}
+
+	.image {
+		@apply w-[400px] h-[400px];
+	}
+}
+
+@media screen and (min-width: 1300px) {
+    .product {
+		@apply h-[400px] flex-row gap-10;
+
+		&__images {
+			@apply self-start;
+		}
+
+		&__basket {
+            @apply flex-col items-stretch justify-end gap-3;
+        }
+
+        &__price {
+            @apply self-center;
+        }
+	}
+}
+
+@media screen and (min-width: 1500px) {
+    .product__basket {
+        @apply flex-row items-end justify-between gap-3;
+    }
+
+    .product__price {
+        @apply self-end;
+    }
+}

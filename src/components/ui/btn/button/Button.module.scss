@@ -13,7 +13,7 @@
 
 // theme
 .default {
-	@apply border-[var(--dark-green)] bg-[var(--green)];
+	@apply border-[var(--dark-purple)] bg-[var(--purple)];
 
 	&:hover {
 		background-color: var(--hover-color);
@@ -28,7 +28,7 @@
 }
 // size
 .base {
-	@apply px-3 py-1;
+	@apply px-3 py-[6px];
 }
 .large {
 	@apply px-6 py-3;
