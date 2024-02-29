@@ -5,6 +5,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { FaChevronDown } from 'react-icons/fa6'
+import clsx from 'clsx'
 
 import { useQuery } from '@tanstack/react-query'
 import { CategoryService } from '@/services/category/category.service'
@@ -12,6 +14,7 @@ import { CategoryService } from '@/services/category/category.service'
 import styles from './Aside.module.scss'
 
 import Logo from '@/assets/images/Logo.svg'
+
 
 const menuAnimation = {
 	open: {
@@ -74,12 +77,28 @@ export default function Aside() {
 											: router.push(`/category/${slug}`)
 									}
 								>
-									<div className={styles.category__img}>
-										<div className={styles.category__img__container}>
-											<Image src={icon} alt={slug} fill />
-										</div>
-									</div>
-									<span className={styles.category__title}>{name}</span>
+									<span
+										title={name}
+										className={clsx(
+											styles.category__title,
+											openId === id && styles.title__active
+										)}
+									>
+										{name}
+									</span>
+									<motion.div
+										transition={{
+											ease: 'linear',
+											duration: 0.3
+										}}
+										animate={{
+											rotate: openId === id ? 180 : 0
+										}}
+									>
+										<FaChevronDown
+											color={openId === id ? 'var(--purple)' : 'black'}
+										/>
+									</motion.div>
 								</div>
 
 								<AnimatePresence>
@@ -90,21 +109,26 @@ export default function Aside() {
 											animate="open"
 											className={styles.category__child}
 										>
-											{subCategories?.map(sub => (
-												<Link
-													href={`/category/${sub.slug}`}
-													className={styles.category__link}
-												>
-													<div className={styles.category__img}>
-														<div className={styles.category__img__container}>
-															<Image src={sub.icon} alt={sub.slug} fill />
+											{subCategories
+												.sort((a, b) => a.id - b.id)
+												.map(sub => (
+													<Link
+														href={`/category/${sub.slug}`}
+														className={styles.category__link}
+													>
+														<div className={styles.category__img}>
+															<div className={styles.category__img__container}>
+																<Image src={sub.icon} alt={sub.slug} fill />
+															</div>
 														</div>
-													</div>
-													<span className={styles.category__title}>
-														{sub.name}
-													</span>
-												</Link>
-											))}
+														<span
+															title={sub.name}
+															className={styles.category__title}
+														>
+															{sub.name}
+														</span>
+													</Link>
+												))}
 										</motion.div>
 									)}
 								</AnimatePresence>

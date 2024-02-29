@@ -32,7 +32,7 @@
     @apply w-full h-screen mb-5 flex flex-col p-4 rounded-5 bg-white;
 
     &__child {
-        @apply ml-7;
+        @apply ml-5;
     }
 
     &__container {
@@ -40,7 +40,7 @@
     }
 
     &__details {
-        @apply flex items-center gap-2 cursor-pointer;
+        @apply flex items-center gap-1 cursor-pointer;
 
         &:hover .category__title {
             @apply text-[var(--purple)]
@@ -68,8 +68,13 @@
     }
     
     &__title {
-        @apply text-lg font-medium;
+        @apply flex-grow text-lg font-medium;
+        letter-spacing: -.8px;
     }
+}
+
+.title__active {
+    @apply text-[var(--purple)];
 }
 
 @media screen and (min-width: 1024px) {

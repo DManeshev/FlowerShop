@@ -20,15 +20,17 @@ const Home = ({ categories }: IHome) => {
 
 					{subCategories.length > 0 ? (
 						<div className={styles.subcategory__container}>
-							{subCategories.map(item => (
-								<Link
-									href={`/category/${item.slug}`}
-									key={item.id}
-									className={styles.subcategory}
-								>
-									<CategoryCard {...item} />
-								</Link>
-							))}
+							{subCategories
+								.sort((a, b) => a.id - b.id)
+								.map(item => (
+									<Link
+										href={`/category/${item.slug}`}
+										key={item.id}
+										className={styles.subcategory}
+									>
+										<CategoryCard {...item} />
+									</Link>
+								))}
 						</div>
 					) : (
 						<div className={styles.subcategory__container}>
