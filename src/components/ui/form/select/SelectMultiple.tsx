@@ -34,6 +34,7 @@ const SelectMultiple = forwardRef<HTMLInputElement, ISelectMultiple>(
 		// Поиск по list
 		const [searchTerm, setSearchTerm] = useState<string>('')
 		const [filterList, setFilterList] = useState<IList[]>(selectList)
+
 		// Выбранные значения
 		const [checkedItems, setCheckedItems] = useState<IList[]>(
 			checkedList
@@ -95,13 +96,13 @@ const SelectMultiple = forwardRef<HTMLInputElement, ISelectMultiple>(
 					}}
 					transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
 				>
-					<Field
+					{/* <Field
 						value={searchTerm}
 						onChange={searchInList}
 						placeholder="Поиск по списку"
 						classes="!rounded-b-none"
-					/>
-					{filterList.map(item => (
+					/> */}
+					{selectList.map(item => (
 						<div
 							key={item.id}
 							className={styles.modal__item}

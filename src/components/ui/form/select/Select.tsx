@@ -10,7 +10,7 @@ import styles from './Select.module.scss'
 
 interface ISelect extends InputHTMLAttributes<HTMLInputElement> {
 	label: string
-	selectList: [] | IList[]
+	selectList: IList[]
 	error?: string
 	handleChange: ({ id, name }: IList) => void
 }

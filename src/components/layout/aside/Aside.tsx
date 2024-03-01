@@ -1,20 +1,20 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import clsx from 'clsx'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaChevronDown } from 'react-icons/fa6'
-import clsx from 'clsx'
+import { FaChevronDown, FaCircleUser } from 'react-icons/fa6'
 
 import { useQuery } from '@tanstack/react-query'
 import { CategoryService } from '@/services/category/category.service'
+import { useAuth } from '@/hooks/useAuth'
 
 import styles from './Aside.module.scss'
 
 import Logo from '@/assets/images/Logo.svg'
-
 
 const menuAnimation = {
 	open: {
@@ -35,6 +35,7 @@ const menuAnimation = {
 
 export default function Aside() {
 	const [openId, setOpenId] = useState<number | null>(null)
+	const { user } = useAuth()
 
 	const router = useRouter()
 
@@ -134,6 +135,18 @@ export default function Aside() {
 								</AnimatePresence>
 							</div>
 						))}
+					{user ? (
+						<div className='flex flex-col justify-end flex-grow'>
+							<Link
+								href='/dashboard/orders'
+								className={styles.category__details}
+								target='_blank'
+							>
+								<FaCircleUser />
+								<span className={styles.category__title}>Админка</span>
+							</Link>
+						</div>
+					) : null}
 				</div>
 			</div>
 		</aside>

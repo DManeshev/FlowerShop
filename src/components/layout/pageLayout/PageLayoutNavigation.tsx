@@ -1,11 +1,13 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
-import { FaArrowLeft, FaSistrix } from 'react-icons/fa6'
-import { useRef, useState } from 'react'
 import clsx from 'clsx'
-import { useOnClickOutside } from 'usehooks-ts'
+import Link from 'next/link'
 import Image from 'next/image'
+import { useAuth } from '@/hooks/useAuth'
+import { useRef, useState } from 'react'
+import { useOnClickOutside } from 'usehooks-ts'
+import { usePathname, useRouter } from 'next/navigation'
+import { FaArrowLeft, FaCircleUser, FaSistrix } from 'react-icons/fa6'
 
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { CategoryService } from '@/services/category/category.service'
@@ -14,12 +16,12 @@ import { ICategory } from '@/types/category.interface'
 import DrawerMobile from '@/components/ui/drawer/DrawerMobile'
 
 import styles from './PageLayout.module.scss'
-import Link from 'next/link'
 
 export default function PageLayoutNavigation() {
 	const [openDrawer, setIsOpenDrawer] = useState<boolean>(false)
 	const [categories, setCategories] = useState<ICategory[]>([])
 
+	const { user } = useAuth()
 	const router = useRouter()
 	const pathname = usePathname()
 	const refDrawer = useRef<HTMLDivElement>(null)
@@ -93,11 +95,12 @@ export default function PageLayoutNavigation() {
 				) : (
 					<>
 						{categories.map(item => (
-							<div>
+							<div key={item.id}>
 								<div className={styles.logo}>{item.name}</div>
 								<div>
 									{item.subCategories.map(sub => (
 										<div
+											key={sub.id}
 											onClick={() => handleSubcategory(sub.slug)}
 											className={styles.subcategory}
 										>
@@ -115,6 +118,17 @@ export default function PageLayoutNavigation() {
 								</div>
 							</div>
 						))}
+
+						{user ? (
+							<Link
+								href='/dashboard/orders'
+								className={styles.subcategory}
+								target='_blank'
+							>
+								<FaCircleUser />
+								<span className={styles.subcategory__logo}>Админка</span>
+							</Link>
+						) : null}
 					</>
 				)}
 			</DrawerMobile>

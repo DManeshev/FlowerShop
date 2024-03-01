@@ -84,7 +84,7 @@ export default function DashboardAllProducts() {
 			<div className="flex justify-between items-center mb-5">
 				<div className="text-2xl text-[var(--dark-purple)]">Товары</div>
 
-				<Button title="Добавить заказ" icon={<FaPlus color="white" />} onClick={() => router.push('/dashboard/product')} />
+				<Button title="Добавить заказ" icon={<FaPlus color="white" />} onClick={() => router.push('/dashboard/productaction')} />
 			</div>
 
 			{isLoading ? (
@@ -121,7 +121,7 @@ export default function DashboardAllProducts() {
 						</thead>
 						<tbody>
 							{table.getRowModel().rows.map(row => (
-								<tr key={row.id}>
+								<tr key={row.id} onClick={() => router.push(`/dashboard/productaction?productId=${row.original.id}`)}>
 									{row.getVisibleCells().map(cell => (
 										<td key={cell.id} className={styles.body__cell}>
 											{flexRender(

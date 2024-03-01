@@ -9,7 +9,9 @@ export interface IProduct {
 	images: string[]
 	price: number
 	categoryId: number
+	categoryName?: string
 	subcategoryId: number
+	subcategoryName?: string
 	status: EnumProductStatus
 	statusName?: string
 	isDelivery: boolean

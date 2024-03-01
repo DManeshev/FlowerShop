@@ -3,5 +3,5 @@
 import ProductAction from "./ProductAction"
 
 export default function ProductPage() {
-	return <ProductAction action='create' />
+	return <ProductAction />
 }

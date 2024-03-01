@@ -26,6 +26,10 @@
             @apply text-[var(--hover-color)];
         }
     }
+
+    &__auth {
+        @apply flex items-center gap-3;
+    }
 }
 
 .category {
