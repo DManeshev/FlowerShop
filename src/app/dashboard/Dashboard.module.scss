@@ -12,7 +12,7 @@
 }
 
 .content {
-	@apply flex-grow;
+	@apply w-full;
 }
 
 
@@ -76,7 +76,20 @@
 	@apply border p-1 font-Lora text-center;
 }
 
-/* @media screen and (max-width: 991px) */
+@media screen and (max-width: 991px) {
+	.dashboard {
+		@apply flex flex-col;
+	}
+
+	.nav {
+		@apply h-auto w-full flex flex-row w-full border-r-0;
+	
+	}
+
+	.content {
+		@apply px-3;
+	}
+}
 @media screen and (max-width: 767px) {
 	.aside {
 		@apply w-full flex-row justify-between overflow-x-auto border-r-0 border-b scroll-smooth;
