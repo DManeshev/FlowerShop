@@ -67,80 +67,157 @@ export default function Aside() {
 				</div>
 
 				<div className={styles.category}>
-					{categories &&
-						categories.map(({ id, name, slug, icon, subCategories }) => (
-							<div key={id} className={styles.category__container}>
-								<div
-									className={styles.category__details}
-									onClick={() =>
-										subCategories.length > 0
-											? openSubcategory(id)
-											: router.push(`/category/${slug}`)
-									}
-								>
-									<span
-										title={name}
-										className={clsx(
-											styles.category__title,
-											openId === id && styles.title__active
-										)}
-									>
-										{name}
-									</span>
-									<motion.div
-										transition={{
-											ease: 'linear',
-											duration: 0.3
-										}}
-										animate={{
-											rotate: openId === id ? 180 : 0
-										}}
-									>
-										<FaChevronDown
-											color={openId === id ? 'var(--purple)' : 'black'}
-										/>
-									</motion.div>
-								</div>
-
-								<AnimatePresence>
-									{subCategories.length > 0 && openId === id && (
-										<motion.div
-											variants={menuAnimation}
-											initial="close"
-											animate="open"
-											className={styles.category__child}
+					{categories ? (
+						<>
+							{categories
+								.filter(({ slug }) => slug === '8-marta')
+								.map(({ id, name, slug, icon, subCategories }) => (
+									<div key={id} className={styles.category__container}>
+										<div
+											className={styles.category__details}
+											onClick={() =>
+												subCategories.length > 0
+													? openSubcategory(id)
+													: router.push(`/category/${slug}`)
+											}
 										>
-											{subCategories
-												.sort((a, b) => a.id - b.id)
-												.map(sub => (
-													<Link
-														href={`/category/${sub.slug}`}
-														className={styles.category__link}
-													>
-														<div className={styles.category__img}>
-															<div className={styles.category__img__container}>
-																<Image src={sub.icon} alt={sub.slug} fill />
-															</div>
-														</div>
-														<span
-															title={sub.name}
-															className={styles.category__title}
-														>
-															{sub.name}
-														</span>
-													</Link>
-												))}
+											<span
+												title={name}
+												className={clsx(
+													styles.category__title,
+													openId === id && styles.title__active
+												)}
+											>
+												{name}
+											</span>
+											<motion.div
+												transition={{
+													ease: 'linear',
+													duration: 0.3
+												}}
+												animate={{
+													rotate: openId === id ? 180 : 0
+												}}
+											>
+												<FaChevronDown
+													color={openId === id ? 'var(--purple)' : 'black'}
+												/>
+											</motion.div>
+										</div>
+
+										<AnimatePresence>
+											{subCategories.length > 0 && openId === id && (
+												<motion.div
+													variants={menuAnimation}
+													initial="close"
+													animate="open"
+													className={styles.category__child}
+												>
+													{subCategories
+														.sort((a, b) => a.id - b.id)
+														.map(sub => (
+															<Link
+																href={`/category/${sub.slug}`}
+																className={styles.category__link}
+															>
+																<div className={styles.category__img}>
+																	<div
+																		className={styles.category__img__container}
+																	>
+																		<Image src={sub.icon} alt={sub.slug} fill />
+																	</div>
+																</div>
+																<span
+																	title={sub.name}
+																	className={styles.category__title}
+																>
+																	{sub.name}
+																</span>
+															</Link>
+														))}
+												</motion.div>
+											)}
+										</AnimatePresence>
+									</div>
+								))}
+							{categories.filter(({ slug }) => slug !== '8-marta').map(({ id, name, slug, icon, subCategories }) => (
+								<div key={id} className={styles.category__container}>
+									<div
+										className={styles.category__details}
+										onClick={() =>
+											subCategories.length > 0
+												? openSubcategory(id)
+												: router.push(`/category/${slug}`)
+										}
+									>
+										<span
+											title={name}
+											className={clsx(
+												styles.category__title,
+												openId === id && styles.title__active
+											)}
+										>
+											{name}
+										</span>
+										<motion.div
+											transition={{
+												ease: 'linear',
+												duration: 0.3
+											}}
+											animate={{
+												rotate: openId === id ? 180 : 0
+											}}
+										>
+											<FaChevronDown
+												color={openId === id ? 'var(--purple)' : 'black'}
+											/>
 										</motion.div>
-									)}
-								</AnimatePresence>
-							</div>
-						))}
+									</div>
+
+									<AnimatePresence>
+										{subCategories.length > 0 && openId === id && (
+											<motion.div
+												variants={menuAnimation}
+												initial="close"
+												animate="open"
+												className={styles.category__child}
+											>
+												{subCategories
+													.sort((a, b) => a.id - b.id)
+													.map(sub => (
+														<Link
+															href={`/category/${sub.slug}`}
+															className={styles.category__link}
+														>
+															<div className={styles.category__img}>
+																<div
+																	className={styles.category__img__container}
+																>
+																	<Image src={sub.icon} alt={sub.slug} fill />
+																</div>
+															</div>
+															<span
+																title={sub.name}
+																className={styles.category__title}
+															>
+																{sub.name}
+															</span>
+														</Link>
+													))}
+											</motion.div>
+										)}
+									</AnimatePresence>
+								</div>
+							))}
+						</>
+					) : null}
+
 					{user ? (
-						<div className='flex flex-col justify-end flex-grow'>
+						<div className="flex flex-col justify-end flex-grow">
 							<Link
-								href='/dashboard/orders'
+								href="/dashboard/orders"
 								className={styles.category__details}
-								target='_blank'
+								target="_blank"
 							>
 								<FaCircleUser />
 								<span className={styles.category__title}>Админка</span>

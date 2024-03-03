@@ -10,7 +10,6 @@
     }
 
     &__title {
-        @apply absolute top-0 py-3 px-2 font-bold;
-        letter-spacing: -.05px;
+        @apply absolute top-0 py-3 px-2 font-semibold text-lg text-white;
     }
 }
