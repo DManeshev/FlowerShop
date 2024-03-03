@@ -5,7 +5,7 @@
         @apply relative pb-[133%];
 
         & img {
-            @apply mt-[10px] object-contain;
+            @apply object-cover;
         }
     }
 

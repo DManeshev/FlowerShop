@@ -16,7 +16,7 @@ const Home = ({ categories }: IHome) => {
 		<div>
 			{categories.map(({ id, name, slug, subCategories, icon, image }) => (
 				<div key={id} className={styles.category__container}>
-					<Heading title={name} className="font-bold" />
+					<Heading title={name} className="font-bold text-[var(--dark-purple)]" />
 
 					{subCategories.length > 0 ? (
 						<div className={styles.subcategory__container}>
