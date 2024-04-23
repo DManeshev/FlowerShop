@@ -10,13 +10,13 @@ const Footer = () => {
 	return (
 		<footer className={styles.footer}>
 			<div className={styles.social}>
-				<Link href="/" target="_blank" className={styles.social__icon}>
+				<Link href="https://t.me/your_flowers_21" target="_blank" className={styles.social__icon}>
 					<RiTelegramLine size={28} />
 				</Link>
-				<Link href="/" target="_blank" className={styles.social__icon}>
+				<Link href="https://vk.com/your_flowers_21" target="_blank" className={styles.social__icon}>
 					<SlSocialVkontakte size={28} />
 				</Link>
-				<Link href="/" target="_blank" className={styles.social__icon}>
+				<Link href="https://wa.me/message/XVJACCEITBPIN1" target="_blank" className={styles.social__icon}>
 					<FaWhatsapp size={25} />
 				</Link>
 			</div>
