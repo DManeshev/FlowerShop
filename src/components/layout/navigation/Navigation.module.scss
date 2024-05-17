@@ -1,5 +1,5 @@
 .navigation {
-  @apply hidden w-full border-y py-2;
+  @apply w-full border-y py-2;
 
   &__list {
     @apply w-full flex flex-col items-center justify-between gap-1;
