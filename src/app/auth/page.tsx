@@ -38,9 +38,7 @@ export default function Page() {
 
 			router.replace('/dashboard/orders')
 		} catch (error: unknown) {
-			{
-				/* @ts-ignore */
-			}
+      /* @ts-ignore */
 			if (error) setErrorMessage(error.message)
 		}
 	}
