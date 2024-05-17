@@ -1,0 +1,108 @@
+.navigation {
+  @apply hidden w-full border-y py-2;
+
+  &__list {
+    @apply w-full flex flex-col items-center justify-between gap-1;
+  }
+
+  &__item {
+    @apply relative flex flex-col gap-5 justify-center p-1 font-semibold;
+  }
+
+  &__container {
+    @apply flex items-center gap-1 cursor-pointer;
+    transition: color 0.3s ease-in;
+
+    &:hover {
+      @apply text-[var(--hover-color)];
+    }
+  }
+
+  &__arrow {
+    rotate: 0deg;
+    transition: rotate 0.3s ease-in;
+  }
+
+  &__container:hover &__arrow {
+    rotate: 180deg;
+  }
+}
+
+.tooltip {
+  @apply absolute top-8 w-full border rounded-md bg-white py-1 px-3 shadow-md z-10;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in;
+
+  &__open {
+    transform: translateY(5px);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+
+
+.category {
+    @apply w-full h-screen mb-5 flex flex-col p-4 rounded-5 bg-white;
+
+    &__child {
+        @apply ml-5;
+    }
+
+    &__container {
+        @apply py-1;
+    }
+
+    &__details {
+        @apply flex items-center gap-1 cursor-pointer;
+
+        &:hover .category__title {
+            @apply text-[var(--purple)]
+        }
+    }
+
+    &__link {
+        @apply flex items-center gap-2 py-1 cursor-pointer;
+
+        &:hover .category__title {
+            @apply text-[var(--purple)]
+        }
+    }
+
+    &__img {
+        @apply flex items-center justify-center w-6 h-6 rounded-full bg-[var(--grey)];
+
+        &__container {
+            @apply relative w-5 h-5 rounded-full;
+
+            & img {
+                @apply object-cover;
+            }
+        }
+    }
+    
+    &__title {
+        @apply flex-grow text-lg font-medium;
+        letter-spacing: -.8px;
+    }
+}
+
+.title__active {
+    @apply text-[var(--purple)];
+}
+
+@media screen and (min-width: 500px) {
+  .navigation {
+    @apply block;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .navigation {
+
+    &__list {
+      @apply flex-row;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { CategoryService } from '@/services/category/category.service'
+import { ProductService } from '@/services/product/product.service'
 
 import Home from './home/Home'
 
@@ -9,14 +9,14 @@ import Home from './home/Home'
 
 export const revalidate = 3600
 
-const getCategories = async () => {
-	const { data } = await CategoryService.getAll()
+const getProducts = async () => {
+	const { data } = await ProductService.getAll()
 
 	return data
 }
 
 export default async function HomePage() {
-	const data = await getCategories()
+	const data = await getProducts()
 
-	return <Home categories={data} />
+	return <Home paginationProducts={data} />
 }

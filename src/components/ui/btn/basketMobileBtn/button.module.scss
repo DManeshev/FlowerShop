@@ -1,22 +1,22 @@
 .basketMobileBtn {
-    @apply fixed bottom-8 right-5 w-28 h-12 flex flex-col z-20;
+  @apply fixed bottom-8 right-10 w-28 h-12 flex flex-col z-20;
 
-    &__btn {
-        @apply w-full h-full rounded-full px-6 bg-[var(--purple)] cursor-pointer;
-        transition: background-color .3s ease-in;
+  &__btn {
+    @apply w-full h-full rounded-full px-6 bg-[var(--purple)] cursor-pointer;
+    transition: background-color .3s ease-in;
 
-        & span {
-            @apply font-Lora text-white text-lg font-semibold;
-        }
-
-        &:hover {
-            @apply bg-[var(--dark-purple)]
-        }
+    & span {
+        @apply font-Lora text-white text-lg font-semibold;
     }
+
+    &:hover {
+        @apply bg-[var(--dark-purple)]
+    }
+  }
 }
 
-@media screen and (min-width: 1024px) {
-    .basketMobileBtn {
-        @apply hidden;
-    }
+@media screen and (min-width: 991px) {
+  .basketMobileBtn {
+    @apply top-[5%] right-20;
+  }
 }

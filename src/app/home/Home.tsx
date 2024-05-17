@@ -1,91 +1,30 @@
 import Link from 'next/link'
 
-import { ICategory } from '@/types/category.interface'
+import { IProduct, TypePaginationProducts } from '@/types/product.interface'
 
 import Heading from '@/components/ui/heading/Heading'
 import { CategoryCard } from '@/components/ui/cards/category/Category'
 
 import styles from './Home.module.scss'
+import { ProductCard } from '@/components/ui/cards/productCard/Card'
 
 interface IHome {
-	categories: ICategory[]
+	paginationProducts: TypePaginationProducts
 }
 
-const Home = ({ categories }: IHome) => {
+const Home = ({ paginationProducts }: IHome) => {
+	const { products, length } = paginationProducts
 	return (
 		<div>
-			{categories
-				.filter(({ slug }) => slug === '8-marta')
-				.map(({ id, name, slug, subCategories, icon, image }) => (
-					<div key={id} className={styles.category__container}>
-						<Heading
-							title={name}
-							className="font-bold text-[var(--dark-purple)]"
-						/>
-
-						{subCategories.length > 0 ? (
-							<div className={styles.subcategory__container}>
-								{subCategories
-									.sort((a, b) => a.id - b.id)
-									.map(item => (
-										<Link
-											href={`/category/${item.slug}`}
-											key={item.id}
-											className={styles.subcategory}
-										>
-											<CategoryCard {...item} />
-										</Link>
-									))}
-							</div>
-						) : (
-							<div className={styles.subcategory__container}>
-								<Link href={`/category/${slug}`} className={styles.subcategory}>
-									<CategoryCard
-										name={name}
-										slug={slug}
-										icon={icon}
-										image={image}
-									/>
-								</Link>
-							</div>
-						)}
-					</div>
-				))}
-			{categories.filter(({ slug }) => slug !== '8-marta').map(({ id, name, slug, subCategories, icon, image }) => (
-				<div key={id} className={styles.category__container}>
-					<Heading
-						title={name}
-						className="font-bold text-[var(--dark-purple)]"
-					/>
-
-					{subCategories.length > 0 ? (
-						<div className={styles.subcategory__container}>
-							{subCategories
-								.sort((a, b) => a.id - b.id)
-								.map(item => (
-									<Link
-										href={`/category/${item.slug}`}
-										key={item.id}
-										className={styles.subcategory}
-									>
-										<CategoryCard {...item} />
-									</Link>
-								))}
-						</div>
-					) : (
-						<div className={styles.subcategory__container}>
-							<Link href={`/category/${slug}`} className={styles.subcategory}>
-								<CategoryCard
-									name={name}
-									slug={slug}
-									icon={icon}
-									image={image}
-								/>
-							</Link>
-						</div>
-					)}
+			{products.length > 0 ? (
+				<div className={styles.products}>
+					{products.map(product => (
+						<ProductCard {...product} />
+					))}
 				</div>
-			))}
+			) : (
+				<div>Ничего нет</div>
+			)}
 		</div>
 	)
 }

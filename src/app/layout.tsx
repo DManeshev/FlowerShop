@@ -7,9 +7,12 @@ import { getSiteUrl } from '@/config/url.config'
 import { SITE_NAME } from '@/constants/seo.constants'
 import { protectedRoutes } from '@/providers/auth-provider/protected-routes.data'
 
-import Aside from '@/components/layout/aside/Aside'
+import Header from '@/components/layout/header/Header'
+import Navigation from '@/components/layout/navigation/Navigation'
 import Basket from '@/components/layout/basket/Basket'
 import PageLayout from '@/components/layout/pageLayout/PageLayout'
+import BasketMobileBtn from '@/components/ui/btn/basketMobileBtn/BasketMobileBtn'
+import Footer from '../components/layout/footer/Footer'
 
 import './global.scss'
 
@@ -40,11 +43,19 @@ export default function RootLayout({ children, checkout }: ILayoutRoot) {
 				<Providers>
 					{!isProtectedRoute ? (
 						<div className="desctop">
-							<Aside />
+              <div className='desctop__view relative'>
+                <Header />
 
-							<PageLayout>{children}</PageLayout>
+                <Navigation />
 
-							<Basket />
+                <PageLayout>{children}</PageLayout>
+
+                <BasketMobileBtn />
+
+                <Basket />
+
+                <Footer />
+              </div>
 
 							{checkout}
 						</div>

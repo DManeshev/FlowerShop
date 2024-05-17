@@ -16,6 +16,7 @@ import DrawerMobile from '@/components/ui/drawer/DrawerMobile'
 import styles from './Basket.module.scss'
 import Modal from '@/components/ui/modal/Modal'
 import Link from 'next/link'
+import DrawerDesctop from '@/components/ui/drawer/DrawerDesctop'
 
 export default function Basket() {
 	const { cart, isOpenCart } = useTypedSelector(state => state.cart)
@@ -40,17 +41,12 @@ export default function Basket() {
 
 	return (
 		<>
-			<aside className={styles.aside}>
-				<div className={styles.aside__container}>
-					<div className={styles.info}>
-						<div className="flex items-center gap-5">
-							<div className={styles.info__map} onClick={() => setIsOpen(true)}>
-								<FaMapMarkerAlt size={20} color="var(--purple)" />
-								<span>г. Чебоксары, Чебоксарский пр-кт, 27</span>
-							</div>
-						</div>
-					</div>
-
+			{matches ? (
+				<DrawerDesctop
+					ref={refDrawer}
+					isOpen={isOpenCart}
+					closeDrawer={() => openCart(false)}
+				>
 					<div className={styles.basket}>
 						{cart.length > 0 ? (
 							<div className={styles.basket__container}>
@@ -66,10 +62,8 @@ export default function Basket() {
 							<EmptyBasket />
 						)}
 					</div>
-				</div>
-			</aside>
-
-			{!matches ? (
+				</DrawerDesctop>
+			) : (
 				<DrawerMobile
 					ref={refDrawer}
 					isOpen={isOpenCart}
@@ -89,19 +83,60 @@ export default function Basket() {
 
 					<TotalPrice total={total} closeCart={() => openCart(false)} />
 				</DrawerMobile>
-			) : null}
-
-			<Modal isOpen={isOpen} close={() => setIsOpen(false)} ref={modalRef}>
-				<div className={styles.container__map}>
-					<Map
-						defaultState={{ center: [56.125299, 47.384112], zoom: 17 }}
-						width="100%"
-						height="100%"
-					>
-						<Placemark geometry={[56.125299, 47.384112]} />
-					</Map>
-				</div>
-			</Modal>
+			)}
 		</>
+		// <>
+		//   {matches ? (<DrawerDesctop
+		//     ref={refDrawer}
+		//     isOpen={isOpenCart}
+		//     closeDrawer={() => openCart(false)}
+		//   >
+		// <div className={styles.basket}>
+		//   {cart.length > 0 ? (
+		//     <div className={styles.basket__container}>
+		//       <div className="flex flex-col gap-3 flex-grow">
+		//         {cart.map(item => (
+		//           <CartCard key={item.product.id} {...item} />
+		//         ))}
+		//       </div>
+
+		//       <TotalPrice total={total} closeCart={() => openCart(false)} />
+		//     </div>
+		//   ) : (
+		//     <EmptyBasket />
+		//   )}
+		// </div>
+		//   </DrawerDesctop>) : (<DrawerMobile
+		//     ref={refDrawer}
+		//     isOpen={isOpenCart}
+		//     closeDrawer={() => openCart(false)}
+		//   >
+		// <div className="flex-grow flex flex-col gap-4 pt-10">
+		//   {cart.length > 0 ? (
+		//     <>
+		//       {cart.map(item => (
+		//         <CartCard key={item.product.id} {...item} />
+		//       ))}
+		//     </>
+		//   ) : (
+		//     <EmptyBasket />
+		//   )}
+		// </div>
+
+		// <TotalPrice total={total} closeCart={() => openCart(false)} />
+		//   </DrawerMobile>
+		// )}
+
+		// {/* <Modal isOpen={isOpen} close={() => setIsOpen(false)} ref={modalRef}>
+		// 	<div className={styles.container__map}>
+		// 		<Map
+		// 			defaultState={{ center: [56.125299, 47.384112], zoom: 17 }}
+		// 			width="100%"
+		// 			height="100%"
+		// 		>
+		// 			<Placemark geometry={[56.125299, 47.384112]} />
+		// 		</Map>
+		// 	</div>
+		// </Modal> */}
 	)
 }

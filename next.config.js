@@ -2,7 +2,8 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-      domains: ['localhost', 'flower-storage.storage.yandexcloud.net', 'storage.yandexcloud.net']
+      domains: ['localhost', 'flower-storage.storage.yandexcloud.net', 'storage.yandexcloud.net'],
+      deviceSizes: [320, 500, 768, 1024, 1300, 1500, 2048, 3840],
     },
     env: {
       SERVER_URL: process.env.SERVER_URL,
@@ -12,7 +13,7 @@ const nextConfig = {
     },
     experimental: {
       appDir: true
-    }
+    },
   }
   
   module.exports = nextConfig

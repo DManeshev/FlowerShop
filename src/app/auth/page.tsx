@@ -21,7 +21,7 @@ export default function Page() {
 	const [typeString, setTypeString] = useState<boolean>(false)
 
 	const { login, register } = useActions()
-    const router = useRouter()
+	const router = useRouter()
 	const {
 		register: formRegister,
 		handleSubmit,
@@ -35,10 +35,12 @@ export default function Page() {
 			const result = await login(data)
 			const originalRes = unwrapResult<any>(result)
 			// : register(data)
-            
-            router.replace('/dashboard/orders')
+
+			router.replace('/dashboard/orders')
 		} catch (error: unknown) {
-			{/* @ts-ignore */}
+			{
+				/* @ts-ignore */
+			}
 			if (error) setErrorMessage(error.message)
 		}
 	}

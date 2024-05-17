@@ -1,53 +1,33 @@
-.aside {
-    @apply hidden flex-shrink-0 w-full max-w-[350px] max-h-full;
-
-    &__container {
-        @apply fixed w-full max-w-[350px] h-full max-h-screen flex flex-col gap-4 pt-6;
-    }
-}
-
-.info {
-    @apply flex-1 w-full rounded-[50px] bg-white py-3 px-5 flex items-center justify-center;
-
-    &__map {
-        @apply flex items-center gap-2 cursor-pointer;
-
-        & span {
-            @apply text-[15px] font-bold text-[var(--purple)] font-Lora;
-        }
-    }
-}
-
 .container__map {
-    @apply flex-1;
+  @apply flex-1;
 }
 
 .basket {
-    @apply w-full h-full mb-5 rounded-5 p-4 bg-white;
+  @apply w-full h-full mt-10 rounded-5 p-4 bg-white;
 
-    &__container {
-        @apply h-full flex flex-col;
-    }
+  &__container {
+    @apply h-full flex flex-col;
+  }
 }
 
 .total {
-    @apply self-center flex flex-col items-center mb-4;
+  @apply self-center flex flex-col items-center mb-4;
 
-    &__text {
-        @apply text-[var(--disabled-color)] font-bold;
-    }
+  &__text {
+    @apply text-[var(--disabled-color)] font-bold;
+  }
 
-    &__price {
-        @apply font-Lora text-2xl font-bold;
-    }
+  &__price {
+    @apply font-Lora text-2xl font-bold;
+  }
 }
 
 @media screen and (min-width: 1024px) {
-    .aside {
-        @apply block;
-    }
+  .aside {
+    @apply block;
+  }
 
-    .BasketMobile {
-        @apply hidden;
-    }
+  .BasketMobile {
+    @apply hidden;
+  }
 }

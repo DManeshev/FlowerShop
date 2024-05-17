@@ -1,41 +1,23 @@
 .footer {
-    @apply sticky bottom-8 grid pt-10 px-4;
-    position: -webkit-sticky;
-    grid-template-areas: "social" "info" "copyright";
-}
-
-.social {
-    @apply grid gap-3;
-    grid-template-columns: repeat(3, 30px);
-    grid-area: social;
-
-    &__icon {
-        @apply w-8 h-8 flex items-center justify-center rounded-md bg-[var(--dark-grey)] p-1;
-
-        & svg:hover {
-            fill: var(--hover-color);
-            transition: all .3s ease-in;
-        }
-    }
+  @apply grid gap-1 py-4 bg-gray-100;
+  position: -webkit-sticky;
+  grid-template-areas: "social" "info" "copyright";
 }
 
 .info {
-    @apply grid my-8 gap-x-8 gap-y-3;
-    grid-area: info;
-    grid-template-columns: repeat(3, max-content);
-    grid-auto-flow: column;
+  @apply w-full flex justify-center;
 
-    &__link {
-        @apply text-xl font-bold;
-        transition: color .3s ease-in;
+  &__link {
+    @apply text-xl font-bold;
+    transition: color .3s ease-in;
 
-        &:hover {
-            color: var(--hover-color);
-        }
+    &:hover {
+      color: var(--hover-color);
     }
+  }
 }
 
 .copyright {
-    grid-area: copyright;
-    place-self: center;
+  grid-area: copyright;
+  place-self: center;
 }
