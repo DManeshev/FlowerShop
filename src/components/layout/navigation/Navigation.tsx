@@ -73,7 +73,7 @@ export default function Navigation() {
 											openId === id && styles.tooltip__open
 										)}
 									>
-										<ul className="flex flex-col gap-2">
+										<ul className="flex flex-col">
 											{subCategories.map(subcategory => (
 												<li
 													key={subcategory.id}

@@ -29,7 +29,7 @@
 }
 
 .tooltip {
-  @apply absolute top-8 w-full border rounded-md bg-white py-1 px-3 shadow-md z-10;
+  @apply absolute top-8 w-max border rounded-md bg-white py-1 px-3 shadow-md z-10;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease-in;
