@@ -16,6 +16,9 @@ export default function Header() {
 				<a href="tel:+79876663045" className={styles.phone}>
 					+7 (987) 666 30-45
 				</a>
+        <a href="tel:+79914646016" className={styles.phone}>
+					+7 (991) 464 60-16
+				</a>
 				<div className={styles.phone}>Стартовая, 3</div>
 			</div>
 
