@@ -5,11 +5,7 @@ import NotFoundProducts from '@/components/errors/NotFoundProducts'
 
 import styles from './Page.module.scss'
 
-interface ISlugPage {
-	params: {
-		slug: string
-	}
-}
+type Params = Promise<{ slug: string }>
 
 const getProductsBySubcategorySlug = async (slug: string) => {
 	const { data } = await ProductService.getBySubcategory(slug)
@@ -17,8 +13,11 @@ const getProductsBySubcategorySlug = async (slug: string) => {
 	return data
 }
 
-export default async function Page({ params }: ISlugPage) {
-	const products = await getProductsBySubcategorySlug(params.slug)
+export default async function Page(props: { params: Params }) {
+  const params = await props.params
+  const slug = params.slug
+  
+	const products = await getProductsBySubcategorySlug(slug)
 
 	return (
 		<>

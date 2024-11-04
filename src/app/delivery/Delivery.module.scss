@@ -1,0 +1,20 @@
+.title {
+  @apply text-2xl font-Lora font-bold pb-5;
+  letter-spacing: -.6px;
+}
+
+.container {
+  @apply flex flex-col items-start gap-5;
+}
+
+.text {
+  @apply text-base text-[var(--black)];
+}
+
+.diskList {
+  @apply list-disc;
+
+  & li {
+    @apply ml-10;
+  }
+}

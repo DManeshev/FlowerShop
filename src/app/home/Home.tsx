@@ -1,12 +1,8 @@
-import Link from 'next/link'
+import { TypePaginationProducts } from '@/types/product.interface'
 
-import { IProduct, TypePaginationProducts } from '@/types/product.interface'
-
-import Heading from '@/components/ui/heading/Heading'
-import { CategoryCard } from '@/components/ui/cards/category/Category'
+import { ProductCard } from '@/components/ui/cards/productCard/Card'
 
 import styles from './Home.module.scss'
-import { ProductCard } from '@/components/ui/cards/productCard/Card'
 
 interface IHome {
 	paginationProducts: TypePaginationProducts
@@ -14,6 +10,7 @@ interface IHome {
 
 const Home = ({ paginationProducts }: IHome) => {
 	const { products, length } = paginationProducts
+
 	return (
 		<div>
 			{products.length > 0 ? (

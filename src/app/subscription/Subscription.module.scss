@@ -1,0 +1,12 @@
+.title {
+  @apply text-2xl font-Lora font-bold;
+  letter-spacing: -.6px;
+}
+
+.subscription {
+  @apply flex flex-col items-start gap-4;
+}
+
+.container {
+  @apply flex flex-col items-start gap-3;
+}

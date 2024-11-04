@@ -1,19 +1,20 @@
 import { ProductService } from '@/services/product/product.service'
 
 import Product from './Product'
-interface IProductSlugPage {
-    params: {
-        slug: string
-    }
-}
+
+type Params = Promise<{ slug: string }>
 
 const getProductBySlug = async (slug: string) => {
-    const product = await ProductService.getBySlug(slug)
+	const product = await ProductService.getBySlug(slug)
 
-    return product
+	return product
 }
-export default async function ProductDetailPage({ params }: IProductSlugPage) {
-    const { data } = await getProductBySlug(params.slug)
 
-    return <Product {...data} />
+export default async function ProductDetailPage(props: { params: Params }) {
+  const params = await props.params
+  const slug = params.slug
+
+	const { data } = await getProductBySlug(slug)
+
+	return <Product {...data} />
 }

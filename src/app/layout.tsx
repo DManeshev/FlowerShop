@@ -1,7 +1,7 @@
 import Providers from '@/providers/Providers'
 import type { Metadata } from 'next'
 import type { PropsWithChildren, ReactNode } from 'react'
-import { headers } from 'next/dist/client/components/headers'
+import { headers } from 'next/headers'
 
 import { getSiteUrl } from '@/config/url.config'
 import { SITE_NAME } from '@/constants/seo.constants'
@@ -30,8 +30,8 @@ interface ILayoutRoot extends PropsWithChildren<unknown> {
 	checkout: ReactNode
 }
 
-export default function RootLayout({ children, checkout }: ILayoutRoot) {
-	const header = headers()
+export default async function RootLayout({ children, checkout }: ILayoutRoot) {
+	const header = await headers()
 	const pathname = header.get('x-invoke-path') || ''
 	const isProtectedRoute = protectedRoutes.some(route =>
 		pathname.startsWith(route)

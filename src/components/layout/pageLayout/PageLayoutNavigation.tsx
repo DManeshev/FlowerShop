@@ -29,7 +29,7 @@ export default function PageLayoutNavigation() {
 	const directories = pathname.split('/')
 	const lastDirectories = directories[directories.length - 1]
 
-	const isShowNavigation = pathname === '/'
+	const isShowNavigation = pathname === '/' || 'delivery' || 'subscription'
 
 	const { data } = useQuery(
 		[`get subcategory ${lastDirectories}`],
