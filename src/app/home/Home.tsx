@@ -16,7 +16,7 @@ const Home = ({ paginationProducts }: IHome) => {
 			{products.length > 0 ? (
 				<div className={styles.products}>
 					{products.map(product => (
-						<ProductCard {...product} />
+						<ProductCard key={product.id} {...product} />
 					))}
 				</div>
 			) : (

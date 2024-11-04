@@ -49,7 +49,7 @@ const Product = memo(function Product(props: IProduct) {
 						<span className="text-[var(--dark-grey)]">Цветы:</span>
 						<div className="flex flex-col gap-1">
 							{flowers.map(item => (
-								<div className="flex items-center gap-1">
+								<div key={item.id} className="flex items-center gap-1">
 									<LuFlower2 size={20} color="var(--purple)" />
 									<span>{item.name}</span>
 								</div>
