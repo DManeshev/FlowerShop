@@ -31,7 +31,7 @@ export default function Header() {
 
 			<div className={styles.header__social}>
 				<Link
-					href="https://t.me/your_flowers_21"
+					href="https://wa.me/message/XVJACCEITBPIN1"
 					target="_blank"
 					className={styles.icon}
 				>
@@ -42,7 +42,7 @@ export default function Header() {
 					/>
 				</Link>
 				<Link
-					href="https://vk.com/your_flowers_21"
+					href="https://t.me/your_flowers_21"
 					target="_blank"
 					className={styles.icon}
 				>
@@ -53,7 +53,7 @@ export default function Header() {
 					/>
 				</Link>
 				<Link
-					href="https://wa.me/message/XVJACCEITBPIN1"
+					href="https://vk.com/your_flowers_21"
 					target="_blank"
 					className={styles.icon}
 				>
