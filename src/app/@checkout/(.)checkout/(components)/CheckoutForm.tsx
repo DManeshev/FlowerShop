@@ -16,6 +16,7 @@ import Checkbox from '@/components/ui/form/checkbox/Checkbox'
 import SubHeading from '@/components/ui/heading/SubHeading'
 
 import styles from '../Checkout.module.scss'
+import { EnumDeliveryMethod } from '@/types/enum/orderStatus.enum'
 
 export default function CheckoutForm() {
 	const [coords, setCoords] = useState([56.133988, 47.263766])
@@ -31,8 +32,7 @@ export default function CheckoutForm() {
 		mode: 'onChange',
 		defaultValues: {
 			deliveryDate: new Date().toISOString().substring(0, 10),
-			flat: '',
-			hallway: ''
+      deliveryMethod: EnumDeliveryMethod.delivery
 		}
 	})
 
@@ -42,7 +42,7 @@ export default function CheckoutForm() {
 	const mapRef = useRef(null)
 	const placemarkRef = useRef(null)
 
-	const fullAddress = `${watch('address')}, ${watch('flat')}`
+	const fullAddress = `${watch('city')}, ${watch('street')}, ${watch('houseNumber')}`
 
 	const handleClick = (e: any) => {
 		const newCoords = e.get('coords')
@@ -70,38 +70,47 @@ export default function CheckoutForm() {
 				/* @ts-ignore */
 				placemarkRef.current.getMap().hint.open(newCoords, newAddress)
 
-			setValue('address', newAddress)
+      /* @ts-ignore */
+      const city = firstGeoObject.getLocalities()
+      /* @ts-ignore */
+      const street = firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
+      /* @ts-ignore */
+      const houseNumber = firstGeoObject.getPremiseNumber()
+
+			setValue('city', city[0] || 'Чебоксары')
+			setValue('street', street)
+			setValue('houseNumber', houseNumber)
 		})
 	}
 
-	const changeDelivery = (event: ChangeEvent<HTMLInputElement>) => {
-		const { checked } = event.target
+	// const changeDelivery = (event: ChangeEvent<HTMLInputElement>) => {
+	// 	const { checked } = event.target
 
-		setIsNotDelivery(checked)
+	// 	setIsNotDelivery(checked)
 
-		if (checked) {
-			setValue('address', 'Чебоксары, Чебоксарский пр-кт, 27')
-			setValue('flat', '')
-		} else setValue('address', 'Выберите адрес')
-	}
+	// 	if (checked) {
+	// 		setValue('address', 'Чебоксары, Стартовая, 3')
+	// 		setValue('flat', '')
+	// 	} else setValue('address', 'Выберите адрес')
+	// }
 
 	const checkoutOrder: SubmitHandler<IOrder> = data => {
-		setOrderValues({ isPayment: true, isNotDelivery, ...data })
+		setOrderValues({ isPayment: true, ...data })
 	}
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit(checkoutOrder)}>
 			<div className={styles.form__container}>
 				<h2 className={styles.form__address}>
-					{watch('address') ? fullAddress : 'Выберите адрес'}
+					{watch('street') ? fullAddress : 'Выберите улицу'}
 				</h2>
 
 				<input
 					hidden
 					type="text"
 					className={styles.form__address__input}
-					{...register('address', {
-						required: 'Выберите адрес'
+					{...register('street', {
+						required: 'Выберите улицу'
 					})}
 				/>
 
@@ -119,31 +128,23 @@ export default function CheckoutForm() {
 						<Placemark instanceRef={placemarkRef} geometry={coords} />
 					</Map>
 				</div>
-				{errors.address && (
-					<div className={styles.form__error}>{errors.address.message}</div>
+				{errors.street && (
+					<div className={styles.form__error}>{errors.street.message}</div>
 				)}
 
-				{watch('address') ? (
+				{/* {watch('address') ? ( */}
 					<div className={styles.form__fields}>
-						{isNotDelivery ? null : (
+
 							<>
 								<Field
 									label="Квартира / Офис"
 									type="number"
-									placeholder="Введите номер квартиры / офиса"
-									{...register('flat', {
+									placeholder="Номер квартиры / офиса"
+									{...register('apartment', {
 										required: 'Поле Квартира / Офис обязательное'
 									})}
 									disabled={isNotDelivery}
-									error={errors.flat?.message}
-								/>
-
-								<Field
-									label="Подъезд"
-									type="number"
-									placeholder="Введите номер подъезда"
-									disabled={isNotDelivery}
-									{...register('hallway')}
+									error={errors.apartment?.message}
 								/>
 
 								<div className="flex flex-col">
@@ -158,7 +159,6 @@ export default function CheckoutForm() {
 									/>
 								</div>
 							</>
-						)}
 
 						<div className="flex flex-col">
 							<Select
@@ -173,17 +173,17 @@ export default function CheckoutForm() {
 							/>
 						</div>
 					</div>
-				) : null}
+				{/* // ) : null} */}
 
-				<Checkbox
-					label="Заберу с магазина"
+				{/* <Checkbox
+					label="Забрать с магазина"
 					checked={isNotDelivery}
 					onChange={changeDelivery}
 				/>
 
 				<p className={styles.form__descr}>
 					Доставка осуществляется по г. Чебоксары и по г. Новочебсарск
-				</p>
+				</p> */}
 			</div>
 
 			<div className={styles.form__container}>
@@ -191,7 +191,7 @@ export default function CheckoutForm() {
 				<div className={styles.form__fields}>
 					<Field
 						label="Имя"
-						placeholder="Введите имя"
+						placeholder="Имя"
 						{...register('name', {
 							required: 'Поле Имя обязательное'
 						})}
@@ -200,19 +200,17 @@ export default function CheckoutForm() {
 					<Field
 						label="Номер телефона"
 						type="tel"
-						placeholder="Введите номер телефона"
+						placeholder="Номер телефона"
 						{...register('phone', {
 							required: 'Поле Номер телефона обязательное'
 						})}
 						error={errors.phone?.message}
 					/>
-					<div className="col-span-2">
-						<Field
-							label="Комментарий к заказу"
-							placeholder="Введите комментарий к заказу"
-							{...register('commentary')}
-						/>
-					</div>
+          <Field
+            label="Комментарий к заказу"
+            placeholder="Комментарий к заказу"
+            {...register('commentary')}
+          />
 				</div>
 			</div>
 

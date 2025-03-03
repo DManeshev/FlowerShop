@@ -1,11 +1,10 @@
-import { EnumOrderStatus } from "./enum/orderStatus.enum"
+import { EnumDeliveryMethod, EnumOrderStatus } from "./enum/orderStatus.enum"
 
 interface IOrderItem {
     quantity: number
     price: number
     productId: number
 }
-
 export interface IOrder {
     id?: number
     createdAt?: string
@@ -13,10 +12,12 @@ export interface IOrder {
     name: string
     phone: string
     commentary?: string
-    address: string
-    flat: string
-    hallway?: string
     deliveryDate: string
     deliveryTime: string
+    deliveryMethod: EnumDeliveryMethod
+    city: string
+    street: string
+    houseNumber: string
+    apartment: string
     items: IOrderItem[]
 }

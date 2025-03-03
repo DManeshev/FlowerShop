@@ -11,7 +11,7 @@ export const OrderService = {
 	},
 
 	async placeOrder(data: IOrder) {
-		return axiosClassic<{ confirmation: { confirmation_url: string } }>({
+		return axiosClassic({
 			method: 'POST',
 			url: '/orders',
 			data

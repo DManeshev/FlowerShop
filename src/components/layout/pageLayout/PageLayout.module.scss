@@ -29,7 +29,7 @@
 }
 
 .content {
-	@apply relative z-[2] flex flex-col flex-grow rounded-b-8 bg-white;
+	@apply relative z-[2] flex flex-col flex-grow rounded-b-8 bg-white pb-5;
 }
 
 .logo {

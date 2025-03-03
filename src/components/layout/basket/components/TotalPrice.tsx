@@ -27,8 +27,8 @@ export default function TotalPrice({ total, closeCart }: ITotalPrice) {
 				title="Перейти к оформлению"
 				size="large"
 				onClick={() => {
+          closeCart()
 					router.push('/checkout')
-					closeCart()
 				}}
 				disabled={total === 0}
 			/>

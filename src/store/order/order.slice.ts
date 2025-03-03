@@ -1,24 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { IOrder } from '@/types/order.interface'
+import { EnumDeliveryMethod } from '@/types/enum/orderStatus.enum'
 
 interface IInitialOrderState
 	extends Omit<IOrder, 'id' | 'createdAt' | 'status' | 'items'> {
 	isPayment: boolean,
-	isNotDelivery: boolean
 }
 
 const initialState: IInitialOrderState = {
 	isPayment: false,
-	isNotDelivery: false,
+	deliveryMethod: EnumDeliveryMethod.delivery,
 	name: '',
 	phone: '',
 	commentary: '',
 	deliveryDate: '',
 	deliveryTime: '',
-	address: '',
-	flat: '',
-	hallway: ''
+	city: '',
+	street: '',
+	houseNumber: '',
+	apartment: '',
 }
 
 export const orderSlice = createSlice({

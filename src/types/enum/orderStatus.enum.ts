@@ -4,3 +4,8 @@ export enum EnumOrderStatus {
     SHIPPED = 'SHIPPED',
     DELIVERED = 'DELIVERED'
 }
+
+export enum EnumDeliveryMethod {
+  pickup = 'pickup',
+  delivery = 'delivery',
+}

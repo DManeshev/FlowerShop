@@ -11,12 +11,11 @@ import Heading from '@/components/ui/heading/Heading'
 import CartCard from '@/components/ui/cards/cartCard/Card'
 
 import styles from '../Checkout.module.scss'
+import { persistor } from '@/store/store'
 
 interface ICheckoutPayment {
 	cart: ICart[]
 }
-
-const DELIVERY_PRICE = 300
 
 export default function Payment({ cart }: ICheckoutPayment) {
 	const { order } = useTypedSelector(state => state)
@@ -29,27 +28,29 @@ export default function Payment({ cart }: ICheckoutPayment) {
 		return result + item.product.price * item.quantity
 	}, 0)
 
-//	const checkoutOrder = useCallback(() => {
-//		let { isNotDelivery, isPayment, ...rest } = order
-//
-//		const orderObject = {
-//			...rest,
-//			items: cart.map(({ product, quantity }) => ({
-//				productId: product.id,
-//				price: product.price,
-//				quantity
-//			}))
-//		}
-//		
-//		mutate(orderObject, {
-//			onSuccess: ({ data }, variables, context) => {
-//				router.push(data.confirmation.confirmation_url)
-//			},
-//			onError: (error, variables, context) => {
-//				console.log(error)
-//			}
-//		})
-//	}, [mutate])
+	const checkoutOrder = useCallback(() => {
+		let { isPayment, ...rest } = order
+
+		const orderObject = {
+			...rest,
+			items: cart.map(({ product, quantity }) => ({
+				productId: product.id,
+				price: product.price,
+				quantity
+			}))
+		}
+		
+		mutate(orderObject, {
+			onSuccess: ({ data }, variables, context) => {
+				router.push('/thanks')
+			},
+			onError: (error, variables, context) => {
+				console.log(error)
+			}
+		})
+	}, [mutate])
+
+  const address = `${order.city}, ${order.street}, ${order.apartment}, ${order.houseNumber}`
 
 	return (
 		<div className={styles.payment}>
@@ -70,7 +71,7 @@ export default function Payment({ cart }: ICheckoutPayment) {
 				</div>
 				<div className={styles.payment__info}>
 					<div className={styles.payment__label}>Адрес доставки:</div>
-					<span className={styles.payment__text}>{order.address}</span>
+					<span className={styles.payment__text}>{address}</span>
 				</div>
 
 				<div className={styles.payment__info}>
@@ -79,13 +80,6 @@ export default function Payment({ cart }: ICheckoutPayment) {
 						{order.deliveryDate} с {order.deliveryTime}
 					</span>
 				</div>
-
-				{!order.isNotDelivery ? (
-					<div className={styles.payment__info}>
-						<div className={styles.payment__label}>Стоимость доставки:</div>
-						<span className={styles.price}>{DELIVERY_PRICE} &#8381;</span>
-					</div>
-				) : null}
 			</div>
 
 			<div className={styles.payment__container}>
@@ -100,12 +94,11 @@ export default function Payment({ cart }: ICheckoutPayment) {
 				<div className={styles.total}>
 					<div className={styles.total__text}>Итого</div>
 					<div className={styles.total__price}>
-						<span>{order.isNotDelivery ? total : total + DELIVERY_PRICE}</span>
+						<span>{total}</span>
 						<span>&#8381; </span>
 					</div>
 				</div>
-				{/*onClick={checkoutOrder}*/}
-				<Button title="Оплатить" size="large" /> 
+				<Button onClick={checkoutOrder} title="Оплатить" size="large" /> 
 			</div>
 		</div>
 	)
