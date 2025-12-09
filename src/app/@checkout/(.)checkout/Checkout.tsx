@@ -31,7 +31,11 @@ export default function Checkout() {
 
 	useOnClickOutside(refDrawer, () => router.push('/'))
 
-	const content = !order.isPayment ? <CheckoutForm /> : <Payment cart={cart} />
+  function closeModal(): void {
+    setIsOpen(false);
+  }
+
+	const content = !order.isPayment ? <CheckoutForm /> : <Payment cart={cart} closeModal={closeModal} />
 
 	return (
 		<>

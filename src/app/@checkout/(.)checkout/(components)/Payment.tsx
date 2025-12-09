@@ -15,9 +15,10 @@ import { persistor } from '@/store/store'
 
 interface ICheckoutPayment {
 	cart: ICart[]
+  closeModal(): void
 }
 
-export default function Payment({ cart }: ICheckoutPayment) {
+export default function Payment({ cart, closeModal }: ICheckoutPayment) {
 	const { order } = useTypedSelector(state => state)
 
 	const { mutate } = useMutation(OrderService.placeOrder)
@@ -42,6 +43,8 @@ export default function Payment({ cart }: ICheckoutPayment) {
 		
 		mutate(orderObject, {
 			onSuccess: ({ data }, variables, context) => {
+        closeModal();
+
 				router.push('/thanks')
 			},
 			onError: (error, variables, context) => {
