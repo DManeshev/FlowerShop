@@ -2,6 +2,11 @@ import { ProductService } from '@/services/product/product.service'
 
 import Home from './home/Home'
 
+// export const metadata: Metadata = {
+//     title: '',
+//     description: ''
+// }
+
 export const revalidate = 3600
 
 const getProducts = async () => {

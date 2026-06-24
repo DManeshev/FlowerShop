@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { FaMapMarkerAlt } from 'react-icons/fa'
+import { Map, Placemark } from '@pbe/react-yandex-maps'
 import { useOnClickOutside, useMediaQuery } from 'usehooks-ts'
 
 import { useTypedSelector } from '@/hooks/useTypedSelector'
@@ -10,9 +12,11 @@ import CartCard from '@/components/ui/cards/cartCard/Card'
 import TotalPrice from './components/TotalPrice'
 import EmptyBasket from './components/EmptyBasket'
 import DrawerMobile from '@/components/ui/drawer/DrawerMobile'
-import DrawerDesctop from '@/components/ui/drawer/DrawerDesctop'
 
 import styles from './Basket.module.scss'
+import Modal from '@/components/ui/modal/Modal'
+import Link from 'next/link'
+import DrawerDesctop from '@/components/ui/drawer/DrawerDesctop'
 
 export default function Basket() {
 	const { cart, isOpenCart } = useTypedSelector(state => state.cart)

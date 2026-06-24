@@ -10,9 +10,9 @@ import CartCard from '@/components/ui/cards/cartCard/Card'
 import TotalPrice from './components/TotalPrice'
 import EmptyBasket from './components/EmptyBasket'
 import DrawerMobile from '@/components/ui/drawer/DrawerMobile'
-import DrawerDesctop from '@/components/ui/drawer/DrawerDesctop'
 
 import styles from './Basket.module.scss'
+import DrawerDesctop from '@/components/ui/drawer/DrawerDesctop'
 
 export default function Basket() {
 	const { cart, isOpenCart } = useTypedSelector(state => state.cart)

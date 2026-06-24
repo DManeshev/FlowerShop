@@ -27,6 +27,10 @@ export default function DashboardLayout({ children }: IDashboardLayout) {
 		<div className={styles.dashboard}>
 			<nav className={styles.nav}>
 				{tabs.map(({ id, name, icon }) => (
+					// className={clsx(
+					// 	styles.aside__item,
+					// 	selectedTab === id && styles.active
+					// )}
 					<Link key={id} href={`/dashboard/${id}`} className={clsx(styles.nav__link)}>
 						<span>{icon}</span>
 						<span>{name}</span>

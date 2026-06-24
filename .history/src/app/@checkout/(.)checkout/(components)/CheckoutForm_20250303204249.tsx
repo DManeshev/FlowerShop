@@ -83,6 +83,17 @@ export default function CheckoutForm() {
 		})
 	}
 
+	// const changeDelivery = (event: ChangeEvent<HTMLInputElement>) => {
+	// 	const { checked } = event.target
+
+	// 	setIsNotDelivery(checked)
+
+	// 	if (checked) {
+	// 		setValue('address', 'Чебоксары, Стартовая, 3')
+	// 		setValue('flat', '')
+	// 	} else setValue('address', 'Выберите адрес')
+	// }
+
 	const checkoutOrder: SubmitHandler<IOrder> = data => {
 		setOrderValues({ isPayment: true, ...data })
 	}
@@ -121,45 +132,58 @@ export default function CheckoutForm() {
 					<div className={styles.form__error}>{errors.street.message}</div>
 				)}
 
-        <div className={styles.form__fields}>
-            <>
-              <Field
-                label="Квартира / Офис"
-                type="number"
-                placeholder="Номер квартиры / офиса"
-                {...register('apartment', {
-                  required: 'Поле Квартира / Офис обязательное'
-                })}
-                disabled={isNotDelivery}
-                error={errors.apartment?.message}
-              />
+				{/* {watch('address') ? ( */}
+					<div className={styles.form__fields}>
 
-              <div className="flex flex-col">
-                <label className="text-[12px] px-2">Дата доставки</label>
-                <input
-                  type="date"
-                  className={styles.form__date}
-                  disabled={isNotDelivery}
-                  {...register('deliveryDate', {
-                    required: 'Поле Дата обязательное'
-                  })}
-                />
-              </div>
-            </>
+							<>
+								<Field
+									label="Квартира / Офис"
+									type="number"
+									placeholder="Номер квартиры / офиса"
+									{...register('apartment', {
+										required: 'Поле Квартира / Офис обязательное'
+									})}
+									disabled={isNotDelivery}
+									error={errors.apartment?.message}
+								/>
 
-          <div className="flex flex-col">
-            <Select
-              label="Время доставки"
-              placeholder="Время доставки"
-              selectList={timeDeliveryArray}
-              handleChange={({ name }) => setValue('deliveryTime', name)}
-              {...register('deliveryTime', {
-                required: 'Поле Время обязательное'
-              })}
-              error={errors.deliveryTime?.message}
-            />
-          </div>
-        </div>
+								<div className="flex flex-col">
+									<label className="text-[12px] px-2">Дата доставки</label>
+									<input
+										type="date"
+										className={styles.form__date}
+										disabled={isNotDelivery}
+										{...register('deliveryDate', {
+											required: 'Поле Дата обязательное'
+										})}
+									/>
+								</div>
+							</>
+
+						<div className="flex flex-col">
+							<Select
+								label="Время доставки"
+								placeholder="Время доставки"
+								selectList={timeDeliveryArray}
+								handleChange={({ name }) => setValue('deliveryTime', name)}
+								{...register('deliveryTime', {
+									required: 'Поле Время обязательное'
+								})}
+								error={errors.deliveryTime?.message}
+							/>
+						</div>
+					</div>
+				{/* // ) : null} */}
+
+				{/* <Checkbox
+					label="Забрать с магазина"
+					checked={isNotDelivery}
+					onChange={changeDelivery}
+				/>
+
+				<p className={styles.form__descr}>
+					Доставка осуществляется по г. Чебоксары и по г. Новочебсарск
+				</p> */}
 			</div>
 
 			<div className={styles.form__container}>

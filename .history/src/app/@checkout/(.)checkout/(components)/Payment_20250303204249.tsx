@@ -11,6 +11,7 @@ import Heading from '@/components/ui/heading/Heading'
 import CartCard from '@/components/ui/cards/cartCard/Card'
 
 import styles from '../Checkout.module.scss'
+import { persistor } from '@/store/store'
 
 interface ICheckoutPayment {
 	cart: ICart[]

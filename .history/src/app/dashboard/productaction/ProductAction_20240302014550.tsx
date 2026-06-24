@@ -113,6 +113,8 @@ export default function ProductAction() {
 		const { data } = await ProductService.deleteFile({
 			path: currentPath
 		})
+
+		// console.log(data)
 	}
 
 	const handleMultipleSelect = (item: IList) => {

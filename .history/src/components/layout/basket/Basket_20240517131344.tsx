@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { FaMapMarkerAlt } from 'react-icons/fa'
+import { Map, Placemark } from '@pbe/react-yandex-maps'
 import { useOnClickOutside, useMediaQuery } from 'usehooks-ts'
 
 import { useTypedSelector } from '@/hooks/useTypedSelector'
@@ -10,9 +12,11 @@ import CartCard from '@/components/ui/cards/cartCard/Card'
 import TotalPrice from './components/TotalPrice'
 import EmptyBasket from './components/EmptyBasket'
 import DrawerMobile from '@/components/ui/drawer/DrawerMobile'
-import DrawerDesctop from '@/components/ui/drawer/DrawerDesctop'
 
 import styles from './Basket.module.scss'
+import Modal from '@/components/ui/modal/Modal'
+import Link from 'next/link'
+import DrawerDesctop from '@/components/ui/drawer/DrawerDesctop'
 
 export default function Basket() {
 	const { cart, isOpenCart } = useTypedSelector(state => state.cart)
@@ -81,5 +85,58 @@ export default function Basket() {
 				</DrawerMobile>
 			)}
 		</>
+		// <>
+		//   {matches ? (<DrawerDesctop
+		//     ref={refDrawer}
+		//     isOpen={isOpenCart}
+		//     closeDrawer={() => openCart(false)}
+		//   >
+		// <div className={styles.basket}>
+		//   {cart.length > 0 ? (
+		//     <div className={styles.basket__container}>
+		//       <div className="flex flex-col gap-3 flex-grow">
+		//         {cart.map(item => (
+		//           <CartCard key={item.product.id} {...item} />
+		//         ))}
+		//       </div>
+
+		//       <TotalPrice total={total} closeCart={() => openCart(false)} />
+		//     </div>
+		//   ) : (
+		//     <EmptyBasket />
+		//   )}
+		// </div>
+		//   </DrawerDesctop>) : (<DrawerMobile
+		//     ref={refDrawer}
+		//     isOpen={isOpenCart}
+		//     closeDrawer={() => openCart(false)}
+		//   >
+		// <div className="flex-grow flex flex-col gap-4 pt-10">
+		//   {cart.length > 0 ? (
+		//     <>
+		//       {cart.map(item => (
+		//         <CartCard key={item.product.id} {...item} />
+		//       ))}
+		//     </>
+		//   ) : (
+		//     <EmptyBasket />
+		//   )}
+		// </div>
+
+		// <TotalPrice total={total} closeCart={() => openCart(false)} />
+		//   </DrawerMobile>
+		// )}
+
+		// {/* <Modal isOpen={isOpen} close={() => setIsOpen(false)} ref={modalRef}>
+		// 	<div className={styles.container__map}>
+		// 		<Map
+		// 			defaultState={{ center: [56.125299, 47.384112], zoom: 17 }}
+		// 			width="100%"
+		// 			height="100%"
+		// 		>
+		// 			<Placemark geometry={[56.125299, 47.384112]} />
+		// 		</Map>
+		// 	</div>
+		// </Modal> */}
 	)
 }
