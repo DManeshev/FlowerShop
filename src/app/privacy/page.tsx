@@ -4,7 +4,7 @@ import SubHeading from '@/components/ui/heading/SubHeading'
 
 export default function PrivacyPage() {
 	return (
-		<div className="container py-5 font-Lora">
+		<div className="container py-5 font-lora">
 			<SubHeading title="Политика в отношении обработки персональных данных" />
 			<ol>
 				<li className="pb-5">

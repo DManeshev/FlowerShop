@@ -1,3 +1,5 @@
+@reference "../../../../app/theme.css";
+
 .container {
     @apply relative w-full flex flex-col;
 }
@@ -15,7 +17,7 @@
 }
 
 .input { 
-    @apply relative w-full border rounded-[var(--rounded)] px-3 py-2 font-Lora text-sm font-medium;
+    @apply relative w-full border rounded-[var(--rounded)] px-3 py-2 font-lora text-sm font-medium;
 
     &__layout {
         @apply border-none rounded-full px-10 py-3 bg-[var(--grey)];

@@ -11,7 +11,7 @@ import styles from './Header.module.scss'
 
 export default function Header() {
 	return (
-		<div className={styles.header}>
+		<header className={styles.header}>
 			<div className={styles.header__info}>
 				<a href="tel:+79876663045" className={styles.phone}>
 					+7 (987) 666 30-45
@@ -68,6 +68,6 @@ export default function Header() {
 			<div className={styles.header__hamburger}>
 				<FaAlignJustify size={22} />
 			</div>
-		</div>
+		</header>
 	)
 }

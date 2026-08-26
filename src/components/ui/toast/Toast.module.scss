@@ -1,3 +1,5 @@
+@reference "../../../app/theme.css";
+
 .toast {
 	@apply absolute bottom-5 right-4 rounded-[var(--rounded)] py-2 px-3 bg-purple-600 z-10 opacity-0 invisible overflow-hidden shadow-md;
 	transform: translateY(calc(100% + 20px));

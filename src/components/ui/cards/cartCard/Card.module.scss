@@ -1,3 +1,5 @@
+@reference "../../../../app/theme.css";
+
 .card {
     @apply h-full flex items-start gap-3 border-b pb-3;
 
@@ -27,7 +29,7 @@
 }
 
 .label {
-    @apply font-Lora text-sm;
+    @apply font-lora text-sm;
 }
 
 .delete {
@@ -42,5 +44,5 @@
 }
 
 .quantity {
-    @apply text-lg font-Lora;
+    @apply text-lg font-lora;
 }

@@ -1,3 +1,5 @@
+@reference "../../../app/theme.css";
+
 .search {
 	@apply sticky top-0 flex flex-col gap-4 pt-6 bg-[var(--grey)] z-[2];
 
@@ -23,7 +25,7 @@
     }
 
     &__name {
-        @apply text-2xl font-Lora font-bold;
+        @apply text-2xl font-lora font-bold;
         letter-spacing: -.6px;
     }
 }

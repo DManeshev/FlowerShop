@@ -1,3 +1,5 @@
+@reference "../theme.css";
+
 .dashboard {
 	@apply w-full h-full flex items-start gap-10 pt-5;
 }
@@ -61,10 +63,10 @@
 }
 
 .head__cell {
-	@apply border border-black p-1 font-Lora;
+	@apply border border-black p-1 font-lora;
 }
 .body__cell {
-	@apply border p-1 font-Lora text-center;
+	@apply border p-1 font-lora text-center;
 }
 
 @media screen and (max-width: 991px) {
@@ -128,5 +130,17 @@
 			aspect-ratio: var(--gallery-aspect-ratio);
 			height: auto;
 		}
+	}
+}
+
+.select_field {
+	@apply text-lg;
+}
+
+.select {
+	@apply w-full text-lg h-9 cursor-pointer;
+
+	&_item {
+		@apply text-base font-lora cursor-pointer;
 	}
 }

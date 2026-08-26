@@ -1,132 +1,220 @@
+@reference "../../theme.css";
+
+// .product {
+// 	@apply h-full flex flex-col items-start gap-5;
+
+// 	&__images {
+// 		@apply w-full;
+// 	}
+
+// 	&__content {
+// 		@apply w-full flex flex-col flex-grow;
+// 	}
+
+// 	&__basket {
+// 		@apply flex flex-col gap-3 pt-4;
+
+// 		& span {
+// 			@apply font-lora text-3xl font-bold text-[var(--purple)];
+// 		}
+// 	}
+
+//     &__price {
+//         @apply flex self-center gap-1;
+//     }
+// }
+
+// .image {
+// 	@apply relative w-full h-[400px];
+// }
+
+// .arrow {
+// 	@apply absolute top-1/2 h-10 w-10 rounded-full grid place-items-center bg-white z-10 cursor-pointer;
+
+// 	&__left {
+// 		@apply left-2;
+// 	}
+
+// 	&__rigth {
+// 		@apply right-2;
+// 	}
+// }
+
+// @media screen and (min-width: 500px) {
+// 	.image {
+// 		@apply h-[600px];
+// 	}
+// }
+// @media screen and (min-width: 768px) {
+// 	.product {
+// 		@apply h-[400px] flex-row gap-10;
+
+// 		&__images {
+// 			@apply w-[400px];
+// 		}
+
+// 		&__content {
+// 			@apply h-full;
+// 		}
+
+// 		&__attribute {
+// 			@apply justify-between;
+// 		}
+
+// 		&__basket {
+// 			@apply flex-row flex-1 items-end justify-between pt-0;
+// 		}
+
+//         &__price {
+//             @apply self-end;
+//         }
+// 	}
+
+// 	.image {
+// 		@apply w-[400px] h-[400px];
+// 	}
+// }
+
+// @media screen and (min-width: 1024px) {
+//     .product {
+// 		@apply h-full flex-col gap-4;
+
+// 		&__images {
+// 			@apply self-center w-[400px];
+// 		}
+
+// 		&__basket {
+// 			@apply pt-4;
+// 		}
+// 	}
+
+// 	.image {
+// 		@apply w-[400px] h-[400px];
+// 	}
+// }
+
+// @media screen and (min-width: 1300px) {
+//     .product {
+// 		@apply h-[400px] flex-row gap-10;
+
+// 		&__images {
+// 			@apply self-start;
+// 		}
+
+// 		&__basket {
+//             @apply flex-col items-stretch justify-end gap-3;
+//         }
+
+//         &__price {
+//             @apply self-center;
+//         }
+// 	}
+// }
+
+// @media screen and (min-width: 1500px) {
+//     .product__basket {
+//         @apply flex-row items-end justify-between gap-3;
+//     }
+
+//     .product__price {
+//         @apply self-end;
+//     }
+// }
+
 .product {
-	@apply h-full flex flex-col items-start gap-5;
+	@apply grid grid-cols-[520fr_250fr];
+
+	@variant max-md {
+		@apply grid-cols-1;
+	}
 
 	&__images {
-		@apply w-full;
+		@apply grid gap-2 grid-cols-[1fr_250px];
+
+		@variant max-lg {
+			@apply grid-cols-1
+		}
+
+		@variant max-md {
+			@apply mb-5;
+		}
 	}
 
 	&__content {
-		@apply w-full flex flex-col flex-grow;
+		@apply py-0 pl-10;
+
+		@variant max-lg {
+			@apply pl-5;
+		}
+		
+
+		@variant max-md {
+			@apply pl-0
+		}
+
+		&_info {
+			@apply grid gap-3 border-b pb-5;
+		}
 	}
 
 	&__attribute {
-		@apply flex items-start flex-wrap gap-x-5 gap-y-2 border-b py-4;
+		@apply flex items-start gap-2;
+
+		&_title {
+			@apply text-base
+		}
 
 		&__text {
 			@apply text-[var(--purple)] font-bold;
 		}
 	}
 
+	&__price {
+		@apply text-3xl font-bold;
+		color: #E8735A;
+    }
+
 	&__description {
-		@apply border-b py-4;
+		@apply border-b py-5 mb-5 text-lg;
 	}
 
-	&__basket {
-		@apply flex flex-col gap-3 pt-4;
-
-		& span {
-			@apply font-Lora text-3xl font-bold text-[var(--purple)];
-		}
+	&__btn_container {
+		@apply w-full;
 	}
 
-    &__price {
-        @apply flex self-center gap-1;
-    }
-}
-
-.image {
-	@apply relative w-full h-[400px];
-}
-
-.arrow {
-	@apply absolute top-1/2 h-10 w-10 rounded-full grid place-items-center bg-white z-10 cursor-pointer;
-
-	&__left {
-		@apply left-2;
-	}
-
-	&__rigth {
-		@apply right-2;
+	&__btn {
+		@apply w-full bg-[#E8735A] text-white cursor-pointer;
 	}
 }
 
-@media screen and (min-width: 500px) {
-	.image {
-		@apply h-[600px];
-	}
-}
-@media screen and (min-width: 768px) {
-	.product {
-		@apply h-[400px] flex-row gap-10;
+.bigImage {
+	@apply relative h-187.5;
 
-		&__images {
-			@apply w-[400px];
-		}
-
-		&__content {
-			@apply h-full;
-		}
-
-		&__attribute {
-			@apply justify-between;
-		}
-
-		&__basket {
-			@apply flex-row flex-1 items-end justify-between pt-0;
-		}
-
-        &__price {
-            @apply self-end;
-        }
+	@variant max-md {
+		@apply h-100;
 	}
 
-	.image {
-		@apply w-[400px] h-[400px];
+	& img {
+		@apply object-cover;
 	}
 }
 
-@media screen and (min-width: 1024px) {
-    .product {
-		@apply h-full flex-col gap-4;
-
-		&__images {
-			@apply self-center w-[400px];
-		}
-
-		&__basket {
-			@apply pt-4;
-		}
+.smallImages {
+	@apply grid gap-2 auto-rows-87.5;
+	
+	@variant max-lg {
+		@apply auto-rows-187.5;
 	}
 
-	.image {
-		@apply w-[400px] h-[400px];
+	@variant max-md {
+		@apply auto-rows-100;
 	}
-}
 
-@media screen and (min-width: 1300px) {
-    .product {
-		@apply h-[400px] flex-row gap-10;
+	&__img {
+		@apply relative w-full h-full;
 
-		&__images {
-			@apply self-start;
+		& img {
+			@apply object-cover;
 		}
-
-		&__basket {
-            @apply flex-col items-stretch justify-end gap-3;
-        }
-
-        &__price {
-            @apply self-center;
-        }
 	}
-}
-
-@media screen and (min-width: 1500px) {
-    .product__basket {
-        @apply flex-row items-end justify-between gap-3;
-    }
-
-    .product__price {
-        @apply self-end;
-    }
 }

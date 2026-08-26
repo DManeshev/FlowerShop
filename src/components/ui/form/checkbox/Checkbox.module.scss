@@ -1,3 +1,5 @@
+@reference "../../../../app/theme.css";
+
 .label {
     @apply grid items-center gap-3 text-lg cursor-pointer;
     grid-template-columns: 1em auto;

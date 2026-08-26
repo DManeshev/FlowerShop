@@ -1,8 +1,10 @@
+@reference "../../../app/theme.css";
+
 .quantity {
     @apply flex items-center;
 
     &__input {
-        @apply w-10 px-1 font-Lora text-center
+        @apply w-10 px-1 font-lora text-center
     }
 }
 

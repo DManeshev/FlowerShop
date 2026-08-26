@@ -1,5 +1,7 @@
+@reference "../theme.css";
+
 .title {
-  @apply text-2xl font-Lora font-bold;
+  @apply text-2xl font-lora font-bold;
   letter-spacing: -.6px;
 }
 

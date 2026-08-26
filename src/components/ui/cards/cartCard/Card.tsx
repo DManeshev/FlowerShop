@@ -43,7 +43,7 @@ export default function Card({ product, quantity }: ICart) {
 					<div className={styles.card__footer}>
 						<div className={styles.quantity}>{quantity}x</div>
 
-						<div className="ml-auto flex gap-1 text-lg font-Lora font-bold text-[var(--purple)]">
+						<div className="ml-auto flex gap-1 text-lg font-lora font-bold text-[var(--purple)]">
 							<div className={styles.price}>{quantity * product.price}</div>
 							<span>&#8381; </span>
 						</div>

@@ -1,3 +1,5 @@
+@reference "../../../../app/theme.css";
+
 .card {
     @apply relative w-full h-full overflow-hidden rounded-xl bg-[var(--grey)];
 

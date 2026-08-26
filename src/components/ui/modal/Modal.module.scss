@@ -1,3 +1,5 @@
+@reference "../../../app/theme.css";
+
 .modal {
 	@apply absolute top-1/2 left-1/2 w-1/2 h-[500px] flex flex-col gap-3 rounded-[50px] py-5 px-10 bg-white;
     transform: translate(-50%, -50%);

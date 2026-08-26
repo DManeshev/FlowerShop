@@ -33,7 +33,27 @@ export default function ProductAction() {
 
 	const { data: flowers } = useFlowerQuery()
 
-	const { mutate } = useMutation(
+	const {
+		register: formRegister,
+		handleSubmit,
+		reset,
+		formState: { errors },
+		setValue,
+		getValues,
+		watch
+	} = useForm<IProduct>({
+		mode: 'onChange',
+		defaultValues: {
+			status: EnumProductStatus.inStock,
+			statusName: 'В наличии',
+			isDelivery: true,
+			isDeliveryName: 'Да',
+			flowers: [],
+			images: []
+		}
+	})
+
+	const { mutate: getProduct } = useMutation(
 		['product by id'],
 		(productId: string) => ProductService.getById(productId),
 		{
@@ -60,28 +80,8 @@ export default function ProductAction() {
 	)
 
 	useEffect(() => {
-		if (productId) mutate(productId)
+		if (productId) getProduct(productId)
 	}, [productId])
-
-	const {
-		register: formRegister,
-		handleSubmit,
-		reset,
-		formState: { errors },
-		setValue,
-		getValues,
-		watch
-	} = useForm<IProduct>({
-		mode: 'onChange',
-		defaultValues: {
-			status: EnumProductStatus.inStock,
-			statusName: 'В наличии',
-			isDelivery: true,
-			isDeliveryName: 'Да',
-			flowers: [],
-			images: []
-		}
-	})
 
 	const uploadFile = async (event: ChangeEvent<HTMLInputElement>) => {
 		const { files } = event.target

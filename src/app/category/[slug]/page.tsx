@@ -1,5 +1,7 @@
 import { ProductService } from '@/services/product/product.service'
 
+import { IProduct } from '@/types/product.interface'
+
 import { ProductCard } from '@/components/ui/cards/productCard/Card'
 import NotFoundProducts from '@/components/errors/NotFoundProducts'
 
@@ -17,7 +19,8 @@ export default async function Page(props: { params: Params }) {
   const params = await props.params
   const slug = params.slug
   
-	const products = await getProductsBySubcategorySlug(slug)
+	const products: Array<IProduct> = (await getProductsBySubcategorySlug(slug))
+		.sort((a: IProduct, b: IProduct) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 
 	return (
 		<>

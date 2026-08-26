@@ -1,5 +1,5 @@
 import Providers from '@/providers/Providers'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import type { PropsWithChildren, ReactNode } from 'react'
 import { headers } from 'next/headers'
 
@@ -14,36 +14,54 @@ import PageLayout from '@/components/layout/pageLayout/PageLayout'
 import BasketMobileBtn from '@/components/ui/btn/basketMobileBtn/BasketMobileBtn'
 import Footer from '../components/layout/footer/Footer'
 
+import './theme.css'
 import './global.scss'
 
 export const metadata: Metadata = {
-	title: {
-		absolute: SITE_NAME,
-		template: `%s | ${SITE_NAME}`
-	},
-	metadataBase: new URL(getSiteUrl())
-	// openGraph: { }
+  title: {
+    absolute: SITE_NAME,
+    template: `%s | ${SITE_NAME}`
+  },
+
+  metadataBase: new URL(getSiteUrl()),
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  openGraph: {
+    title: 'Твои цветы 21',
+    description: 'Интернет-магазин Твои цветы 21',
+    type: 'website',
+    locale: 'ru_RU'
+  }
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1
 }
 
 interface ILayoutRoot extends PropsWithChildren<unknown> {
-	children: ReactNode
-	checkout: ReactNode
+  children: ReactNode
+  checkout: ReactNode
 }
 
 export default async function RootLayout({ children, checkout }: ILayoutRoot) {
-	const header = await headers()
-	const pathname = header.get('x-invoke-path') || ''
-	const isProtectedRoute = protectedRoutes.some(route =>
-		pathname.startsWith(route)
-	)
+  const header = await headers()
+  const pathname = header.get('x-invoke-path') || ''
+  const isProtectedRoute = protectedRoutes.some(route =>
+    pathname.startsWith(route)
+  )
 
-	return (
-		<html lang="ru">
-			<body>
-				<Providers>
-					{!isProtectedRoute ? (
-						<div className="desctop">
-              <div className='desctop__view relative'>
+  return (
+    <html lang="ru">
+      <body>
+        <Providers>
+          {!isProtectedRoute ? (
+            <div className="desktop">
+              <div className='desktop__view relative'>
                 <Header />
 
                 <Navigation />
@@ -57,13 +75,13 @@ export default async function RootLayout({ children, checkout }: ILayoutRoot) {
                 <Footer />
               </div>
 
-							{checkout}
-						</div>
-					) : (
-						<div className="desctop dashboard">{children}</div>
-					)}
-				</Providers>
-			</body>
-		</html>
-	)
+              {checkout}
+            </div>
+          ) : (
+            <div className="desctop dashboard">{children}</div>
+          )}
+        </Providers>
+      </body>
+    </html>
+  )
 }

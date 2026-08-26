@@ -21,7 +21,7 @@ export const cartSlice = createSlice({
 		addToCart(
 			state,
 			action: PayloadAction<{ product: IProduct; quantity: number }>
-		) {
+		): void {
 			const { product, quantity } = action.payload
 			const findProductInCart = state.cart.find(
 				item => item.product.id === product.id
@@ -35,7 +35,7 @@ export const cartSlice = createSlice({
 			})
 		},
 
-		removeFromCart(state, action: PayloadAction<{ id: number }>) {
+		removeFromCart(state, action: PayloadAction<{ id: number }>): void {
 			const { id } = action.payload
 			const findProductInCart = state.cart.find(item => item.product.id === id)
 
@@ -49,7 +49,7 @@ export const cartSlice = createSlice({
 		changeProductQuantity(
 			state,
 			action: PayloadAction<{ id: number; count: number }>
-		) {
+		): void {
 			const { id, count } = action.payload
 
 			const findProductInCart = includeInCart({ cart: state.cart, id })
@@ -59,7 +59,7 @@ export const cartSlice = createSlice({
 			}
 		},
 
-		openCart(state, action: PayloadAction<boolean>) {
+		openCart(state, action: PayloadAction<boolean>): void {
 			state.isOpenCart = action.payload
 		}
 	}

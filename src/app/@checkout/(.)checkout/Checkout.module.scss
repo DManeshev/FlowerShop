@@ -1,3 +1,5 @@
+@reference "../../theme.css";
+
 .form {
     @apply flex flex-col flex-1 gap-5;
 
@@ -14,11 +16,11 @@
     }
 
     &__address {
-        @apply font-Lora text-[20px] font-bold pb-3;
+        @apply font-lora text-[20px] font-bold pb-3;
     }
 
     &__date {
-        @apply w-full h-[38px] py-2 px-3 border rounded-[var(--rounded)] font-Lora text-sm;
+        @apply w-full h-[38px] py-2 px-3 border rounded-[var(--rounded)] font-lora text-sm;
     }
 
     &__descr {
@@ -26,7 +28,7 @@
     }
 
     &__error {
-        @apply text-sm text-[var(--red)] font-Lora font-bold;
+        @apply text-sm text-[var(--red)] font-lora font-bold;
     }
 }
 
@@ -46,7 +48,7 @@
     }
 
     &__text {
-        @apply font-Lora text-base;
+        @apply font-lora text-base;
     }
 }
 
@@ -62,12 +64,12 @@
     }
 
     &__price {
-        @apply font-Lora text-2xl font-bold;
+        @apply font-lora text-2xl font-bold;
     }
 }
 
 .price {
-    @apply font-Lora font-bold text-lg;
+    @apply font-lora font-bold text-lg;
 }
 
 

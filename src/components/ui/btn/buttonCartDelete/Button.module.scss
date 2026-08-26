@@ -1,3 +1,5 @@
+@reference "../../../../app/theme.css";
+
 .delete {
     @apply border p-1 rounded-full bg-[#e5e7eb] cursor-pointer;
     transition: .3s ease-in;
