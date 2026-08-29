@@ -170,19 +170,18 @@ export default function ProductAction() {
 	}
 
 	const onSubmit: SubmitHandler<IProduct> = async data => {
-		console.log(data, 123123)
-		// delete data.categoryName
-		// delete data.statusName
-		// delete data.flowersNames
-		// delete data.subcategoryName
+		delete data.categoryName
+		delete data.statusName
+		delete data.flowersNames
+		delete data.subcategoryName
 
-		// if (data.id) {
-		// 	const { data: editResponse } = await ProductService.update(data.id, data)
-		// 	console.log(editResponse)
-		// } else {
-		// 	const { data: createResponse } = await ProductService.create(data)
-		// 	console.log(createResponse)
-		// }
+		if (data.id) {
+			const { data: editResponse } = await ProductService.update(data.id, data)
+			console.log(editResponse)
+		} else {
+			const { data: createResponse } = await ProductService.create(data)
+			console.log(createResponse)
+		}
 	}
 
 	const deleteProductById = (event: MouseEvent) => {
