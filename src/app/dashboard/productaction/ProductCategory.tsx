@@ -64,9 +64,14 @@ export default function ProductCategory({
     setValue('categoryName', categoryItem.label)
   }
 
+  // handleChange={({ id, name }) => {
+  //   setCategoryId(Number(id))
+  //   setValue('subcategoryId', Number(id))
+  //   setValue('subcategoryName', name)
+  // }}
   return (
     <div className={styles.grid__container}>
-      <Field data-invalid={errorMessage}>
+      {/* <Field data-invalid={errorMessage}>
         <FieldLabel className={styles.select_field}>Категория</FieldLabel>
         <Select
           items={categories}
@@ -90,14 +95,9 @@ export default function ProductCategory({
           </SelectContent>
         </Select>
         <FieldError>{errorMessage}</FieldError>
-      </Field>
+      </Field> */}
 
-{/* handleChange={({ id, name }) => {
-						setCategoryId(Number(id))
-						setValue('subcategoryId', Number(id))
-						setValue('subcategoryName', name)
-					}} */}
-      {subcategories?.length ? (
+      {/* {subcategories?.length ? (
         <Field>
           <FieldLabel className={styles.select_field}>Подкатегория</FieldLabel>
           <Select
@@ -120,7 +120,7 @@ export default function ProductCategory({
           </Select>
           <FieldError>{errorMessage}</FieldError>
         </Field>
-      ) : null}
+      ) : null} */}
     </div>
   )
 }

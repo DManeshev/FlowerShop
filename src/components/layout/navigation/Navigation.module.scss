@@ -1,18 +1,23 @@
 @reference "../../../app/theme.css";
 
-.navigation {
-  @apply w-full border-y py-2;
+.nav {
+  @apply w-full relative;
 
   &__list {
-    @apply w-full flex flex-col items-center justify-between gap-1;
+    @apply w-full flex items-center gap-2 relative z-20 border-y px-5;
+  }
+
+  &__categories, 
+  &__pages {
+    @apply flex items-center gap-4;
+  }
+
+  &__pages {
+    @apply grow justify-end;
   }
 
   &__item {
-    @apply relative flex flex-col gap-5 justify-center p-1 font-semibold;
-  }
-
-  &__container {
-    @apply flex items-center gap-1 cursor-pointer;
+    @apply py-2 text-lg cursor-pointer;
     transition: color 0.3s ease-in;
 
     &:hover {
@@ -20,91 +25,115 @@
     }
   }
 
-  &__arrow {
-    rotate: 0deg;
-    transition: rotate 0.3s ease-in;
+  &__menu {
+    @apply absolute top-0
+    w-full h-0
+    pt-17 pb-7 px-5 bg-white shadow-2xl
+    z-10 opacity-0 invisible;
+    transition: height 1s ease-in;
+  }
+  
+  &__menuVisible {
+    @apply h-auto min-h-75 opacity-100 visible;
   }
 
-  &__container:hover &__arrow {
-    rotate: 180deg;
+  &__subcategory_item {
+    @apply text-lg cursor-pointer;
+    transition: color 0.3s ease-in;
+
+    &:hover {
+      @apply text-[var(--hover-color)];
+    }
   }
+
+  // &__container {
+  //   @apply flex items-center gap-1 cursor-pointer;
+  //   
+  // }
+
+  // &__arrow {
+  //   rotate: 0deg;
+  //   transition: rotate 0.3s ease-in;
+  // }
+
+  // &__container:hover &__arrow {
+  //   rotate: 180deg;
+  // }
 }
 
-.tooltip {
-  @apply absolute top-8 w-max border rounded-md bg-white py-1 px-3 shadow-md z-10;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease-in;
+// .tooltip {
+//   @apply absolute top-8 w-max border rounded-md bg-white py-1 px-3 shadow-md z-10;
+//   opacity: 0;
+//   visibility: hidden;
+//   transition: all 0.3s ease-in;
 
-  &__open {
-    transform: translateY(5px);
-    visibility: visible;
-    opacity: 1;
-  }
-}
+//   &__open {
+//     transform: translateY(5px);
+//     visibility: visible;
+//     opacity: 1;
+//   }
+// }
 
+// .category {
+//     @apply w-full h-screen mb-5 flex flex-col p-4 rounded-5 bg-white;
 
+//     &__child {
+//         @apply ml-5;
+//     }
 
-.category {
-    @apply w-full h-screen mb-5 flex flex-col p-4 rounded-5 bg-white;
+//     &__container {
+//         @apply py-1;
+//     }
 
-    &__child {
-        @apply ml-5;
-    }
+//     &__details {
+//         @apply flex items-center gap-1 cursor-pointer;
 
-    &__container {
-        @apply py-1;
-    }
+//         &:hover .category__title {
+//             @apply text-[var(--purple)]
+//         }
+//     }
 
-    &__details {
-        @apply flex items-center gap-1 cursor-pointer;
+//     &__link {
+//         @apply flex items-center gap-2 py-1 cursor-pointer;
 
-        &:hover .category__title {
-            @apply text-[var(--purple)]
-        }
-    }
+//         &:hover .category__title {
+//             @apply text-[var(--purple)]
+//         }
+//     }
 
-    &__link {
-        @apply flex items-center gap-2 py-1 cursor-pointer;
+//     &__img {
+//         @apply flex items-center justify-center w-6 h-6 rounded-full bg-[var(--grey)];
 
-        &:hover .category__title {
-            @apply text-[var(--purple)]
-        }
-    }
+//         &__container {
+//             @apply relative w-5 h-5 rounded-full;
 
-    &__img {
-        @apply flex items-center justify-center w-6 h-6 rounded-full bg-[var(--grey)];
-
-        &__container {
-            @apply relative w-5 h-5 rounded-full;
-
-            & img {
-                @apply object-cover;
-            }
-        }
-    }
+//             & img {
+//                 @apply object-cover;
+//             }
+//         }
+//     }
     
-    &__title {
-        @apply flex-grow text-lg font-medium;
-        letter-spacing: -.8px;
-    }
-}
+//     &__title {
+//         @apply flex-grow text-lg font-medium;
+//         letter-spacing: -.8px;
+//     }
+// }
 
-.title__active {
-    @apply text-[var(--purple)];
-}
+// .title__active {
+//     @apply text-[var(--purple)];
+// }
 
-@media screen and (min-width: 500px) {
-  .navigation {
-    @apply block;
-  }
-}
+// @media screen and (min-width: 500px) {
+//   .navigation {
+//     @apply block;
+//   }
+// }
 
-@media screen and (min-width: 991px) {
-  .navigation {
+// @media screen and (min-width: 991px) {
+//   .navigation {
 
-    &__list {
-      @apply flex-row;
-    }
-  }
-}
+//     &__list {
+//       @apply flex-row;
+//     }
+//   }
+// }

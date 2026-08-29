@@ -12,26 +12,28 @@ import { useQuery } from '@tanstack/react-query'
 import { CategoryService } from '@/services/category/category.service'
 
 import styles from './Navigation.module.scss'
+import { ICategory } from '@/types/category.interface'
 
-const menuAnimation = {
-	open: {
-		opacity: 1,
-		transition: {
-			duration: 0.4
-		},
-		height: 'auto'
-	},
-	close: {
-		opacity: 0,
-		transition: {
-			duration: 0.4
-		},
-		height: 0
-	}
-}
+// const menuAnimation = {
+// 	open: {
+// 		opacity: 1,
+// 		transition: {
+// 			duration: 0.4
+// 		},
+// 		height: 'auto'
+// 	},
+// 	close: {
+// 		opacity: 0,
+// 		transition: {
+// 			duration: 0.4
+// 		},
+// 		height: 0
+// 	}
+// }
 
 export default function Navigation() {
-	const [openId, setOpenId] = useState<number | null>(null)
+	const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
+	const [hoveredSubcategory, setHoveredSubcategory] = useState<Array<ICategory>>([]);
 
 	const router = useRouter()
 
@@ -43,13 +45,73 @@ export default function Navigation() {
 		}
 	)
 
-	const openSubcategory = (id: number) => {
-		openId === id ? setOpenId(null) : setOpenId(id)
+	// const openSubcategory = (id: number) => {
+	// 	openId === id ? setOpenId(null) : setOpenId(id)
+	// }
+
+	function setSubcategory(subCategories: Array<ICategory>): void {
+		setHoveredSubcategory(subCategories);
+		setIsOpenMenu(true);
 	}
 
 	return (
-		<nav className={styles.navigation}>
-			{categories ? (
+		<nav
+			className={styles.nav}
+			onMouseLeave={() => setIsOpenMenu(false)}
+		>
+			<ul className={styles.nav__list} >
+				{categories ? (
+					<div className={styles.nav__categories}>
+						{categories.map(({ id, name, slug, icon, subCategories }) => (
+							<li
+								key={id}
+								className={styles.nav__item}
+								onMouseEnter={() => setSubcategory(subCategories)}
+							>
+								<span>{name}</span>
+							</li>
+						))}
+					</div>
+				) : null}
+
+				<div
+					className={styles.nav__pages}
+					onMouseEnter={() => setIsOpenMenu(false)}
+				>
+					<li className={styles.nav__item}>
+						<Link href="/subscription">
+							<span>Подписка</span>
+						</Link>
+					</li>
+					<li className={styles.nav__item}>
+						<Link href="/delivery">
+							<span>Доставка</span>
+						</Link>
+					</li>
+					<li className={styles.nav__item}>
+						<span>Корзина</span>
+					</li>
+				</div>
+			</ul>
+
+			<div
+				onMouseEnter={() => setIsOpenMenu(true)}
+				onMouseLeave={() => setIsOpenMenu(false)}
+				className={clsx(styles.nav__menu, isOpenMenu && styles.nav__menuVisible)}
+			>
+				{/* <h2>Категории</h2> */}
+
+				<ul>
+					{hoveredSubcategory.map((item: ICategory) => (
+						<li key={item.id} className={styles.nav__subcategory_item}>
+							<Link href={`/category/${item.slug}`}>
+								<span>{item.name}</span>
+							</Link>
+						</li>
+					))}
+				</ul>
+			</div>
+			{/* {categories ? (
 				<ul className={styles.navigation__list}>
 					{categories.map(({ id, name, slug, icon, subCategories }) => (
 						<Fragment key={id}>
@@ -111,7 +173,7 @@ export default function Navigation() {
 						</Link>
 					</li>
 				</ul>
-			) : null}
+			) : null} */}
 		</nav>
 	)
 }

@@ -6,6 +6,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
 
+// color: #E8735A;
 :root {
   --black: #404040;
   --purple: #d5b8ff;
@@ -61,7 +62,7 @@ input[type='date']:disabled {
 }
 
 .main {
-  @apply flex-1
+  @apply flex-1 py-5;
 }
 
 .dashboard {
@@ -91,7 +92,7 @@ input[type='date']:disabled {
 }
 
 .glass {
-  @apply absolute top-0 w-full h-full z-[8];
+  @apply absolute top-0 w-full h-full z-8;
   background: rgba(0, 0, 0, 0.4);
 }
 
@@ -102,7 +103,7 @@ input[type='date']:disabled {
 }
 
 .wrapper {
-  @apply max-w-[1260px] m-auto relative flex flex-col min-h-screen;
+  @apply max-w-370 m-auto relative flex flex-col min-h-screen;
 }
 
 .container {
@@ -138,11 +139,6 @@ input[type='date']:disabled {
     outline: 1px solid var(--light-grey);
   }
 }
-
-.desktop {
-  @apply max-w-[1480px] m-auto;
-
-  &__view {
-    @apply min-h-screen flex flex-col px-2;
-  }
+.desktop__view {
+  @apply min-h-screen flex flex-col px-2;
 }

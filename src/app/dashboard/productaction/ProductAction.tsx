@@ -1,7 +1,7 @@
 'use client'
 
 import { ChangeEvent, useState, MouseEvent, useEffect } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { SubmitHandler, useForm, Controller } from 'react-hook-form'
 import { TbTrash } from 'react-icons/tb'
 import Image from 'next/image'
 import clsx from 'clsx'
@@ -20,18 +20,32 @@ import { useFlowerQuery } from '@/hooks/useQueries/useFlowerQuery'
 
 import File from '@/components/ui/form/file/File'
 import Field from '@/components/ui/form/input/Input'
-import Button from '@/components/ui/btn/button/Button'
-import Select from '@/components/ui/form/select/Select'
+// import Button from '@/components/ui/btn/button/Button'
+// import Select from '@/components/ui/form/select/Select'
 import SelectMultiple from '@/components/ui/form/select/SelectMultiple'
 import ProductCategory from './ProductCategory'
+import { Button } from '@/components/ui/button'
 
 import styles from '../Dashboard.module.scss'
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+} from '@/components/ui/select'
+import { FieldError, FieldLabel } from '@/components/ui/field'
+import { CategoryService } from '@/services/category/category.service'
 
 export default function ProductAction() {
 	const searchParams = useSearchParams()
 	const productId = searchParams.get('productId')
 
 	const { data: flowers } = useFlowerQuery()
+
+	const [categoryId, setCategoryId] = useState<number>(0)
 
 	const {
 		register: formRegister,
@@ -40,7 +54,8 @@ export default function ProductAction() {
 		formState: { errors },
 		setValue,
 		getValues,
-		watch
+		watch,
+		control
 	} = useForm<IProduct>({
 		mode: 'onChange',
 		defaultValues: {
@@ -52,6 +67,30 @@ export default function ProductAction() {
 			images: []
 		}
 	})
+
+	const { isLoading, data: categories } = useQuery(
+		['category'],
+		() => CategoryService.getAll(),
+		{
+		  select: ({ data }) =>
+			data.map(item => ({
+			  value: String(item.id),
+			  label: item.name
+			}))
+		}
+	)
+
+	const { data: subcategories } = useQuery(
+		['subcategory', categoryId],
+		() => CategoryService.getSubcategoryByCategory(categoryId),
+		{
+		  select: ({ data }) =>
+			data.map(item => ({
+			  value: String(item.id),
+			  label: item.name
+			}))
+		}
+	)
 
 	const { mutate: getProduct } = useMutation(
 		['product by id'],
@@ -131,18 +170,19 @@ export default function ProductAction() {
 	}
 
 	const onSubmit: SubmitHandler<IProduct> = async data => {
-		delete data.categoryName
-		delete data.statusName
-		delete data.flowersNames
-		delete data.subcategoryName
+		console.log(data, 123123)
+		// delete data.categoryName
+		// delete data.statusName
+		// delete data.flowersNames
+		// delete data.subcategoryName
 
-		if (data.id) {
-			const { data: editResponse } = await ProductService.update(data.id, data)
-			console.log(editResponse)
-		} else {
-			const { data: createResponse } = await ProductService.create(data)
-			console.log(createResponse)
-		}
+		// if (data.id) {
+		// 	const { data: editResponse } = await ProductService.update(data.id, data)
+		// 	console.log(editResponse)
+		// } else {
+		// 	const { data: createResponse } = await ProductService.create(data)
+		// 	console.log(createResponse)
+		// }
 	}
 
 	const deleteProductById = (event: MouseEvent) => {
@@ -153,11 +193,75 @@ export default function ProductAction() {
 
 	return (
 		<form className={clsx(styles.form)}>
-			<ProductCategory
-				register={formRegister}
-				setValue={setValue}
-				errorMessage={errors.categoryName?.message}
+			<Controller
+				name='categoryId'
+				control={control}
+				rules={{ required: 'Поле Категория обязательное' }}
+				render={({ field, fieldState }) => (
+					<Field data-invalid={fieldState.error?.message}>
+						<FieldLabel className={styles.select_field}>Категория</FieldLabel>
+						<Select
+							items={categories}
+							value={field.value ? String(field.value) : ''}
+							name={field.name}
+							onValueChange={(value) => {
+								setCategoryId(Number(value))
+								field.onChange(Number(value))
+							}}
+						>
+						<SelectTrigger
+							className={styles.select}
+							aria-invalid={Boolean(fieldState.error?.message)}
+						>
+							<SelectValue placeholder='Выберите категорию товара' />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectGroup>
+							{categories && categories.map((item) => (
+								<SelectItem key={item.value} value={item.value} className={styles.select_item}>
+								{item.label}
+								</SelectItem>
+							))}
+							</SelectGroup>
+						</SelectContent>
+						</Select>
+						<FieldError>{fieldState.error?.message}</FieldError>
+					</Field>
+				)}
 			/>
+
+			{subcategories?.length ?
+				<Controller
+					name='subcategoryId'
+					control={control}
+					rules={{ required: 'Поле Подкатегория обязательное' }}
+					render={({ field, fieldState }) => (
+						<Field data-invalid={fieldState.error?.message}>
+							<FieldLabel className={styles.select_field}>Подкатегория</FieldLabel>
+							<Select
+								items={subcategories}
+								value={field.value ? String(field.value) : ''}
+								name={field.name}
+								onValueChange={(value) => field.onChange(Number(value))}
+							>
+								<SelectTrigger className={styles.select}>
+								<SelectValue placeholder='Выберите подкатегорию товара' />
+								</SelectTrigger>
+								<SelectContent>
+								<SelectGroup>
+									{subcategories && subcategories.map((item) => (
+									<SelectItem key={item.value} value={item.value} className={styles.select_item}>
+										{item.label}
+									</SelectItem>
+									))}
+								</SelectGroup>
+								</SelectContent>
+							</Select>
+							<FieldError>{fieldState.error?.message}</FieldError>
+						</Field>
+					)}
+				/>
+			: null}
 
 			<div className={styles.grid__container}>
 				<Field
@@ -229,7 +333,7 @@ export default function ProductAction() {
 				/>
 			</div>
 
-			<div className={styles.grid__container}>
+			{/* <div className={styles.grid__container}>
 				<Select
 					selectList={productStatus}
 					label="Статус заказа"
@@ -256,23 +360,23 @@ export default function ProductAction() {
 						setValue('isDeliveryName', name)
 					}}
 				/>
-			</div>
+			</div> */}
 
 			<div className={styles.form__btns}>
 				{productId ? (
 					<Button
 						title="Удалить"
-						theme="red"
-						classes="max-sm:ml-0 max-sm:w-full"
+						className="max-sm:ml-0 max-sm:w-full bg-red-600"
 						onClick={deleteProductById}
 					/>
 				) : null}
 
 				<Button
-					title="Сохранить"
-					classes="max-sm:ml-0 max-sm:w-full"
+					className="max-sm:ml-0 max-sm:w-full"
 					onClick={handleSubmit(onSubmit)}
-				/>
+				>
+					<span>Сохранить</span>
+				</Button>
 			</div>
 		</form>
 	)

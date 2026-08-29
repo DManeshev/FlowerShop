@@ -10,9 +10,8 @@ import { protectedRoutes } from '@/providers/auth-provider/protected-routes.data
 import Header from '@/components/layout/header/Header'
 import Navigation from '@/components/layout/navigation/Navigation'
 import Basket from '@/components/layout/basket/Basket'
-import PageLayout from '@/components/layout/pageLayout/PageLayout'
 import BasketMobileBtn from '@/components/ui/btn/basketMobileBtn/BasketMobileBtn'
-import Footer from '../components/layout/footer/Footer'
+import Footer from '@/components/layout/footer/Footer'
 
 import './theme.css'
 import './global.scss'
@@ -60,13 +59,15 @@ export default async function RootLayout({ children, checkout }: ILayoutRoot) {
       <body>
         <Providers>
           {!isProtectedRoute ? (
-            <div className="desktop">
+            <div className="wrapper">
               <div className='desktop__view relative'>
                 <Header />
 
                 <Navigation />
 
-                <PageLayout>{children}</PageLayout>
+                <main className='main'>
+                  {children}
+                </main>
 
                 <BasketMobileBtn />
 
