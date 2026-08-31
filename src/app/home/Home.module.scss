@@ -1,17 +1,14 @@
 @reference "../theme.css";
 
 .products {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px
-}
+  @apply grid grid-cols-4 gap-7;
 
-@media screen and (min-width: 500px) {
-}
+  @variant max-lg {
+    @apply grid-cols-3;
+  }
 
-@media screen and (min-width: 768px) {
-	.products {
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-	}
+  @variant max-md {
+    @apply grid-cols-2 gap-2;
+  }
 }
 

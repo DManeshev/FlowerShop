@@ -1,10 +1,10 @@
-import Providers from '@/providers/Providers'
+import { headers } from 'next/headers'
 import type { Metadata, Viewport } from 'next'
 import type { PropsWithChildren, ReactNode } from 'react'
-import { headers } from 'next/headers'
 
-import { getSiteUrl } from '@/config/url.config'
+import Providers from '@/providers/Providers'
 import { SITE_NAME } from '@/constants/seo.constants'
+import { getSiteUrl } from '@/config/url.config'
 import { protectedRoutes } from '@/providers/auth-provider/protected-routes.data'
 
 import Header from '@/components/layout/header/Header'

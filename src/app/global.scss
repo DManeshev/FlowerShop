@@ -6,7 +6,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
 
-// color: #E8735A;
 :root {
   --black: #404040;
   --purple: #d5b8ff;
@@ -21,6 +20,8 @@
   --green: #14ad0f;
   --disabled-color: #959495;
   --rounded: 8px;
+
+  --main-color: #E8735A;
 }
 
 * {
@@ -33,7 +34,7 @@ html {
 }
 
 body {
-  @apply m-0 p-0;
+  @apply m-0 p-0 relative;
 }
 
 textarea {

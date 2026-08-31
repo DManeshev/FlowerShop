@@ -1,130 +1,9 @@
 @reference "../../theme.css";
 
-// .product {
-// 	@apply h-full flex flex-col items-start gap-5;
-
-// 	&__images {
-// 		@apply w-full;
-// 	}
-
-// 	&__content {
-// 		@apply w-full flex flex-col flex-grow;
-// 	}
-
-// 	&__basket {
-// 		@apply flex flex-col gap-3 pt-4;
-
-// 		& span {
-// 			@apply font-lora text-3xl font-bold text-[var(--purple)];
-// 		}
-// 	}
-
-//     &__price {
-//         @apply flex self-center gap-1;
-//     }
-// }
-
-// .image {
-// 	@apply relative w-full h-[400px];
-// }
-
-// .arrow {
-// 	@apply absolute top-1/2 h-10 w-10 rounded-full grid place-items-center bg-white z-10 cursor-pointer;
-
-// 	&__left {
-// 		@apply left-2;
-// 	}
-
-// 	&__rigth {
-// 		@apply right-2;
-// 	}
-// }
-
-// @media screen and (min-width: 500px) {
-// 	.image {
-// 		@apply h-[600px];
-// 	}
-// }
-// @media screen and (min-width: 768px) {
-// 	.product {
-// 		@apply h-[400px] flex-row gap-10;
-
-// 		&__images {
-// 			@apply w-[400px];
-// 		}
-
-// 		&__content {
-// 			@apply h-full;
-// 		}
-
-// 		&__attribute {
-// 			@apply justify-between;
-// 		}
-
-// 		&__basket {
-// 			@apply flex-row flex-1 items-end justify-between pt-0;
-// 		}
-
-//         &__price {
-//             @apply self-end;
-//         }
-// 	}
-
-// 	.image {
-// 		@apply w-[400px] h-[400px];
-// 	}
-// }
-
-// @media screen and (min-width: 1024px) {
-//     .product {
-// 		@apply h-full flex-col gap-4;
-
-// 		&__images {
-// 			@apply self-center w-[400px];
-// 		}
-
-// 		&__basket {
-// 			@apply pt-4;
-// 		}
-// 	}
-
-// 	.image {
-// 		@apply w-[400px] h-[400px];
-// 	}
-// }
-
-// @media screen and (min-width: 1300px) {
-//     .product {
-// 		@apply h-[400px] flex-row gap-10;
-
-// 		&__images {
-// 			@apply self-start;
-// 		}
-
-// 		&__basket {
-//             @apply flex-col items-stretch justify-end gap-3;
-//         }
-
-//         &__price {
-//             @apply self-center;
-//         }
-// 	}
-// }
-
-// @media screen and (min-width: 1500px) {
-//     .product__basket {
-//         @apply flex-row items-end justify-between gap-3;
-//     }
-
-//     .product__price {
-//         @apply self-end;
-//     }
-// }
-
 .product {
 	@apply grid grid-cols-[520fr_250fr];
 
-	@variant max-md {
+	@variant max-lg {
 		@apply grid-cols-1;
 	}
 
@@ -132,7 +11,7 @@
 		@apply grid gap-2 grid-cols-[1fr_250px];
 
 		@variant max-lg {
-			@apply grid-cols-1
+			@apply grid-cols-1;
 		}
 
 		@variant max-md {
@@ -188,9 +67,13 @@
 }
 
 .bigImage {
-	@apply relative h-187.5;
+	@apply relative h-200;
 
-	@variant max-md {
+	@variant max-lg {
+		@apply relative h-150;
+	}
+
+	@variant max-sm {
 		@apply h-100;
 	}
 
@@ -201,9 +84,9 @@
 
 .smallImages {
 	@apply grid gap-2 auto-rows-87.5;
-	
-	@variant max-lg {
-		@apply auto-rows-187.5;
+
+	@variant sm:max-lg {
+		@apply grid-cols-3;
 	}
 
 	@variant max-md {

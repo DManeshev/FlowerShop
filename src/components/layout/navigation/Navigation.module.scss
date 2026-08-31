@@ -1,7 +1,11 @@
 @reference "../../../app/theme.css";
 
 .nav {
-  @apply w-full relative;
+  @apply w-full relative mt-3;
+
+  @variant max-lg {
+    @apply hidden;
+  }
 
   &__list {
     @apply w-full flex items-center gap-2 relative z-20 border-y px-5;
@@ -10,6 +14,10 @@
   &__categories, 
   &__pages {
     @apply flex items-center gap-4;
+
+    @variant max-xl {
+      @apply gap-2;
+    }
   }
 
   &__pages {

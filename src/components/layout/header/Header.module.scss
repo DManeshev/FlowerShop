@@ -1,86 +1,131 @@
 @reference "../../../app/theme.css";
 
 .header {
-  @apply w-full gap-3 py-3 rounded-b-5 bg-white items-center;
-  display: grid;
+  @apply w-full grid grid-cols-3 gap-3 items-center mt-3;
+
+  &__container {
+    @apply flex justify-center items-center gap-3;
+
+    @variant max-lg {
+      @apply hidden;
+    }
+  }
+}
+
+.label {
+  @apply flex items-center gap-2;
 
   &__info {
-    @apply hidden flex-col;
-    grid-row: 1 / 1;
-  }
+    @apply grid;
 
-  &__label {
-    @apply flex-grow flex flex-row gap-1 items-center;
-    grid-column: 1 / 2;
-  }
-
-  &__social {
-    @apply hidden justify-end gap-2;
-    grid-row: 1 / 1;
-  }
-
-  &__hamburger {
-    @apply flex justify-end;
-    grid-column: 2 / 3;
-  }
-}
-
-.image {
-  @apply relative w-16 h-16;
-}
-
-.phone {
-  @apply font-lora text-base font-bold;
-  transition: color 0.3s ease-in;
-
-  &:hover {
-    @apply text-[var(--hover-color)];
-  }
-}
-
-.logo {
-  @apply text-xl font-semibold uppercase;
-}
-
-.icon {
-  @apply w-6 h-6;
-}
-
-@media screen and (min-width: 500px) {
-  .header {
-    grid-template-columns: 140px 1fr 140px;
-
-    &__label {
-      @apply flex-col justify-center;
-      grid-column: 2 / 3;
-      grid-row: 1 / 1;
-    }
-
-    &__info {
-      @apply flex;
-    }
-  
-    &__social {
-      @apply flex;
-    }
-
-    &__hamburger {
+    @variant max-md {
       @apply hidden;
     }
   }
 
-  .image {
-    @apply w-28 h-28;
+  &__logo {
+    @apply text-2xl font-semibold uppercase cursor-pointer;
+    transition: color 0.3s ease-in;
+  
+    &:hover {
+      @apply text-(--main-color);
+    }
+
+    @variant max-lg {
+      @apply text-xl;
+    }
   }
 
-  .logo {
-    @apply text-2xl;
+  &__description {
+    @apply text-(--dark-grey) pb-1;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .image {
-    @apply w-48 h-48;
+.social {
+  @apply flex items-center gap-3;
+
+  &__icon {
+    @apply w-5 h-5;
   }
 }
 
+.image {
+  @apply relative w-21 h-21 shrink-0 cursor-pointer;
+}
+
+.text {
+  @apply text-lg font-semibold;
+
+  @variant max-lg {
+    @apply text-base;
+  }
+}
+
+.phone {
+  transition: color 0.3s ease-in;
+  
+  &:hover {
+    @apply text-(--main-color);
+  }
+}
+
+.map {
+  @apply cursor-pointer;
+  transition: color 0.3s ease-in;
+  
+  &:hover {
+    @apply text-(--main-color);
+  }
+}
+
+.menu {
+  @apply hidden;
+
+  @variant max-lg {
+    @apply flex justify-center;
+  }
+
+  &__btn {
+    @apply cursor-pointer;
+  }
+}
+
+.basket {
+  @apply hidden;
+
+  @variant max-lg {
+    @apply block text-2xl justify-self-end;
+  }
+}
+
+.drawer {
+  @apply h-screen;
+
+  &__header {
+    @apply flex items-center gap-2;
+  }
+
+  &__btn {
+    @apply h-4 w-4 grid place-items-center;
+  }
+
+  &__title {
+    @apply grow text-3xl;
+  }
+
+  &__content {
+    @apply flex-1 py-10;
+  }
+
+  &__list {
+    @apply h-full flex flex-col gap-2 justify-center items-center;
+  }
+
+  &__item {
+    @apply text-2xl uppercase;
+  }
+
+  // &__footer {
+  //   @apply h-24 text-center border-t;
+  // }
+}

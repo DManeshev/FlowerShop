@@ -1,15 +1,18 @@
 import { axiosClassic } from '@/api/api.interceptor'
 import { ICategory } from '@/types/category.interface'
+import { AxiosResponse } from 'axios'
 
 const URL = '/categories' as const
 const SUBCATEGORY_URL = '/subcategory' as const
 
 export const CategoryService = {
-	async getAll() {
-		return axiosClassic<ICategory[]>({
+	async getAll(): Promise<Array<ICategory>> {
+		const { data } = await axiosClassic<Array<ICategory>>({
 			url: URL,
 			method: 'GET'
-		})
+		});
+
+		return data;
 	},
 
 	async getById(id: number) {
@@ -19,8 +22,17 @@ export const CategoryService = {
 		})
 	},
 
+	async getAllSubcategory(): Promise<Array<ICategory>> {
+		const { data } = await axiosClassic<Array<ICategory>>({
+			url: SUBCATEGORY_URL,
+			method: 'GET'
+		});
+
+		return data;
+	},
+
 	async getSubcategoryByCategory(categoryId: number) {
-		return axiosClassic<ICategory[]>({
+		return axiosClassic<Array<ICategory>>({
 			url: `${SUBCATEGORY_URL}/by-category/${categoryId}`,
 			method: 'GET'
 		})

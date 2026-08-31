@@ -192,12 +192,13 @@ export default function ProductAction() {
 
 	return (
 		<form className={clsx(styles.form)}>
+			<div className={styles.grid__container}>
 			<Controller
 				name='categoryId'
 				control={control}
 				rules={{ required: 'Поле Категория обязательное' }}
 				render={({ field, fieldState }) => (
-					<Field data-invalid={fieldState.error?.message}>
+					<div>
 						<FieldLabel className={styles.select_field}>Категория</FieldLabel>
 						<Select
 							items={categories}
@@ -225,7 +226,7 @@ export default function ProductAction() {
 						</SelectContent>
 						</Select>
 						<FieldError>{fieldState.error?.message}</FieldError>
-					</Field>
+					</div>
 				)}
 			/>
 
@@ -235,7 +236,7 @@ export default function ProductAction() {
 					control={control}
 					rules={{ required: 'Поле Подкатегория обязательное' }}
 					render={({ field, fieldState }) => (
-						<Field data-invalid={fieldState.error?.message}>
+						<div>
 							<FieldLabel className={styles.select_field}>Подкатегория</FieldLabel>
 							<Select
 								items={subcategories}
@@ -257,10 +258,11 @@ export default function ProductAction() {
 								</SelectContent>
 							</Select>
 							<FieldError>{fieldState.error?.message}</FieldError>
-						</Field>
+						</div>
 					)}
 				/>
 			: null}
+			</div>
 
 			<div className={styles.grid__container}>
 				<Field
