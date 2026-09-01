@@ -23,7 +23,6 @@ import Field from '@/components/ui/form/input/Input'
 // import Button from '@/components/ui/btn/button/Button'
 // import Select from '@/components/ui/form/select/Select'
 import SelectMultiple from '@/components/ui/form/select/SelectMultiple'
-import ProductCategory from './ProductCategory'
 import { Button } from '@/components/ui/button'
 
 import styles from '../Dashboard.module.scss'
@@ -38,6 +37,12 @@ import {
 } from '@/components/ui/select'
 import { FieldError, FieldLabel } from '@/components/ui/field'
 import { CategoryService } from '@/services/category/category.service'
+import { ICategory } from '@/types/category.interface'
+
+type SelectType = {
+	value: string;
+	label: string;
+}
 
 export default function ProductAction() {
 	const searchParams = useSearchParams()
@@ -72,8 +77,8 @@ export default function ProductAction() {
 		['category'],
 		() => CategoryService.getAll(),
 		{
-		  select: ({ data }) =>
-			data.map(item => ({
+		  select: (data: Array<ICategory>) =>
+			data.map((item: ICategory) => ({
 			  value: String(item.id),
 			  label: item.name
 			}))
@@ -85,7 +90,7 @@ export default function ProductAction() {
 		() => CategoryService.getSubcategoryByCategory(categoryId),
 		{
 		  select: ({ data }) =>
-			data.map(item => ({
+			data.map((item: ICategory) => ({
 			  value: String(item.id),
 			  label: item.name
 			}))
@@ -217,7 +222,7 @@ export default function ProductAction() {
 						</SelectTrigger>
 						<SelectContent>
 							<SelectGroup>
-							{categories && categories.map((item) => (
+							{categories && categories.map((item: SelectType) => (
 								<SelectItem key={item.value} value={item.value} className={styles.select_item}>
 								{item.label}
 								</SelectItem>
@@ -249,7 +254,7 @@ export default function ProductAction() {
 								</SelectTrigger>
 								<SelectContent>
 								<SelectGroup>
-									{subcategories && subcategories.map((item) => (
+									{subcategories && subcategories.map((item: SelectType) => (
 									<SelectItem key={item.value} value={item.value} className={styles.select_item}>
 										{item.label}
 									</SelectItem>
