@@ -89,7 +89,7 @@ export default function Payment({ cart, closeModal }: ICheckoutPayment) {
 				<Heading title="Заказ" />
 
 				{cart.map(item => (
-					<CartCard key={item.product.id} {...item} />
+					<CartCard key={item.product.id} productCart={item} setOpen={() => {}} />
 				))}
 			</div>
 
