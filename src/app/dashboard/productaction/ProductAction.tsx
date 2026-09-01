@@ -263,6 +263,7 @@ export default function ProductAction() {
 								</SelectContent>
 							</Select>
 							<FieldError>{fieldState.error?.message}</FieldError>
+							
 						</div>
 					)}
 				/>
