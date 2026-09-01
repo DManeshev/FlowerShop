@@ -9,8 +9,6 @@ import { protectedRoutes } from '@/providers/auth-provider/protected-routes.data
 
 import Header from '@/components/layout/header/Header'
 import Navigation from '@/components/layout/navigation/Navigation'
-import Basket from '@/components/layout/basket/Basket'
-import BasketMobileBtn from '@/components/ui/btn/basketMobileBtn/BasketMobileBtn'
 import Footer from '@/components/layout/footer/Footer'
 
 import './theme.css'
@@ -69,17 +67,13 @@ export default async function RootLayout({ children, checkout }: ILayoutRoot) {
                   {children}
                 </main>
 
-                <BasketMobileBtn />
-
-                <Basket />
-
                 <Footer />
               </div>
 
               {checkout}
             </div>
           ) : (
-            <div className="desctop dashboard">{children}</div>
+            <div className="wrapper dashboard">{children}</div>
           )}
         </Providers>
       </body>

@@ -1,55 +1,73 @@
 import Link from 'next/link'
-import { MouseEvent } from 'react'
 import Image from 'next/image'
-import { TbTrash } from 'react-icons/tb'
-
-import { useActions } from '@/hooks/useAction'
+import { MouseEvent, SetStateAction, Dispatch } from 'react'
+import clsx from 'clsx'
 
 import { ICart } from '@/types/cart.interface'
+import { IFlower } from '@/types/flower.interface'
+import { useActions } from '@/hooks/useAction'
+import { formatPrice } from '@/lib/utils'
+
+import { Badge } from '../../badge'
+import { IoTrashOutline } from "react-icons/io5";
 
 import styles from './Card.module.scss'
 
-export default function Card({ product, quantity }: ICart) {
-	const { removeFromCart } = useActions()
+interface CardProps {
+	productCart: ICart;
+	setOpen: Dispatch<SetStateAction<boolean>>
+}
 
-	const deleteProductFromCart = (event: MouseEvent<HTMLDivElement>) => {
-		event.preventDefault()
-		event.stopPropagation()
+export default function Card({ productCart, setOpen }: CardProps) {
+	const { product, quantity } = productCart;
 
-		removeFromCart({ id: product.id })
-	}
+	const { deleteProductFromCart } = useActions()
+
+	const deleteProduct = () => deleteProductFromCart({ id: product.id });
 
 	return (
-		<Link href={`/product/${product.slug}`} className="w-full">
-			<div className={styles.card}>
-				<div className={styles.card__image}>
+		<div className={styles.card}>
+			<Link href={`/product/${product.slug}`} onClick={() => setOpen(false)}>
+				<div className={styles.image}>
 					<Image
 						src={product.images[0]}
 						alt={product.name}
 						fill
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 					/>
 				</div>
+			</Link>
 
-				<div className={styles.card__info}>
-					<div className={styles.card__header}>
-						<h2 className={styles.card__title}>{product.name}</h2>
-
-						<div className={styles.delete} onClick={deleteProductFromCart}>
-							<TbTrash />
-						</div>
+			<div className={styles.content}>
+				<div className={styles.header}>
+					<div className={clsx(styles.badges, 'scrollbar--hide')}>
+						{!!product.flowers.length ? (
+							<>
+								{product.flowers.map((item: IFlower) => (
+									<Badge key={item.id} className={styles.badge}>
+										<span>{item.name}</span>
+									</Badge>
+								))}
+							</>
+						) : null}
 					</div>
 
-					<div className={styles.card__footer}>
-						<div className={styles.quantity}>{quantity}x</div>
+					<button onClick={deleteProduct} className={styles.delete}>
+						<span><IoTrashOutline /></span>
+					</button>
+				</div>
 
-						<div className="ml-auto flex gap-1 text-lg font-lora font-bold text-[var(--purple)]">
-							<div className={styles.price}>{quantity * product.price}</div>
-							<span>&#8381; </span>
-						</div>
-					</div>
+				<div className={styles.info}>
+					<Link
+						href={`/product/${product.slug}`}
+						onClick={() => setOpen(false)}
+						className={styles.title}
+					>
+						<h2>{product.name}</h2>
+					</Link>
+
+					<div className={styles.price}>{formatPrice(product.price)}</div>
 				</div>
 			</div>
-		</Link>
+		</div>
 	)
 }

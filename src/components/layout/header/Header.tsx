@@ -9,6 +9,7 @@ import whatsapp from '@/assets/images/whatsapp.png'
 import telegram from '@/assets/images/telegram.png'
 import vk from '@/assets/images/vk.png'
 
+import { Cart } from '../basket/Cart';
 import { HeaderMenuBtn } from './HeaderMenuBtn';
 
 import styles from './Header.module.scss'
@@ -85,7 +86,7 @@ export default function Header() {
 			<HeaderMenuBtn />
 
 			<div className={styles.basket}>
-				<span>Корзина</span>
+				<Cart />
 			</div>
 		</header>
 	)

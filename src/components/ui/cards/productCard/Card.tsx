@@ -8,6 +8,7 @@ import { motion } from 'framer-motion'
 import { IProduct } from '@/types/product.interface'
 
 import styles from './Card.module.scss'
+import { formatPrice } from '@/lib/utils'
 
 export const ProductCard = memo(function Card(props: IProduct) {
 	const { id, createdAt, name, slug, description, images, price, categoryId } =
@@ -34,8 +35,7 @@ export const ProductCard = memo(function Card(props: IProduct) {
 				<section className={styles.section}>
 					<h2 className={styles.card__logo}>{name}</h2>
 					<div className={styles.card__price}>
-						<span>{price}</span>
-						<span>&#8381; </span>
+						<span>{formatPrice(price)}</span>
 					</div>
 				</section>
 			</motion.div>

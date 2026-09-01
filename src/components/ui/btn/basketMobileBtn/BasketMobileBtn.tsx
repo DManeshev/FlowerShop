@@ -4,6 +4,7 @@ import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { useActions } from '@/hooks/useAction'
 
 import styles from './button.module.scss'
+import { formatPrice } from '@/lib/utils'
 
 
 const BasketMobileBtn = () => {
@@ -17,8 +18,7 @@ const BasketMobileBtn = () => {
 	return (
 		<div className={styles.basketMobileBtn}>
 			<button className={styles.basketMobileBtn__btn} onClick={() => openCart(true)}>
-				<span>{total} </span>
-				<span>&#8381;</span>
+				<span>{formatPrice(total)}</span>
 			</button>
 		</div>
 	)

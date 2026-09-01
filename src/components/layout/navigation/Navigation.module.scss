@@ -25,12 +25,8 @@
   }
 
   &__item {
-    @apply py-2 text-lg cursor-pointer;
+    @apply py-2 text-lg cursor-pointer hover:text-(--main-color);
     transition: color 0.3s ease-in;
-
-    &:hover {
-      @apply text-[var(--hover-color)];
-    }
   }
 
   &__menu {

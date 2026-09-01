@@ -2,13 +2,14 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 import clsx from 'clsx'
 
 import { useQuery } from '@tanstack/react-query'
 import { ICategory } from '@/types/category.interface'
 import { CategoryService } from '@/services/category/category.service'
+
+import { Cart } from '@/components/layout/basket/Cart';
 
 import styles from './Navigation.module.scss'
 
@@ -63,8 +64,9 @@ export default function Navigation() {
 							<span>Доставка</span>
 						</Link>
 					</li>
+
 					<li className={styles.nav__item}>
-						<span>Корзина</span>
+						<Cart />
 					</li>
 				</div>
 			</ul>

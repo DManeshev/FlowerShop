@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { OrderService } from '@/services/order/order.service'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { ICart } from '@/types/cart.interface'
+import { formatPrice } from '@/lib/utils'
 
 import Button from '@/components/ui/btn/button/Button'
 import Heading from '@/components/ui/heading/Heading'
@@ -96,8 +97,7 @@ export default function Payment({ cart, closeModal }: ICheckoutPayment) {
 				<div className={styles.total}>
 					<div className={styles.total__text}>Итого</div>
 					<div className={styles.total__price}>
-						<span>{total}</span>
-						<span>&#8381; </span>
+                        <span>{formatPrice(total)}</span>
 					</div>
 				</div>
 				<Button onClick={checkoutOrder} title="Оплатить" size="large" /> 

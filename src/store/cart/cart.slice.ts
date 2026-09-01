@@ -35,7 +35,11 @@ export const cartSlice = createSlice({
 			})
 		},
 
-		removeFromCart(state, action: PayloadAction<{ id: number }>): void {
+		clearCart(state): void {
+			state.cart = [];
+		},
+
+		deleteProductFromCart(state, action: PayloadAction<{ id: number }>): void {
 			const { id } = action.payload
 			const findProductInCart = state.cart.find(item => item.product.id === id)
 

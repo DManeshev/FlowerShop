@@ -1,0 +1,58 @@
+@reference "../../../app/theme.css";
+
+.drawer {
+  @apply lg:w-[50vw] max-lg:h-screen;
+
+  &__header,
+  &__footer {
+    @apply px-8;
+
+    @variant max-lg {
+      @apply px-4
+    }
+  }
+}
+
+.cart__btn {
+  @apply flex items-center gap-1 cursor-pointer;
+
+  &_badge {
+    @apply w-5 h-5 bg-(--main-color) font-semibold;
+  }
+}
+
+.header {
+  @apply flex items-center gap-2;
+
+  &__title {
+    @apply grow text-3xl text-center;
+  }
+
+  &__close {
+    @apply grid place-content-center cursor-pointer;
+  }
+}
+
+.clear {
+  @apply text-sm text-(--dark-grey) font-light mt-2 cursor-pointer;
+}
+
+.content {
+  @apply flex-1 my-10 overflow-y-auto;
+
+  @variant max-lg {
+    @apply my-5;
+  }
+}
+
+.cards {
+  @apply grid gap-3 px-8;
+
+  @variant max-lg {
+    @apply px-4
+  }
+}
+
+.total {
+  @apply flex items-center justify-center text-4xl text-(--main-color) font-semibold;
+}

@@ -10,7 +10,7 @@ import Payment from './(components)/Payment'
 import CheckoutForm from './(components)/CheckoutForm'
 import DrawerDesctop from '@/components/ui/drawer/DrawerDesctop'
 import DrawerMobile from '@/components/ui/drawer/DrawerMobile'
-import EmptyBasket from '@/components/layout/basket/components/EmptyBasket'
+import EmptyBasket from '@/components/layout/basket/ui/EmptyBasket'
 
 export default function Checkout() {
 	const {

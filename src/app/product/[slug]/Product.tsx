@@ -4,15 +4,16 @@ import { memo } from 'react'
 import Image from 'next/image'
 import { LuFlower2 } from 'react-icons/lu'
 
+import { ICart } from '@/types/cart.interface'
 import { IProduct } from '@/types/product.interface'
 import { useActions } from '@/hooks/useAction'
+import { formatPrice } from '@/lib/utils'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 import { Button } from '@/components/ui/button'
 import Heading from '@/components/ui/heading/Heading'
 
 import styles from './Page.module.scss'
-import { ICart } from '@/types/cart.interface'
 
 const Product = memo(function Product(props: IProduct) {
 	const {
@@ -73,8 +74,7 @@ const Product = memo(function Product(props: IProduct) {
 					</div>
 
 					<div className={styles.product__price}>
-						<span>{price}</span>
-						<span>&#8381;</span>
+                        <span>{formatPrice(price)}</span>
 					</div>
 				</div>
 
