@@ -1,0 +1,46 @@
+@reference "../../../../app/theme.css";
+
+.payment {
+    @apply h-full flex flex-col;
+}
+
+.personal {
+    @apply flex flex-col items-center;
+
+    &__name {
+        @apply text-3xl pb-1;
+    }
+
+    &__phone {
+        @apply text-base text-(--dark-grey) pb-3;
+    }
+
+    &__address {
+        @apply text-lg text-center pb-4;
+    }
+}
+
+.order {
+    @apply w-full h-full flex flex-col;
+
+    &__title {
+        @apply text-2xl text-(--main-color) text-center py-4;
+    }
+
+    &__products {
+        @apply w-full grid place-content-center gap-1;
+        grid-template-columns: repeat(auto-fit, 80px)
+    }
+}
+
+.footer {
+    @apply mt-auto flex flex-col gap-2;
+}
+
+.total {
+    @apply flex items-center justify-center text-4xl text-(--main-color) font-semibold;
+}
+
+.highlight {
+    @apply text-(--main-color)
+}

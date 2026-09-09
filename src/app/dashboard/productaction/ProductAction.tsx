@@ -8,19 +8,18 @@ import clsx from 'clsx'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 
-import { IProduct } from '@/types/product.interface'
+import { IProduct } from '@/services'
 import {
 	EnumProductStatus,
 	productStatus
 } from '@/types/enum/productStatus.enum'
-import { IList } from '@/types/list.interface'
+import { ListType } from '@/types'
 
 import { ProductService } from '@/services/product/product.service'
 import { useFlowerQuery } from '@/hooks/useQueries/useFlowerQuery'
 
 import File from '@/components/ui/form/file/File'
 import Field from '@/components/ui/form/input/Input'
-// import Button from '@/components/ui/btn/button/Button'
 // import Select from '@/components/ui/form/select/Select'
 import SelectMultiple from '@/components/ui/form/select/SelectMultiple'
 import { Button } from '@/components/ui/button'
@@ -37,12 +36,8 @@ import {
 } from '@/components/ui/select'
 import { FieldError, FieldLabel } from '@/components/ui/field'
 import { CategoryService } from '@/services/category/category.service'
-import { ICategory } from '@/types/category.interface'
-
-type SelectType = {
-	value: string;
-	label: string;
-}
+import { ICategory } from '@/services'
+import { SelectType } from '@/types'
 
 export default function ProductAction() {
 	const searchParams = useSearchParams()
@@ -159,7 +154,7 @@ export default function ProductAction() {
 		})
 	}
 
-	const handleMultipleSelect = (item: IList) => {
+	const handleMultipleSelect = (item: ListType) => {
 		const flower = { id: Number(item.id), name: item.name }
 
 		let copyFlowers = getValues('flowers')
@@ -214,21 +209,21 @@ export default function ProductAction() {
 								field.onChange(Number(value))
 							}}
 						>
-						<SelectTrigger
-							className={styles.select}
-							aria-invalid={Boolean(fieldState.error?.message)}
-						>
-							<SelectValue placeholder='Выберите категорию товара' />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectGroup>
-							{categories && categories.map((item: SelectType) => (
-								<SelectItem key={item.value} value={item.value} className={styles.select_item}>
-								{item.label}
-								</SelectItem>
-							))}
-							</SelectGroup>
-						</SelectContent>
+							<SelectTrigger
+								className={styles.select}
+								aria-invalid={Boolean(fieldState.error?.message)}
+							>
+								<SelectValue placeholder='Выберите категорию товара' />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectGroup>
+								{categories && categories.map((item: SelectType) => (
+									<SelectItem key={item.value} value={item.value} className={styles.select_item}>
+									{item.label}
+									</SelectItem>
+								))}
+								</SelectGroup>
+							</SelectContent>
 						</Select>
 						<FieldError>{fieldState.error?.message}</FieldError>
 					</div>
@@ -250,16 +245,16 @@ export default function ProductAction() {
 								onValueChange={(value) => field.onChange(Number(value))}
 							>
 								<SelectTrigger className={styles.select}>
-								<SelectValue placeholder='Выберите подкатегорию товара' />
+									<SelectValue placeholder='Выберите подкатегорию товара' />
 								</SelectTrigger>
 								<SelectContent>
-								<SelectGroup>
-									{subcategories && subcategories.map((item: SelectType) => (
-									<SelectItem key={item.value} value={item.value} className={styles.select_item}>
-										{item.label}
-									</SelectItem>
-									))}
-								</SelectGroup>
+									<SelectGroup>
+										{subcategories && subcategories.map((item: SelectType) => (
+										<SelectItem key={item.value} value={item.value} className={styles.select_item}>
+											{item.label}
+										</SelectItem>
+										))}
+									</SelectGroup>
 								</SelectContent>
 							</Select>
 							<FieldError>{fieldState.error?.message}</FieldError>

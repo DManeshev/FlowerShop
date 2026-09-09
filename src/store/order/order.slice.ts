@@ -1,33 +1,40 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IOrder } from '@/types/order.interface'
-import { EnumDeliveryMethod } from '@/types/enum/orderStatus.enum'
+import { InitialOrderState } from './order.types';
+import { EnumDeliveryMethod } from '@/types/enum/orderStatus.enum';
+import { OrderForm } from '@/services';
 
-interface IInitialOrderState
-	extends Omit<IOrder, 'id' | 'createdAt' | 'status' | 'items'> {
-	isPayment: boolean,
-}
-
-const initialState: IInitialOrderState = {
-	isPayment: false,
-	deliveryMethod: EnumDeliveryMethod.delivery,
+const defaultOrder: OrderForm = {
 	name: '',
 	phone: '',
-	commentary: '',
 	deliveryDate: '',
 	deliveryTime: '',
+	deliveryMethod: EnumDeliveryMethod.delivery,
 	city: '',
 	street: '',
-	houseNumber: '',
 	apartment: '',
+}
+
+const initialState: InitialOrderState = {
+	order: defaultOrder,
+	isOpenCheckoutDrawer: false,
 }
 
 export const orderSlice = createSlice({
 	name: 'order',
 	initialState,
 	reducers: {
-		setOrderValues(state, action: PayloadAction<IInitialOrderState>) {
-			return action.payload
+		setOrder(state: InitialOrderState, action: PayloadAction<OrderForm>) {
+			state.order = { ...state.order, ...action.payload }
+		},
+
+		resetOrder(state: InitialOrderState) {
+			state.order = defaultOrder;
+		},
+
+		
+		toggleCheckoutDrawer(state, action: PayloadAction<boolean>): void {
+			state.isOpenCheckoutDrawer = action.payload
 		}
 	}
 })

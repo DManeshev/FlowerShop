@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MouseEvent, SetStateAction, Dispatch } from 'react'
+import { SetStateAction, Dispatch } from 'react'
 import clsx from 'clsx'
 
-import { ICart } from '@/types/cart.interface'
-import { IFlower } from '@/types/flower.interface'
+import { IFlower, IProduct } from '@/services'
 import { useActions } from '@/hooks/useAction'
 import { formatPrice } from '@/lib/utils'
 
@@ -14,13 +13,11 @@ import { IoTrashOutline } from "react-icons/io5";
 import styles from './Card.module.scss'
 
 interface CardProps {
-	productCart: ICart;
+	product: IProduct;
 	setOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function Card({ productCart, setOpen }: CardProps) {
-	const { product, quantity } = productCart;
-
+export default function Card({ product, setOpen }: CardProps) {
 	const { deleteProductFromCart } = useActions()
 
 	const deleteProduct = () => deleteProductFromCart({ id: product.id });

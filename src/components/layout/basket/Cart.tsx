@@ -1,12 +1,11 @@
 'use client'
 
-import { useRouter } from "next/navigation";
 import { useMediaQuery } from "usehooks-ts";
 import { useMemo, useState } from "react";
 
-import { ICart } from "@/types/cart.interface";
-import { formatPrice } from "@/lib/utils";
+import { ICart } from "@/store";
 import { useActions } from "@/hooks/useAction";
+import { formatPrice } from "@/lib/utils";
 import { useTypedSelector } from "@/hooks/useTypedSelector";
 
 import { 
@@ -26,14 +25,12 @@ import EmptyBasket from "./ui/EmptyBasket";
 import styles from './Cart.module.scss';
 
 export const Cart = () => {
-    const router = useRouter();
-    
     const [open, setOpen] = useState<boolean>(false);
 
     const isDesktop: boolean = useMediaQuery('(min-width: 991px)')
 
 	const { cart } = useTypedSelector(state => state.cart);
-	const { clearCart } = useActions()
+	const { clearCart, toggleCheckoutDrawer } = useActions();
 
     const totalProducts: number = cart.length;
 
@@ -44,8 +41,7 @@ export const Cart = () => {
 
     const navigateToCheckout = () => {
         setOpen(false);
-
-        router.push('/checkout');
+        toggleCheckoutDrawer(true);
     }
 
     return (
@@ -95,7 +91,7 @@ export const Cart = () => {
                             {cart.map((item: ICart) => (
 								<CartCard
                                     key={item.product.id}
-                                    productCart={item}
+                                    product={item.product}
                                     setOpen={setOpen}
                                 />
                             ))}

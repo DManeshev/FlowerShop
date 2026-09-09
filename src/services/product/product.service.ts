@@ -1,8 +1,6 @@
 import { axiosClassic, instance } from "@/api/api.interceptor";
 import { getProductUrl } from "@/config/url.config";
-import { IFlower, IProduct, TypePaginationProducts } from "@/types/product.interface";
-import { TypeProductDataFilters } from "./product.types";
-import { IYandexFile } from "@/types/yandexfile.interface";
+import { IFlower, IProduct, TypePaginationProducts, IYandexFile, TypeProductDataFilters } from "./product.types";
 
 export const ProductService = {
     async getAll(queryData = {} as TypeProductDataFilters) {

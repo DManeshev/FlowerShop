@@ -1,17 +1,12 @@
-import { PayloadAction, createSlice, current } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { IProduct } from '@/types/product.interface'
-import { ICart } from '@/types/cart.interface'
+import { InitialCartState } from './cart.types'
+
+import { IProduct } from '@/services'
 import { includeInCart } from '@/utils/includeInCart'
 
-interface IInitialState {
-	cart: ICart[]
-	isOpenCart: boolean
-}
-
-const initialState: IInitialState = {
+const initialState: InitialCartState = {
 	cart: [],
-	isOpenCart: false
 }
 
 export const cartSlice = createSlice({
@@ -62,9 +57,5 @@ export const cartSlice = createSlice({
 				findProductInCart.quantity = count === 0 ? 1 : count
 			}
 		},
-
-		openCart(state, action: PayloadAction<boolean>): void {
-			state.isOpenCart = action.payload
-		}
 	}
 })

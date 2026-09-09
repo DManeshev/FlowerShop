@@ -10,7 +10,7 @@ import { useActions } from '@/hooks/useAction'
 import { IEmailPassword } from '@/store/user/user.interface'
 
 import Field from '@/components/ui/form/input/Input'
-import Button from '@/components/ui/btn/button/Button'
+import { Button } from '@/components/ui/button'
 import SubHeading from '@/components/ui/heading/SubHeading'
 
 import styles from './Auth.module.scss'
@@ -89,7 +89,9 @@ export default function Page() {
 					</div>
 				)}
 
-				<Button title={type === 'login' ? 'Войти' : 'Регистрация'} />
+				<Button>
+					<span>{type === 'login' ? 'Войти' : 'Регистрация'}</span>
+				</Button>
 			</form>
 		</div>
 	)

@@ -1,6 +1,6 @@
 'use client'
 
-import CustomLink from '../ui/btn/link/Link'
+import { buttonVariants } from "@/components/ui/button"
 
 import styles from './error.module.scss'
 
@@ -11,7 +11,12 @@ export default function NotFoundProducts() {
                 В настоящее время в данной категории товаров нет
             </div>
 
-            <CustomLink title='На главную' link='/' />
+            <a
+                href="/"
+                className={buttonVariants({ variant: "secondary", size: "sm" })}
+            >
+                <span>На главную</span>
+            </a>
         </div>
     )
 }

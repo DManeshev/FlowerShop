@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { ICategory } from "@/types/category.interface";
+import { ICategory } from "@/services";
 import { CategoryService } from "@/services/category/category.service";
 
 import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTrigger } from "@/components/ui/drawer";

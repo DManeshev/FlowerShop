@@ -1,4 +1,4 @@
-import { TypePaginationProducts } from '@/types/product.interface'
+import { TypePaginationProducts } from '@/services'
 
 import { ProductCard } from '@/components/ui/cards/productCard/Card'
 

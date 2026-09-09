@@ -1,4 +1,4 @@
-import { ICart } from '@/types/cart.interface'
+import { ICart } from '@/store'
 
 type TypeIncludeInCart = {
 	cart: ICart[]

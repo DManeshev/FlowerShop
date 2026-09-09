@@ -8,8 +8,9 @@ import { getSiteUrl } from '@/config/url.config'
 import { protectedRoutes } from '@/providers/auth-provider/protected-routes.data'
 
 import Header from '@/components/layout/header/Header'
-import Navigation from '@/components/layout/navigation/Navigation'
 import Footer from '@/components/layout/footer/Footer'
+import Checkout from '@/components/layout/checkout/Checkout'
+import Navigation from '@/components/layout/navigation/Navigation'
 
 import './theme.css'
 import './global.scss'
@@ -42,10 +43,9 @@ export const viewport: Viewport = {
 
 interface ILayoutRoot extends PropsWithChildren<unknown> {
   children: ReactNode
-  checkout: ReactNode
 }
 
-export default async function RootLayout({ children, checkout }: ILayoutRoot) {
+export default async function RootLayout({ children }: ILayoutRoot) {
   const header = await headers()
   const pathname = header.get('x-invoke-path') || ''
   const isProtectedRoute = protectedRoutes.some(route =>
@@ -68,9 +68,9 @@ export default async function RootLayout({ children, checkout }: ILayoutRoot) {
                 </main>
 
                 <Footer />
-              </div>
 
-              {checkout}
+                <Checkout />
+              </div>
             </div>
           ) : (
             <div className="wrapper dashboard">{children}</div>

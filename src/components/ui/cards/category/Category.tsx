@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import Image from 'next/image'
 
-import { ICategory } from '@/types/category.interface'
+import { ICategory } from '@/services';
 
 import styles from './Category.module.scss'
 

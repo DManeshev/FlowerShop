@@ -1,7 +1,7 @@
 @reference "../../../../app/theme.css";
 
 .card {
-    @apply flex gap-4 border-b pb-3;
+    @apply flex gap-4 border-b pb-3 last:border-0;
 
     @variant max-sm {
         @apply gap-3

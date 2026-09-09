@@ -15,11 +15,11 @@ import { TbArrowsSort } from 'react-icons/tb'
 import { FaPlus } from 'react-icons/fa'
 import { useRouter } from 'next/navigation'
 
-import { IProduct } from '@/types/product.interface'
+import { IProduct } from '@/services'
 import { dateFormat } from '@/utils/dateFormat'
 import { productStatusFind } from '@/utils/statusFind'
 
-import Button from '@/components/ui/btn/button/Button'
+import { Button } from '@/components/ui/button'
 
 import styles from '../Dashboard.module.scss'
 
@@ -84,7 +84,9 @@ export default function DashboardAllProducts() {
 			<div className="flex justify-between items-center mb-5">
 				<div className="text-2xl text-[var(--dark-purple)]">Товары</div>
 
-				<Button title="Добавить заказ" icon={<FaPlus color="white" />} onClick={() => router.push('/dashboard/productaction')} />
+				<Button onClick={() => router.push('/dashboard/productaction')}>
+					<span>Добавить заказ</span>
+				</Button>
 			</div>
 
 			{isLoading ? (

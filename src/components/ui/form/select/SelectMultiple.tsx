@@ -8,7 +8,7 @@ import {
 import { motion } from 'framer-motion'
 import { useOnClickOutside } from 'usehooks-ts'
 
-import { IList } from '@/types/list.interface'
+import { ListType } from '@/types'
 
 import Field from '../input/Input'
 import Checkbox from '../checkbox/Checkbox'
@@ -22,10 +22,10 @@ interface ICheckedList {
 
 interface ISelectMultiple extends InputHTMLAttributes<HTMLInputElement> {
 	label: string
-	selectList: IList[]
-	checkedList?: ICheckedList[]
+	selectList: Array<ListType>
+	checkedList?: Array<ICheckedList>
 	error?: string
-	handleChange: ({ id, name }: IList) => void
+	handleChange: ({ id, name }: ListType) => void
 }
 
 const SelectMultiple = forwardRef<HTMLInputElement, ISelectMultiple>(
@@ -33,10 +33,10 @@ const SelectMultiple = forwardRef<HTMLInputElement, ISelectMultiple>(
 		const [open, setOpen] = useState<boolean>(false)
 		// Поиск по list
 		const [searchTerm, setSearchTerm] = useState<string>('')
-		const [filterList, setFilterList] = useState<IList[]>(selectList)
+		const [filterList, setFilterList] = useState<Array<ListType>>(selectList)
 
 		// Выбранные значения
-		const [checkedItems, setCheckedItems] = useState<IList[]>(
+		const [checkedItems, setCheckedItems] = useState<Array<ListType>>(
 			checkedList
 				? checkedList.map(item => ({
 						id: String(item.id),
@@ -47,7 +47,7 @@ const SelectMultiple = forwardRef<HTMLInputElement, ISelectMultiple>(
 
 		const containerRef = useRef<HTMLDivElement>(null)
 
-		const handleSelect = (item: IList) => {
+		const handleSelect = (item: ListType) => {
 			let copyItems = checkedItems.concat()
 
 			const findItem = copyItems.find(({ id }) => id === item.id)

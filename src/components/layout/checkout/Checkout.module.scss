@@ -1,0 +1,41 @@
+@reference "../../../app/theme.css";
+
+.drawer {
+    @apply w-[50vw];
+
+    @variant max-lg {
+        @apply w-full h-screen max-h-screen;
+    }
+
+    &__header {
+        @apply p-4;
+    }
+}
+
+.header {
+    @apply flex items-center gap-2;
+
+    &__title {
+        @apply grow text-3xl text-center;
+    }
+
+    &__close {
+        @apply grid place-content-center cursor-pointer;
+    }
+}
+
+.content {
+    @apply flex-1 h-full px-4 pb-4;
+}
+
+.types {
+    @apply grid grid-cols-2 gap-2 px-4 pb-4;
+
+    &__btn {
+        @apply w-full h-20 border rounded-md text-lg cursor-pointer hover:text-(--main-color);
+    }
+}
+
+.active__type {
+    @apply text-(--main-color) border-(--main-color);
+}

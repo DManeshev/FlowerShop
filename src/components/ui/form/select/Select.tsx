@@ -2,7 +2,7 @@ import { forwardRef, useRef, useState, InputHTMLAttributes } from 'react'
 import { motion } from 'framer-motion'
 import { useOnClickOutside } from 'usehooks-ts'
 
-import { IList } from '@/types/list.interface'
+import { ListType } from '@/types'
 
 import Field from '../input/Input'
 
@@ -10,9 +10,9 @@ import styles from './Select.module.scss'
 
 interface ISelect extends InputHTMLAttributes<HTMLInputElement> {
 	label: string
-	selectList: IList[]
+	selectList: Array<ListType>
 	error?: string
-	handleChange: ({ id, name }: IList) => void
+	handleChange: ({ id, name }: ListType) => void
 }
 
 const Select = forwardRef<HTMLInputElement, ISelect>(

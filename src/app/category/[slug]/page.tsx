@@ -1,6 +1,6 @@
 import { ProductService } from '@/services/product/product.service'
 
-import { IProduct } from '@/types/product.interface'
+import { IProduct } from '@/services'
 
 import { ProductCard } from '@/components/ui/cards/productCard/Card'
 import NotFoundProducts from '@/components/errors/NotFoundProducts'

@@ -1,6 +1,5 @@
 import { axiosClassic } from '@/api/api.interceptor'
-import { ICategory } from '@/types/category.interface'
-import { AxiosResponse } from 'axios'
+import { ICategory } from './category.types'
 
 const URL = '/categories' as const
 const SUBCATEGORY_URL = '/subcategory' as const

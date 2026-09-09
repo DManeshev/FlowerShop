@@ -1,6 +1,6 @@
 import { instance, axiosClassic } from '@/api/api.interceptor'
 import { getOrderUrl } from '@/config/url.config'
-import { IOrder } from '@/types/order.interface'
+import { IOrder, OrderRequest } from './order.types'
 
 export const OrderService = {
 	async getAll() {
@@ -10,7 +10,7 @@ export const OrderService = {
 		})
 	},
 
-	async placeOrder(data: IOrder) {
+	async placeOrder(data: OrderRequest) {
 		return axiosClassic({
 			method: 'POST',
 			url: '/orders',

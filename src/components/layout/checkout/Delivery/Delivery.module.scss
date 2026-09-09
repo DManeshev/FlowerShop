@@ -1,0 +1,45 @@
+@reference "../../../../app/theme.css";
+
+.delivery {
+    @apply h-full flex flex-col;
+
+    &__btn {
+        @apply mt-auto;
+    }
+}
+
+.form {
+    @apply h-full flex flex-col;
+
+    &__fields {
+        @apply grid grid-cols-3 gap-2;
+
+        @variant max-sm {
+            @apply grid-cols-1;
+        }
+    }
+
+    &__grid {
+        @apply grid grid-cols-12 gap-2 mt-3;
+
+        @variant max-sm {
+            @apply grid-cols-1 mt-1;
+        }
+    }
+}
+
+.field {
+    @apply gap-1;
+}
+
+.pickup__text {
+    @apply mt-5 text-lg;
+
+    @variant max-sm {
+        @apply mt-2
+    }
+}
+
+.pickup__address {
+    @apply text-(--main-color) cursor-pointer;
+}

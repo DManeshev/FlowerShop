@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-import { IProduct } from '@/types/product.interface'
+import { IProduct } from '@/services'
 
 import styles from './Card.module.scss'
 import { formatPrice } from '@/lib/utils'

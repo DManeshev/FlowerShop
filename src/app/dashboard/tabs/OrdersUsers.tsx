@@ -1,7 +1,4 @@
 
-
-interface IOrdersUsers {}
-
-export default function OrdersUsers({}: IOrdersUsers) {
+export default function OrdersUsers() {
     return <div>OrdersUsers</div>
 }
