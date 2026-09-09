@@ -7,22 +7,20 @@ import { OrderService } from '@/services/order/order.service'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { formatPrice } from '@/lib/utils'
 import { useActions } from '@/hooks/useAction'
-import { IOrder, OrderRequest } from '@/services'
+import { OrderRequest } from '@/services'
+import { EnumOrderStatus } from '@/types'
 
 import { Button } from '@/components/ui/button';
-import Heading from '@/components/ui/heading/Heading'
-import CartCard from '@/components/ui/cards/cartCard/Card'
 import { Separator } from '@/components/ui/separator'
 import { OrderProductCard } from '@/components/ui/cards/orderProductCard/OrderProductCard'
 
 import styles from './styles.module.scss'
-import { EnumOrderStatus } from '@/types'
 
 export default function Payment() {
 	const { order: { order}, cart: { cart } } = useTypedSelector(state => state);
 	const { toggleCheckoutDrawer } = useActions();
 
-	const { mutate } = useMutation(OrderService.placeOrder)
+	const { mutateAsync } = useMutation({ mutationFn: OrderService.placeOrder })
 
 	const router = useRouter()
 
@@ -44,21 +42,17 @@ export default function Payment() {
 			status: EnumOrderStatus.PENDING
 		};
 
-		mutate(orderRequest)
+		try {
+			const response = await mutateAsync(orderRequest);
+
+			if (response) {
+				toggleCheckoutDrawer(false)
+				router.push('/thanks')
+			}
+		} catch (error) {
+			console.error(error)
+		}
 	}
-
-	// const checkoutOrder = useCallback(() => {
-	// 	mutate(orderObject, {
-	// 		onSuccess: ({ data }, variables, context) => {
-    //     		closeModal();
-
-	// 			router.push('/thanks')
-	// 		},
-	// 		onError: (error, variables, context) => {
-	// 			console.log(error)
-	// 		}
-	// 	})
-	// }, [mutate])
 
 	return (
 		<div className={styles.payment}>

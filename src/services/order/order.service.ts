@@ -10,7 +10,7 @@ export const OrderService = {
 		})
 	},
 
-	async placeOrder(data: OrderRequest) {
+	async placeOrder(data: OrderRequest): Promise<IOrder> {
 		return axiosClassic({
 			method: 'POST',
 			url: '/orders',
