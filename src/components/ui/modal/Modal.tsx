@@ -2,8 +2,6 @@ import { forwardRef, type PropsWithChildren } from 'react'
 import { AnimatePresence, motion, Variants } from 'framer-motion'
 import { FaXmark } from 'react-icons/fa6'
 
-import { overlayVariants } from '@/utils/animation.variants'
-
 import styles from './Modal.module.scss'
 
 interface IModal extends PropsWithChildren {
@@ -15,6 +13,12 @@ const modalVariants: Variants = {
 	initial: { top: '-50%', transition: { type: 'spring' } },
 	isOpen: { top: '50%' },
 	exit: { top: '-50%' }
+}
+
+const overlayVariants = {
+	initial: { opacity: 0 },
+	isOpen: { opacity: 1 },
+	exit: { opacity: 0 }
 }
 
 const Modal = forwardRef<HTMLDivElement, IModal>(

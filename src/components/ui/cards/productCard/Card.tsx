@@ -11,8 +11,7 @@ import styles from './Card.module.scss'
 import { formatPrice } from '@/lib/utils'
 
 export const ProductCard = memo(function Card(props: IProduct) {
-	const { id, createdAt, name, slug, description, images, price, categoryId } =
-		props
+	const { name, slug, images, price } = props
 
 	return (
 		<Link href={`/product/${slug}`}>

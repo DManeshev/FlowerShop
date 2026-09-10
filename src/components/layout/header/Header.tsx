@@ -1,18 +1,18 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
 import clsx from 'clsx';
 
 import { FaPhone, FaLocationDot } from "react-icons/fa6";
 
-import Logo from '@/assets/images/Logo.svg'
-import whatsapp from '@/assets/images/whatsapp.png'
-import telegram from '@/assets/images/telegram.png'
-import vk from '@/assets/images/vk.png'
+import { SocialMedia } from '@/types';
+import { listSocialMedia } from './header.constants';
 
 import { Cart } from '../basket/Cart';
 import { HeaderMenuBtn } from './HeaderMenuBtn';
 
-import styles from './Header.module.scss'
+import styles from './Header.module.scss';
+
+import Logo from '@/assets/images/logo.webp';
 
 export default function Header() {
 	return (
@@ -29,39 +29,20 @@ export default function Header() {
 					<div className={styles.label__description}>Цветочный магазин</div>
 
 					<div className={styles.social}>
-						<Link
-							href="https://wa.me/message/XVJACCEITBPIN1"
-							target="_blank"
-							className={styles.social__icon}
-						>
-							<Image
-								src={whatsapp}
-								alt="Ссылка на whatsapp на канал магазина Твои цветы"
-								width={50}
-							/>
-						</Link>
-						<Link
-							href="https://t.me/your_flowers_21"
-							target="_blank"
-							className={styles.social__icon}
-						>
-							<Image
-								src={telegram}
-								alt="Ссылка на telegram на канал магазина Твои цветы"
-								width={50}
-							/>
-						</Link>
-						<Link
-							href="https://vk.com/your_flowers_21"
-							target="_blank"
-							className={styles.social__icon}
-						>
-							<Image
-								src={vk}
-								alt="Ссылка на VK группу магазина Твои цветы"
-								width={50}
-							/>
-						</Link>
+						{listSocialMedia.map((item: SocialMedia) => (
+							<Link
+								key={item.link}
+								href={item.link}
+								target="_blank"
+								className={styles.social__icon}
+							>
+								<Image
+									src={item.imageLink}
+									alt={item.alt}
+									width={50}
+								/>
+							</Link>
+						))}
 					</div>
 				</div>
 			</div>

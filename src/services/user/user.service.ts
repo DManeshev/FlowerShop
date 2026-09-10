@@ -1,6 +1,6 @@
 import { instance } from "@/api/api.interceptor"
-import { IUser } from "@/types/user.interface"
-import { TypeUserData } from "./user.types"
+
+import { IUser, TypeUserData } from "./user.types"
 
 const URL = '/users' as const 
 

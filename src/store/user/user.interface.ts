@@ -1,4 +1,4 @@
-import { IUser } from "@/types/user.interface"
+import { IUser } from "@/services"
 
 export interface IUserState {
     id: number
