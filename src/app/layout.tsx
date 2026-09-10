@@ -16,10 +16,8 @@ import './theme.css'
 import './global.scss'
 
 export const metadata: Metadata = {
-  title: {
-    absolute: SITE_NAME,
-    template: `%s | ${SITE_NAME}`
-  },
+  title: 'Цветы в Чебоксарах - доставка букетов по Новому Городу, Чебоксарам и Новочебоксарску | Твои цветы 21',
+  description: 'Свежие цветы и букеты с доставкой по Чебоксарам, Новому Городу и Новочебоксарску. Букеты на заказ и доставка от 2500 ₽. Интернет-магазин «Твои цветы 21».',
 
   metadataBase: new URL(getSiteUrl()),
 
@@ -29,10 +27,11 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: 'Твои цветы 21',
-    description: 'Интернет-магазин Твои цветы 21',
+    title: 'Цветы в Чебоксарах — доставка букетов | Твои цветы 21',
+    description: 'Свежие цветы и букеты с доставкой по Чебоксарам, Новому Городу и Новочебоксарску.',
     type: 'website',
-    locale: 'ru_RU'
+    locale: 'ru_RU',
+    siteName: 'Твои цветы 21',
   }
 }
 
