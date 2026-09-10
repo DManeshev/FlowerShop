@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
+    /* @ts-ignore */
     <InputPrimitive
       type={type}
       data-slot="input"
