@@ -38,7 +38,7 @@ export default function Page() {
 
 			router.replace('/dashboard/orders')
 		} catch (error: unknown) {
-      /* @ts-ignore */
+      		/* @ts-ignore */
 			if (error) setErrorMessage(error.message)
 		}
 	}
@@ -89,7 +89,7 @@ export default function Page() {
 					</div>
 				)}
 
-				<Button>
+				<Button type='submit'>
 					<span>{type === 'login' ? 'Войти' : 'Регистрация'}</span>
 				</Button>
 			</form>
