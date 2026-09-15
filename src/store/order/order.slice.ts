@@ -13,6 +13,7 @@ const defaultOrder: OrderForm = {
 	city: '',
 	street: '',
 	apartment: '',
+	houseNumber: '',
 }
 
 const initialState: InitialOrderState = {

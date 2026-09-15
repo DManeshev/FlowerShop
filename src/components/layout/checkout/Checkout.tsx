@@ -49,6 +49,7 @@ export default function Checkout() {
 			apartment: '',
 			street: '',
 			entrance: '',
+			houseNumber: ''
 		}
 	});
 

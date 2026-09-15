@@ -9,8 +9,8 @@ export interface OrderForm {
     city: string;
     street: string;
     apartment: string;
-
-    houseNumber?: string;
+    houseNumber: string;
+    
     commentary?: string;
     entrance?: string;
 }
