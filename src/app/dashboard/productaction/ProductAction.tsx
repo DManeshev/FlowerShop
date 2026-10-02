@@ -129,7 +129,7 @@ export default function ProductAction() {
 		const selectedFiles = files as FileList
 
 		for (const file of selectedFiles) {
-			formData.append('files[]', file)
+			formData.append('files', file)
 		}
 
 		const { data } = await ProductService.uploadFile(formData)
