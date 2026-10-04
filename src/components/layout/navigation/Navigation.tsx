@@ -6,8 +6,7 @@ import { useState } from 'react'
 import clsx from 'clsx'
 
 import { useQuery } from '@tanstack/react-query'
-import { ICategory } from '@/services'
-import { CategoryService } from '@/services/category/category.service'
+import { ICategory, CategoryService } from '@/services'
 
 import { Cart } from '@/components/layout/basket/Cart';
 

@@ -40,7 +40,7 @@
 	&__btns {
 		@apply flex justify-end gap-2 mt-5;
 
-		@variant max-sm {
+		@variant max-md {
 			@apply flex-col gap-2;
 		}
 	}
@@ -54,15 +54,28 @@
 	@apply grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-2;
 }
 
+.select {
+	@apply w-full cursor-pointer;
+
+	&_item {
+		@apply text-base font-lora cursor-pointer;
+	}
+}
+
+.files {
+	@apply my-10;
+}
+
 .images {
-	@apply h-65 grid gap-4 mt-3;
-	grid-template-columns: repeat(auto-fit, minmax(20ch, 20ch));
+	@apply grid grid-cols-[repeat(auto-fit,minmax(150px,200px))] gap-4 mt-3;
+
+	@variant max-md {
+		@apply grid-cols-[repeat(auto-fit,minmax(150px,1fr))]
+	}
 }
 
 .image {
-	--gallery-aspect-ratio: 3/4;
-
-	@apply relative w-full;
+	@apply h-65 relative w-full;
 
 	& img {
 		@apply object-cover rounded-md;
@@ -78,10 +91,10 @@
 	}
 }
 
-.select {
-	@apply w-full cursor-pointer;
+.btn {
+	@apply w-50;
 
-	&_item {
-		@apply text-base font-lora cursor-pointer;
+	@variant max-md {
+		@apply w-full;
 	}
 }

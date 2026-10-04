@@ -4,10 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { ICategory } from "@/services";
-import { CategoryService } from "@/services/category/category.service";
+import { ICategory, CategoryService } from "@/services";
 
-import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTrigger } from "@/components/ui/drawer";
+import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTrigger } from "@/components/ui/drawer";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { IoClose, IoArrowBack  } from "react-icons/io5";
 

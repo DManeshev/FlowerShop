@@ -2,18 +2,15 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import { useState, Dispatch, SetStateAction } from 'react'
 import { useQuery } from '@tanstack/react-query'
-
 import { useDebounceCallback } from 'usehooks-ts'
 import { SubmitHandler, Controller, Control, UseFormWatch, UseFormHandleSubmit } from 'react-hook-form'
 
 import { useActions } from '@/hooks/useAction'
-import { AddressService } from '@/services/address/address.service'
 
-import { OrderForm } from '@/services'
+import { AddressService, OrderForm, SearchAddress } from '@/services'
 import { CheckoutStepType, SelectType } from '@/types'
 import { DeliveryCity } from './Delivery.types'
 import { EnumDeliveryMethod } from '@/types/enum/orderStatus.enum'
-import { SearchAddress } from '@/services/address/address.interface'
 import {
 	CHOOSE_DELIVERY_TYPE_TEXT,
 	CREATE_ORDER_TEXT,

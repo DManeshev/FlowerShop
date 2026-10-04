@@ -7,7 +7,7 @@ import { MouseEvent, useEffect } from 'react'
 
 import clsx from 'clsx'
 
-import { ProductService, IProduct, IProductForm } from '@/services'
+import { ProductService, IProductForm } from '@/services'
 import { EnumProductStatus, productStatus } from '@/types/enum/productStatus.enum'
 
 import { Input } from '@/components/ui/input'
@@ -26,7 +26,7 @@ export default function ProductAction() {
 	const searchParams = useSearchParams()
 	const productId = searchParams.get('productId')
 
-	const { handleSubmit, reset, getValues, watch, control } = useForm<IProductForm>({
+	const { handleSubmit, reset, getValues, watch, setValue, control } = useForm<IProductForm>({
 		mode: 'onChange',
 		defaultValues: {
 			status: EnumProductStatus.inStock,
@@ -70,21 +70,19 @@ export default function ProductAction() {
 		if (productId) getProduct(productId)
 	}, [productId])
 
-	const onSubmit: SubmitHandler<IProduct> = async data => {
-		console.log(data)
-		// const {
-		// 	categoryName,
-		// 	subcategoryName,
-		// 	flowersNames,
-		// 	statusName,
-		// 	...rest
-		// } = data
+	const onSubmit: SubmitHandler<IProductForm> = async data => {
+		const {
+			categoryName,
+			subcategoryName,
+			statusName,
+			...rest
+		} = data
 
-		// if (data.id) {
-		// 	await ProductService.update(data.id, rest)
-		// } else {
-		// 	await ProductService.create(rest)
-		// }
+		if (data.id) {
+			await ProductService.update(data.id, rest)
+		} else {
+			await ProductService.create(rest)
+		}
 	}
 
 	const deleteProductById = (event: MouseEvent) => {
@@ -151,7 +149,11 @@ export default function ProductAction() {
 					/>
 				</div>
 
-				{/* <FilesField /> */}
+				<FilesField
+					watch={watch}
+					setValue={setValue}
+					getValues={getValues}
+				/>
 
 				<div className={styles.form__btns}>
 					{productId ? (
@@ -159,6 +161,7 @@ export default function ProductAction() {
 							onClick={deleteProductById}
 							size="xl"
 							variant="destructive"
+							className={styles.btn}
 						>
 							<span>Удалить</span>
 						</Button>
@@ -167,7 +170,7 @@ export default function ProductAction() {
 					<Button
 						onClick={handleSubmit(onSubmit)}
 						size="xl"
-						className="max-sm:ml-0 max-sm:w-full"
+						className={styles.btn}
 					>
 						<span>Сохранить</span>
 					</Button>

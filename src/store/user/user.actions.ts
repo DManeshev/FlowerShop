@@ -1,9 +1,9 @@
-import { errorCatch } from '@/api/api.helper'
-import { removeFromStorage } from '@/services/auth/auth.helper'
-import { AuthService } from '@/services/auth/auth.service'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { IAuthResponse, IEmailPassword } from './user.interface'
 import { AxiosError } from 'axios'
+
+import { errorCatch } from '@/api/api.helper'
+import { IAuthResponse, IEmailPassword } from './user.interface'
+import { AuthService, removeFromStorage } from '@/services'
 
 export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
 	'auth/register',

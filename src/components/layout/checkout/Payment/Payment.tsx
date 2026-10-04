@@ -1,13 +1,12 @@
-import { useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 
 import { ICart } from '@/store'
-import { OrderService } from '@/services/order/order.service'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { formatPrice } from '@/lib/utils'
 import { useActions } from '@/hooks/useAction'
-import { OrderRequest } from '@/services'
+import { OrderRequest, OrderService } from '@/services'
 import { EnumOrderStatus } from '@/types'
 
 import { Button } from '@/components/ui/button';

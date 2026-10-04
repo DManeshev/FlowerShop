@@ -1,6 +1,6 @@
-import { getAccessToken, removeFromStorage } from '@/services/auth/auth.helper'
-import { AuthService } from '@/services/auth/auth.service'
 import axios from 'axios'
+
+import { AuthService, getAccessToken, removeFromStorage } from '@/services'
 import { errorCatch, getContentType } from './api.helper'
 
 const axiosOptins = {

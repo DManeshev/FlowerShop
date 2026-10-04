@@ -1,6 +1,4 @@
-import { ProductService } from '@/services'
-
-import { IProduct } from '@/services'
+import { IProduct, ProductService } from '@/services'
 
 import { ProductCard } from '@/components/ui/cards/productCard/Card'
 import NotFoundProducts from '@/components/errors/NotFoundProducts'
