@@ -23,12 +23,14 @@ export interface IProduct {
 	isDelivery: boolean;
 	flowers: Array<IFlower>;
     
-    categoryName?: string;
-    subcategoryName?: string;
     description?: string;
-	statusName?: string
+}
+
+export interface IProductForm extends IProduct {
+	categoryName: string;
+    subcategoryName: string;
+	statusName: string
 	isDeliveryName?: string;
-	flowersNames?: string;
 }
 
 export type TypePaginationProducts = {
@@ -37,7 +39,6 @@ export type TypePaginationProducts = {
 }
 
 export type TypeProductDataFilters = {
-    sort?: EnumProductSort
     searchTerm?: string
     categoryTerm?: number
     page?: string | number

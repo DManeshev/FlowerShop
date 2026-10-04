@@ -1,14 +1,24 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { ProductService } from '@/services/product/product.service'
+import { ProductService } from '@/services'
 
 interface IUseProductQuery {
+	searchTerm?: string,
 	enabled?: boolean
 }
 
-export const useProductQuery = (options?: IUseProductQuery) => {
-	return useQuery(['all products'], () => ProductService.getAll(), {
+export const useProductQuery = (options: IUseProductQuery) => {
+	const {
+		searchTerm = '',
+		...rest
+	} = options;
+
+	return useQuery({
+		queryKey: ['products', 'search', searchTerm],
+		queryFn: () => ProductService.getAll({
+			searchTerm
+		}),
 		select: ({ data }) => data,
-		...options
+		...rest
 	})
 }

@@ -12,3 +12,7 @@ export const formatPrice = (price: number): string => {
       maximumFractionDigits: 0,
   }).format(price)
 }
+
+export const formatDate = (value: string) => {
+	return new Intl.DateTimeFormat('ru-RU').format(new Date(value));
+}

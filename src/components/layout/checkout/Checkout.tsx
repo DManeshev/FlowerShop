@@ -65,14 +65,6 @@ export default function Checkout() {
 			onOpenChange={toggleCheckoutDrawer}
 			swipeDirection={isDesktop ? 'right' : 'down'}
 		>
-			<DrawerTrigger
-				render={
-					<button className={styles.cart__btn}>
-						<span>Корзина</span>
-					</button>
-				}
-			/>
-
 			<DrawerContent className={styles.drawer}>
 				<DrawerHeader className={styles.drawer__header}>
 					<div className={styles.header}>

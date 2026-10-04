@@ -8,11 +8,6 @@ export type SelectType = {
 	label: string;
 };
 
-export type ListType = {
-	id: string
-	name: string
-};
-
 export type CheckoutStepType = 'delivery' | 'payment';
 
 export type SocialMedia = {

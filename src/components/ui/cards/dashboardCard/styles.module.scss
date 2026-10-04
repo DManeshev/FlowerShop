@@ -1,0 +1,17 @@
+@reference "../../../../app/theme.css";
+
+.product {
+    @apply w-full grid grid-cols-[100px_300px_1fr_100px] cursor-pointer;
+
+    &:hover .cell {
+        @apply bg-(--light-grey)
+    }
+}
+
+.cell {
+    @apply
+    h-full w-full 
+    flex justify-center items-center
+    py-1
+    border-r-2 border-r-(--main-color) last:border-r-0;
+}

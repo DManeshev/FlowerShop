@@ -1,13 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { ProductService } from '@/services/product/product.service'
+import { ProductService } from '@/services'
 
 export const useFlowerQuery = () => {
-	return useQuery(['flowers'], () => ProductService.getAllFlowers(), {
-		select: ({ data }) =>
-			data.map(item => ({
-				id: String(item.id),
-				name: item.name
-			}))
+	return useQuery({
+		queryKey: ['flowers'],
+		queryFn: () => ProductService.getAllFlowers(),
+		select: ({ data }) => data
 	})
 }
