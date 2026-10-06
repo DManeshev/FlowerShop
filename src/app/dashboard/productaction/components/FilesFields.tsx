@@ -59,7 +59,13 @@ export const FilesField = ({
                 <div className={styles.images}>
                     {watch('images').map((path, index) => (
                         <div key={index} className={styles.image}>
-                            <Image src={path} alt={getValues('name')} fill />
+                            <Image
+                                src={path}
+                                alt={getValues('name')}
+                                sizes='(max-width: 768px) 16.25rem 150px'
+                                fill
+                                priority={index === 0}
+                            />
 
                             <div
                                 className={styles.image__delete}

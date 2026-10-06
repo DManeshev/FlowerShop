@@ -1,0 +1,29 @@
+@reference "../../../app/theme.css";
+
+.sidebar {
+    @apply w-40 shrink-0 border-r;
+
+    @variant max-md {
+        @apply w-full border-r-0 border-b pb-4;
+    }
+}
+
+.list {
+    @apply flex flex-col gap-2;
+
+    @variant max-md {
+        @apply flex-row gap-4;
+    }
+}
+
+.btn {
+    @apply cursor-pointer;
+
+    &:hover {
+        @apply text-(--main-color);
+    }
+}
+
+.active {
+    @apply text-(--main-color);
+}

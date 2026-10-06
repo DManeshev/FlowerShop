@@ -36,7 +36,7 @@ const DashboardPage: NextPage = () => {
 		setSearchTerm(event.target.value)
 
 	return (
-		<div className={styles.content}>
+		<div>
 			<div className={styles.header}>
 				<Button
 					onClick={() => router.push('/dashboard/productaction')}

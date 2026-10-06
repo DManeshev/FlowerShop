@@ -92,7 +92,7 @@ export default function ProductAction() {
 	}
 
 	return (
-		<div className={styles.content}>
+		<div>
 			<form className={clsx(styles.form)}>
 				<CategoriesFields control={control} categoryId={watch('categoryId')} />
 

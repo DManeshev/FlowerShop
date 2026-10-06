@@ -20,7 +20,13 @@ export default function Header() {
 			<div className={styles.label}>
 				<Link href="/">
 					<div className={styles.image}>
-						<Image src={Logo} alt="магазин цветов ТВОИ ЦВЕТЫ 21" fill />
+						<Image 
+							src={Logo}
+							alt="магазин цветов ТВОИ ЦВЕТЫ 21"
+							fill
+							sizes='6.25rem'
+							loading="eager"
+						/>
 					</div>
 				</Link>
 

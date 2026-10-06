@@ -15,3 +15,8 @@ export type SocialMedia = {
 	imageLink: StaticImageData;
 	alt: string;
 }
+
+export type DashboardTabType = {
+	title: string;
+	link: string;
+}

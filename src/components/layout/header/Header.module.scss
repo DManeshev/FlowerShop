@@ -1,7 +1,11 @@
 @reference "../../../app/theme.css";
 
 .header {
-  @apply w-full grid grid-cols-3 gap-3 items-center mt-3;
+  @apply w-full grid grid-cols-3 gap-3 items-center mt-3 px-3;
+
+  @variant max-lg {
+    @apply shadow-lg
+  }
 
   &__container {
     @apply flex justify-center items-center gap-3;

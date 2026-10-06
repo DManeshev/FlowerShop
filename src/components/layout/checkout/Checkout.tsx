@@ -27,7 +27,7 @@ import { DeliveryType } from './Delivery/Delivery.types';
 export default function Checkout() {
     const [checkoutStep, setCheckoutStep] = useState<CheckoutStepType>('delivery');
 
-	const { order: { isOpenCheckoutDrawer } } = useTypedSelector(state => state)
+	const { isOpenCheckoutDrawer } = useTypedSelector(state => state.order)
 	const { toggleCheckoutDrawer } = useActions();
 	
 	const isDesktop: boolean = useMediaQuery('(min-width: 991px)');

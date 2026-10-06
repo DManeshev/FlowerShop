@@ -59,7 +59,7 @@ input[type='date']:disabled {
 }
 
 .main {
-  @apply flex-1 py-5;
+  @apply flex flex-col flex-1 py-5;
 }
 
 .dashboard {
@@ -137,5 +137,5 @@ input[type='date']:disabled {
   }
 }
 .desktop__view {
-  @apply min-h-screen flex flex-col px-2;
+  @apply min-h-screen flex flex-col;
 }

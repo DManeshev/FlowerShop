@@ -1,7 +1,8 @@
 import { useRouter } from 'next/navigation'
+import clsx from 'clsx';
 
 import { IProduct } from '@/services';
-import { formatPrice, formatDate } from '@/lib/utils'
+import { formatPrice } from '@/lib/utils'
 
 import styles from './styles.module.scss';
 
@@ -24,18 +25,10 @@ export const DashboardCard = (props: DashboardCardProps) => {
             className={styles.product}
         >
             <div className={styles.cell}>
-                <span>{product.id}</span>
-            </div>
-
-            <div className={styles.cell}>
-                <span>{formatDate(product.createdAt)}</span>
-            </div>
-
-            <div className={styles.cell}>
                 <span>{product.name}</span>
             </div>
 
-            <div className={styles.cell}>
+            <div className={clsx(styles.cell, styles.price)}>
                 <span>{formatPrice(product.price)}</span>
             </div>
         </div>

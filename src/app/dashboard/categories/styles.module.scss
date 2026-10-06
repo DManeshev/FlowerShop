@@ -1,0 +1,37 @@
+@reference "../../theme.css";
+
+.container {
+    @apply flex items-start justify-center gap-30;
+
+    @variant max-md {
+        @apply gap-10;
+    }
+
+    @variant max-sm {
+        @apply flex-col;
+    }
+}
+
+.categories {
+    @apply w-60 border p-4 rounded-xl;
+
+    @variant max-sm {
+        @apply w-full;
+    }
+}
+
+.list {
+    @apply flex flex-col gap-2;
+}
+
+.item {
+    @apply text-lg cursor-pointer;
+
+    &:hover {
+        @apply text-(--main-color);
+    }
+}
+
+.active {
+    @apply text-(--main-color);
+}

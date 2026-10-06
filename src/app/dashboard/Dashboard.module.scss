@@ -5,7 +5,15 @@
 }
 
 .content {
-	@apply w-full px-3;
+	@apply grow w-full flex gap-3 px-3;
+
+	@variant max-md {
+		@apply flex-col;
+	}
+
+	&__child {
+		@apply grow;
+	}
 }
 
 .header {
