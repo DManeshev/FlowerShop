@@ -56,6 +56,7 @@ export const FilesField = ({
 
             setDebug('Загрузка завершена, изображения добавлены в форму');
         } catch (error) {
+            setDebug(`Ошибка ${error}`);
             console.error(error)
         }
 	}
