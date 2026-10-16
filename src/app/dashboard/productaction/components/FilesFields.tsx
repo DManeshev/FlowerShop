@@ -51,7 +51,8 @@ export const FilesField = ({
         <div className={styles.files}>
             <File
                 multiple
-                accept="image/apng, image/avif, image/gif, image/jpeg, image/png, image/svg+xml, image/webp"
+                // accept="image/apng, image/avif, image/gif, image/jpeg, image/png, image/svg+xml, image/webp"
+                accept="image/*,.heic,.heif"
                 onChange={uploadFile}
             />
 
