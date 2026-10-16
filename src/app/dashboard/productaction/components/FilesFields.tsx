@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { UseFormGetValues, UseFormSetValue, UseFormWatch } from "react-hook-form"
 
 import { IProductForm, ProductService } from "@/services"
@@ -20,6 +20,8 @@ export const FilesField = ({
     setValue,
     getValues
 }: FilesFieldProps) => {
+    const [debug, setDebug] = useState('Ожидание выбора файла');
+    
     const deleteImage = async (value: string) => {
         const path = value.split('/').slice(-2).join('/')
 
@@ -31,20 +33,31 @@ export const FilesField = ({
     }
 
     const uploadFile = async (event: ChangeEvent<HTMLInputElement>) => {
-		const { files } = event.target
-		const formData = new FormData()
+        try {
+            const { files } = event.target
+            const formData = new FormData()
 
-		const selectedFiles = files as FileList
+            setDebug(
+                `onChange вызван\nФайлов: ${files?.length ?? 0}\n` +
+                Array.from(files ?? [])
+                    .map(file => `${file.name}\n${file.type}\n${file.size} bytes`)
+                    .join('\n\n')
+            );
+    
+            const selectedFiles = files as FileList
 
-		for (const file of selectedFiles) {
-			formData.append('files', file)
-		}
+            for (const file of selectedFiles) {
+                formData.append('files', file)
+            }
 
-		const { data } = await ProductService.uploadFile(formData)
+            const { data } = await ProductService.uploadFile(formData)
 
-		const pathImages = data.map(({ Location }) => Location)
+            const pathImages = data.map(({ Location }) => Location)
 
-		setValue('images', [...getValues('images'), ...pathImages])
+            setValue('images', [...getValues('images'), ...pathImages])
+        } catch (error) {
+            console.error(error)
+        }
 	}
 
     return (
@@ -55,6 +68,16 @@ export const FilesField = ({
                 accept="image/*"
                 onChange={uploadFile}
             />
+
+            <pre
+                style={{
+                    whiteSpace: 'pre-wrap',
+                    overflowWrap: 'anywhere',
+                    fontSize: 12,
+                }}
+            >
+                {debug}
+            </pre>
 
             {watch('images').length > 0 ? (
                 <div className={styles.images}>
