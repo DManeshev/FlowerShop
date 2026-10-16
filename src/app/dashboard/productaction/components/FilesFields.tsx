@@ -20,8 +20,6 @@ export const FilesField = ({
     setValue,
     getValues
 }: FilesFieldProps) => {
-    const [debug, setDebug] = useState('Ожидание выбора файла');
-    
     const deleteImage = async (value: string) => {
         const path = value.split('/').slice(-2).join('/')
 
@@ -44,19 +42,12 @@ export const FilesField = ({
                 formData.append('files', file)
             }
 
-            setDebug('Отправляю запрос на сервер...');
-
             const { data } = await ProductService.uploadFile(formData)
-
-            setDebug(`Сервер вернул: ${JSON.stringify(data)}`);
 
             const pathImages = data.map(({ Location }) => Location)
 
             setValue('images', [...getValues('images'), ...pathImages])
-
-            setDebug('Загрузка завершена, изображения добавлены в форму');
         } catch (error) {
-            setDebug(`Ошибка ${error}`);
             console.error(error)
         }
 	}
@@ -69,16 +60,6 @@ export const FilesField = ({
                 accept="image/*"
                 onChange={uploadFile}
             />
-
-            <pre
-                style={{
-                    whiteSpace: 'pre-wrap',
-                    overflowWrap: 'anywhere',
-                    fontSize: 12,
-                }}
-            >
-                {debug}
-            </pre>
 
             {watch('images').length > 0 ? (
                 <div className={styles.images}>
