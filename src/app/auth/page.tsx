@@ -36,7 +36,7 @@ export default function Page() {
 			const originalRes = unwrapResult<any>(result)
 			// : register(data)
 
-			router.replace('/dashboard/orders')
+			router.replace('/dashboard')
 		} catch (error: unknown) {
       		/* @ts-ignore */
 			if (error) setErrorMessage(error.message)
