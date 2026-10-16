@@ -52,7 +52,7 @@ export const FilesField = ({
             <File
                 multiple
                 // accept="image/apng, image/avif, image/gif, image/jpeg, image/png, image/svg+xml, image/webp"
-                accept="image/*,.heic,.heif"
+                accept="image/*"
                 onChange={uploadFile}
             />
 
