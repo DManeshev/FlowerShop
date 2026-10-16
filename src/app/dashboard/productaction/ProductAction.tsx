@@ -1,6 +1,6 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
 import { SubmitHandler, useForm, Controller } from 'react-hook-form'
 import { MouseEvent, useEffect } from 'react'
@@ -25,6 +25,7 @@ import { Textarea } from '@/components/ui/textarea'
 export default function ProductAction() {
 	const searchParams = useSearchParams()
 	const productId = searchParams.get('productId')
+	const router = useRouter();
 
 	const { handleSubmit, reset, getValues, watch, setValue, control } = useForm<IProductForm>({
 		mode: 'onChange',
@@ -79,10 +80,18 @@ export default function ProductAction() {
 		} = data
 
 		if (data.id) {
-			await ProductService.update(data.id, rest)
+			await ProductService.update(data.id, {
+				...rest,
+				price: +rest.price
+			})
 		} else {
-			await ProductService.create(rest)
+			await ProductService.create({
+				...rest,
+				price: +rest.price
+			})
 		}
+
+		router.push('/dashboard')
 	}
 
 	const deleteProductById = (event: MouseEvent) => {
