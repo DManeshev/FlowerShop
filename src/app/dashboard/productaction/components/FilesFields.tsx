@@ -33,16 +33,10 @@ export const FilesField = ({
     }
 
     const uploadFile = async (event: ChangeEvent<HTMLInputElement>) => {
-        try {
-            const { files } = event.target
-            const formData = new FormData()
+        const { files } = event.target
 
-            setDebug(
-                `onChange вызван\nФайлов: ${files?.length ?? 0}\n` +
-                Array.from(files ?? [])
-                    .map(file => `${file.name}\n${file.type}\n${file.size} bytes`)
-                    .join('\n\n')
-            );
+        try {
+            const formData = new FormData()
     
             const selectedFiles = files as FileList
 
@@ -50,11 +44,17 @@ export const FilesField = ({
                 formData.append('files', file)
             }
 
+            setDebug('Отправляю запрос на сервер...');
+
             const { data } = await ProductService.uploadFile(formData)
+
+            setDebug(`Сервер вернул: ${JSON.stringify(data)}`);
 
             const pathImages = data.map(({ Location }) => Location)
 
             setValue('images', [...getValues('images'), ...pathImages])
+
+            setDebug('Загрузка завершена, изображения добавлены в форму');
         } catch (error) {
             console.error(error)
         }
