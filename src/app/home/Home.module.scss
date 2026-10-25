@@ -1,14 +1,14 @@
 @reference "../theme.css";
 
 .products {
-  @apply grid grid-cols-4 gap-7;
+  @apply grid grid-cols-4 gap-7 p-4;
 
   @variant max-lg {
-    @apply grid-cols-3;
+    @apply grid-cols-3 gap-2;
   }
 
   @variant max-md {
-    @apply grid-cols-2 gap-2;
+    @apply grid-cols-2;
   }
 }
 

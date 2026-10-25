@@ -32,10 +32,10 @@
     @apply grid grid-cols-2 gap-2 px-4 pb-4;
 
     &__btn {
-        @apply w-full h-20 border rounded-md text-lg cursor-pointer hover:text-(--main-color);
+        @apply w-full h-20 border rounded-md text-lg cursor-pointer hover:text-(--colorSalmon);
     }
 }
 
 .active__type {
-    @apply text-(--main-color) border-(--main-color);
+    @apply text-(--colorSalmon) border-(--colorSalmon);
 }

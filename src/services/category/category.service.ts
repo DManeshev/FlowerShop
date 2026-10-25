@@ -1,5 +1,5 @@
-import { axiosClassic } from '@/api/api.interceptor'
-import { ICategory } from './category.types'
+import { axiosClassic, instance } from '@/api/api.interceptor'
+import { ICategory, ICreateSubcategory } from './category.types'
 
 const URL = '/categories' as const
 const SUBCATEGORY_URL = '/subcategory' as const
@@ -48,6 +48,14 @@ export const CategoryService = {
 		return axiosClassic<ICategory>({
 			url: `${SUBCATEGORY_URL}/${subcategoryId}`,
 			method: 'GET'
+		})
+	},
+
+	async createSubcategory(data: ICreateSubcategory) {
+		return instance<ICreateSubcategory>({
+			url: SUBCATEGORY_URL,
+			method: 'POST',
+			data
 		})
 	}
 }

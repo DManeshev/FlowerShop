@@ -276,7 +276,7 @@ export default function DeliveryForm({ setCheckoutStep, control, watch, handleSu
 					<Link
 						href="/privacy"
 						target="_blank"
-						className="pl-1 text-sm text-(--main-color) underline"
+						className="pl-1 text-sm text-(--colorSalmon) underline"
 					>
 						Политикой конфиденциальности.
 					</Link>

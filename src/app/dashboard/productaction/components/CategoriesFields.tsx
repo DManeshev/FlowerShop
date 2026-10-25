@@ -25,18 +25,16 @@ export const CategoriesFields = ({
     control,
     categoryId,
 }: CategoriesFieldsProps) => {
-    
-    const { data: categories } = useQuery(
-		['category'],
-		() => CategoryService.getAll(),
-		{
-		  select: (data: Array<ICategory>) =>
-			data.map((item: ICategory) => ({
-			  value: String(item.id),
-			  label: item.name
-			}))
-		}
-	)
+
+    const { data: categories } = useQuery({
+        queryKey: ['categories'],
+        queryFn: () => CategoryService.getAll(),
+        select: (data: Array<ICategory>) =>
+            data.map((item: ICategory) => ({
+                value: String(item.id),
+                label: item.name
+            }))
+    })
 
     const { data: subcategories } = useQuery({
         queryKey: ['subcategory', categoryId],

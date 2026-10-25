@@ -54,7 +54,7 @@ export default function Header() {
 			</div>
 
 			<div className={styles.header__container}>
-				<FaPhone size={22} color='var(--main-color)' />
+				<FaPhone size={22} color='var(--colorSalmon)' />
 				<div className='flex flex-col'>
 					<a href="tel:+79876663045" className={clsx(styles.text, styles.phone)}>
 						+7 (987) 666 30-45
@@ -66,7 +66,7 @@ export default function Header() {
 			</div>
 
 			<div className={clsx(styles.header__container, 'ml-auto')}>
-				<FaLocationDot size={22} color='var(--main-color)' />
+				<FaLocationDot size={22} color='var(--colorSalmon)' />
 				<div className={clsx(styles.text, styles.map)}>г. Чебоксары, ул. Стартовая, 3</div>
 			</div>
 

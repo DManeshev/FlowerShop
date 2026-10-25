@@ -7,3 +7,10 @@ export interface ICategory {
 	order: number
 	subCategories: ICategory[]
 }
+
+export interface ICreateSubcategory {
+	name: string
+	categoryId: number
+	icon: string
+	order: number;
+}

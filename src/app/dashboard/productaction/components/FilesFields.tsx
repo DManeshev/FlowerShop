@@ -23,11 +23,17 @@ export const FilesField = ({
     const deleteImage = async (value: string) => {
         const path = value.split('/').slice(-2).join('/')
 
-        await ProductService.deleteFile({ path })
+        try {
+            const result = await ProductService.deleteFile({ path })
 
-        const addedImages = getValues('images').filter(item => item !== value)
+            if (result.data) {
+                const addedImages = getValues('images').filter(item => item !== value)
 
-        setValue('images', addedImages)
+                setValue('images', addedImages)
+            }
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     const uploadFile = async (event: ChangeEvent<HTMLInputElement>) => {

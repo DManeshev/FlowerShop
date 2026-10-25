@@ -1,7 +1,7 @@
 @reference "../../theme.css";
 
 .product {
-	@apply grid grid-cols-[520fr_250fr];
+	@apply grid grid-cols-[520fr_250fr] py-5;
 
 	@variant max-lg {
 		@apply grid-cols-1;
@@ -20,15 +20,10 @@
 	}
 
 	&__content {
-		@apply py-0 pl-10;
+		@apply px-5;
 
-		@variant max-lg {
-			@apply pl-5;
-		}
-		
-
-		@variant max-md {
-			@apply pl-0
+		@variant max-xl {
+			@apply pt-5;
 		}
 
 		&_info {
@@ -44,13 +39,12 @@
 		}
 
 		&__text {
-			@apply text-[var(--purple)] font-bold;
+			@apply text-(--colorSalmon) font-bold;
 		}
 	}
 
 	&__price {
-		@apply text-3xl font-bold;
-		color: #E8735A;
+		@apply text-3xl text-(--colorSalmon) font-bold;
     }
 
 	&__description {
@@ -62,7 +56,7 @@
 	}
 
 	&__btn {
-		@apply w-full bg-[#E8735A] text-white cursor-pointer;
+		@apply w-full bg-(--colorSalmon) text-white cursor-pointer;
 	}
 }
 

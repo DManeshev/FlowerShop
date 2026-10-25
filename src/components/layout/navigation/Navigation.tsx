@@ -16,13 +16,11 @@ export default function Navigation() {
 	const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
 	const [hoveredSubcategory, setHoveredSubcategory] = useState<Array<ICategory>>([]);
 
-	const { data: categories } = useQuery(
-		['category'],
-		() => CategoryService.getAll(),
-		{
-			select: (data) => data.sort((a, b) => a.order - b.order)
-		}
-	)
+	const { data: categories } = useQuery({
+        queryKey: ['categories'],
+        queryFn: () => CategoryService.getAll(),
+        select: (data) => data.sort((a, b) => a.order - b.order)
+    })
 
 	function setSubcategory(subCategories: Array<ICategory>): void {
 		setHoveredSubcategory(subCategories);

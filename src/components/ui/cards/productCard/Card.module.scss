@@ -9,7 +9,7 @@
     }
 
     &__price {
-        @apply flex gap-1 font-lora text-xl font-bold text-[#E8735A];
+        @apply flex gap-1 font-lora text-xl font-bold text-(--colorSalmon);
     }
 }
 
@@ -35,11 +35,11 @@
 }
 
 .section__price {
-    @apply h-8 flex items-center gap-1 rounded-full px-3 bg-[var(--grey)] mt-[6px] cursor-pointer;
+    @apply h-8 flex items-center gap-1 rounded-full px-3 bg-(--colorGrey) mt-1.5 cursor-pointer;
     transition: background-color .3s ease-in;
 
     &:hover {
-        @apply bg-[var(--dark-grey)]
+        @apply bg-(--colorGreyDark)
     }
 }
 

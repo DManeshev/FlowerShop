@@ -12,7 +12,7 @@ export default function SubscriptionPage() {
 				дорог. Кстати, этим человеком легко можете быть вы сами :)
 			</p>
 
-      <SubHeading title="Зачем нужна подписка?" className='font-semibold text-[var(--purple)]' />
+      <SubHeading title="Зачем нужна подписка?" className='font-semibold text-(--colorSalmon)' />
       <ul className={styles.container}>
         <li>🌱 Радовать любимых, даже если вы далеко.</li>
         <li>🌱 Баловать себя и наслаждаться свежими цветами каждый день.</li>

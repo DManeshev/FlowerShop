@@ -7,21 +7,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
 
 :root {
-  --black: #404040;
-  --purple: #d5b8ff;
-  --dark-purple: #bf55ec;
-  --hover-color: #bf55ec;
-  --red: #e5704b;
-  --dark-red: #ce6443;
-  --hover-red-color: #ea8c6e;
-  --grey: #f2f2f2;
-  --light-grey: #f1f1f1;
-  --dark-grey: #aaaaaa;
-  --green: #14ad0f;
-  --disabled-color: #959495;
-  --rounded: 8px;
-
-  --main-color: #E8735A;
+  --colorSalmon: #E8735A;
+  --colorSalmonHover: #F1AB9C;
+  --colorSalmonSoft: #fcf0ec;
+  --colorRed: #FF0000;
+  --colorBlue: #0a1833;
+  --colorGreen: #008000;
+  --colorGrey: #C0C0C0;
+  --colorGreyLight: #ECECEC;
+  --colorGreyDark: #9A9A9A;
 }
 
 * {
@@ -29,7 +23,7 @@
 }
 
 html {
-  @apply font-lora text-base text-[--black] m-0 p-0;
+  @apply font-lora text-base text-(--colorBlue) m-0 p-0;
   scroll-behavior: smooth;
 }
 
@@ -55,11 +49,11 @@ input[type='number'] {
 }
 
 input[type='date']:disabled {
-  background-color: var(--grey);
+  background-color: var(--colorGrey);
 }
 
 .main {
-  @apply flex flex-col flex-1 py-5;
+  @apply flex flex-col flex-1;
 }
 
 .dashboard {
@@ -128,12 +122,12 @@ input[type='date']:disabled {
   }
 
   &::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 6px var(--dark-purple);
+    box-shadow: inset 0 0 6px var(--colorSalmon);
   }
 
   &::-webkit-scrollbar-track {
-    background-color: var(--light-grey);
-    outline: 1px solid var(--light-grey);
+    background-color: var(--colorGreyLight);
+    outline: 1px solid var(--colorGreyLight);
   }
 }
 .desktop__view {

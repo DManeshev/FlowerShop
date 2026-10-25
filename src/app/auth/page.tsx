@@ -77,7 +77,7 @@ export default function Page() {
 
 					<BsFillEyeSlashFill
 						size="20"
-						color={typeString ? 'black' : 'var(--dark-grey)'}
+						color={typeString ? 'black' : 'var(colorGreyDark)'}
 						className="absolute right-2 top-7"
 						onClick={() => setTypeString(!typeString)}
 					/>

@@ -10,7 +10,7 @@
 }
 
 .text {
-  @apply text-base text-[var(--black)];
+  @apply text-base text-(--colorBlue);
 }
 
 .diskList {

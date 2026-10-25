@@ -8,6 +8,6 @@
     }
 
     &__descr {
-        @apply text-[var(--grey)] pb-5;
+        @apply text-(--colorGrey) pb-5;
     }
 }

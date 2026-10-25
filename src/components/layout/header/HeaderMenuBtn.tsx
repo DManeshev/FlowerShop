@@ -17,13 +17,11 @@ export const HeaderMenuBtn = () => {
     const [titleCategory, setTitleCategory] = useState<string | null>(null);
     const [listSubcategory, setListSubcategory] = useState<Array<ICategory> | null>(null);
 
-    const { data: listCategory } = useQuery(
-		['category'],
-		() => CategoryService.getAll(),
-		{
-			select: (data) => data.sort((a, b) => a.order - b.order)
-		}
-	);
+    const { data: listCategory } = useQuery({
+        queryKey: ['categories'],
+        queryFn: () => CategoryService.getAll(),
+        select: (data) => data.sort((a, b) => a.order - b.order)
+    })
 
     function setSubcategory(category: ICategory): void {
         setTitleCategory(category.name);

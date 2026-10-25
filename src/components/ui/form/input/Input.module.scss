@@ -17,22 +17,22 @@
 }
 
 .input { 
-    @apply relative w-full border rounded-[var(--rounded)] px-3 py-2 font-lora text-sm font-medium;
+    @apply relative w-full border rounded-2 px-3 py-2 font-lora text-sm font-medium;
 
     &__layout {
-        @apply border-none rounded-full px-10 py-3 bg-[var(--grey)];
+        @apply border-none rounded-full px-10 py-3 bg-(--colorGrey)
     }
 
 
     &:focus {
-        @apply outline-1 outline-[var(--purple)];
+        @apply outline-1 outline-(--colorSalmon);
     }
 
     &:disabled {
-        @apply bg-[var(--grey)]
+        @apply bg-(--colorGrey)
     }
 }
 
 .small {
-    @apply px-3 py-[2px];
+    @apply px-3 py-0.5;
 }

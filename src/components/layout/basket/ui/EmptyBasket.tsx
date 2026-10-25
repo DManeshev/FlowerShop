@@ -10,7 +10,7 @@ export default function EmptyBasket() {
 		<div className="h-full flex flex-col place-content-center gap-3 px-5">
 			<Heading
 				title="Сейчас в корзине нет цветов"
-				className="font-bold text-(--black) text-center"
+				className="font-bold text-(--colorBlue) text-center"
 			/>
 
 			<DrawerClose

@@ -12,7 +12,7 @@ const Home = ({ paginationProducts }: IHome) => {
 	const { products, length } = paginationProducts
 
 	return (
-		<div>
+		<>
 			{products.length > 0 ? (
 				<div className={styles.products}>
 					{products.map(product => (
@@ -22,7 +22,7 @@ const Home = ({ paginationProducts }: IHome) => {
 			) : (
 				<div>Ничего нет</div>
 			)}
-		</div>
+		</>
 	)
 }
 

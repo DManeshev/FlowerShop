@@ -12,7 +12,7 @@
     @apply relative h-30 w-25 shrink-0;
 
     & img {
-        @apply object-cover rounded-(--rounded);
+        @apply object-cover rounded-2;
     }
 }
 
@@ -29,7 +29,7 @@
 }
 
 .badge {
-    @apply text-white bg-(--main-color) text-sm font-light;
+    @apply text-white bg-(--colorSalmon) text-sm font-light;
 }
 
 .delete {
@@ -37,7 +37,7 @@
 }
 
 .title {
-    @apply text-xl cursor-pointer hover:text-(--main-color);
+    @apply text-xl cursor-pointer hover:text-(--colorSalmon);
 
     @variant max-sm {
         @apply text-lg;

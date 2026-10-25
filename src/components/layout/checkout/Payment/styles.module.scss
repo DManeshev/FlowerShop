@@ -12,7 +12,7 @@
     }
 
     &__phone {
-        @apply text-base text-(--dark-grey) pb-3;
+        @apply text-base text-(--colorGreyDark) pb-3;
     }
 
     &__address {
@@ -24,7 +24,7 @@
     @apply w-full h-full flex flex-col;
 
     &__title {
-        @apply text-2xl text-(--main-color) text-center py-4;
+        @apply text-2xl text-(--colorSalmon) text-center py-4;
     }
 
     &__products {
@@ -38,9 +38,9 @@
 }
 
 .total {
-    @apply flex items-center justify-center text-4xl text-(--main-color) font-semibold;
+    @apply flex items-center justify-center text-4xl text-(--colorSalmon) font-semibold;
 }
 
 .highlight {
-    @apply text-(--main-color)
+    @apply text-(--colorSalmon)
 }

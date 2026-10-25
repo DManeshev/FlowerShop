@@ -57,15 +57,13 @@ export default function ProductAction() {
 		}
 	)
 
-	const { mutate: deleteProduct } = useMutation(
-		['delete by id'],
-		(id: string | number) => ProductService.delete(id),
-		{
-			onSuccess({ data }) {
-				console.log(data)
-			}
+	const { mutate: deleteProduct } = useMutation({
+		mutationKey: ['delete product by id'],
+		mutationFn: (id: string | number) => ProductService.delete(id),
+		onSuccess: () => {
+			router.push('/dashboard')
 		}
-	)
+	})
 
 	useEffect(() => {
 		if (productId) getProduct(productId)

@@ -1,7 +1,7 @@
 @reference "../../../app/theme.css";
 
 .sidebar {
-    @apply w-40 shrink-0 border-r;
+    @apply w-40 shrink-0 border-r py-5;
 
     @variant max-md {
         @apply w-full border-r-0 border-b pb-4;
@@ -20,10 +20,10 @@
     @apply cursor-pointer;
 
     &:hover {
-        @apply text-(--main-color);
+        @apply text-(--colorSalmon);
     }
 }
 
 .active {
-    @apply text-(--main-color);
+    @apply text-(--colorSalmon);
 }

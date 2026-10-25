@@ -12,7 +12,11 @@
 	}
 
 	&__child {
-		@apply grow;
+		@apply grow py-5;
+
+		@variant max-md {
+			@apply py-2;
+		}
 	}
 }
 

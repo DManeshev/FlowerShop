@@ -1,7 +1,7 @@
 @reference "../../../../app/theme.css";
 
 .card {
-    @apply relative w-full h-full overflow-hidden rounded-xl bg-[var(--grey)];
+    @apply relative w-full h-full overflow-hidden rounded-xl bg-(--colorGrey);
 
     &__image {
         @apply relative pb-[133%];

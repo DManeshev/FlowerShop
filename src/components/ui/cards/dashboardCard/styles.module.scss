@@ -4,7 +4,7 @@
     @apply w-full grid grid-cols-[1fr_100px] cursor-pointer;
 
     &:hover .cell {
-        @apply bg-(--light-grey)
+        @apply bg-(--colorGreyLight)
     }
 
     @variant max-sm {
@@ -17,7 +17,7 @@
     h-full w-full 
     flex items-center
     py-1
-    border-r-2 border-r-(--main-color) last:border-r-0;
+    border-r-2 border-r-(--colorSalmon) last:border-r-0;
 }
 
 .price {
