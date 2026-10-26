@@ -32,13 +32,6 @@ export const ProductService = {
         })
     },
 
-    async getBySubcategory(subcategorySlug: string) {
-        return axiosClassic<IProduct[]>({
-            url: getProductUrl(`/by-subcategory/${subcategorySlug}`),
-            method: 'GET'
-        })
-    },
-
     async create(data: IProduct) {
         return instance<IProduct>({
             url: getProductUrl('/create'),
@@ -46,7 +39,7 @@ export const ProductService = {
             data
         })
     },
-    
+
     async update(id: number | string, data: IProduct) {
         return instance<IProduct>({
             url: getProductUrl(`/${id}`),
@@ -73,12 +66,12 @@ export const ProductService = {
         })
     },
 
-    async deleteFile(data: { path: string}) {
+    async deleteFile(data: { path: string }) {
         return instance<boolean>({
             url: `/files`,
             method: 'DELETE',
             data
-        })  
+        })
     },
 
     async getAllFlowers() {

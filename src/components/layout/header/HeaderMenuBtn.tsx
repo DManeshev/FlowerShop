@@ -8,7 +8,7 @@ import { ICategory, CategoryService } from "@/services";
 
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTrigger } from "@/components/ui/drawer";
 import { HiMenuAlt4 } from "react-icons/hi";
-import { IoClose, IoArrowBack  } from "react-icons/io5";
+import { IoClose, IoArrowBack } from "react-icons/io5";
 
 import styles from './Header.module.scss'
 
@@ -25,7 +25,7 @@ export const HeaderMenuBtn = () => {
 
     function setSubcategory(category: ICategory): void {
         setTitleCategory(category.name);
-        setListSubcategory(category.subCategories);
+        setListSubcategory(category.subcategories);
     }
 
     function resetSubcategory(): void {
@@ -38,7 +38,7 @@ export const HeaderMenuBtn = () => {
 
         setOpen(open)
     }
-    
+
     return (
         <Drawer
             open={open}
@@ -69,7 +69,7 @@ export const HeaderMenuBtn = () => {
                                 </span>
                             </button>
 
-                            { titleCategory && <div className={styles.drawer__title}>{titleCategory}</div> }
+                            {titleCategory && <div className={styles.drawer__title}>{titleCategory}</div>}
 
                             <DrawerClose
                                 onClick={resetSubcategory}

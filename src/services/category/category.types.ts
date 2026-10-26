@@ -1,16 +1,16 @@
 export interface ICategory {
 	id: number
+	createdAt: string;
 	name: string
 	slug: string
-	icon: string
-	image: string
 	order: number
-	subCategories: ICategory[]
+	parentId: number | null
+
+	subcategories: ICategory[]
 }
 
 export interface ICreateSubcategory {
 	name: string
-	categoryId: number
-	icon: string
+	parentId: number | null
 	order: number;
 }

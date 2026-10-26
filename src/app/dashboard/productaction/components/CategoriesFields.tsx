@@ -6,24 +6,24 @@ import { SelectType } from '@/types';
 
 import { FieldLabel, FieldError } from '@/components/ui/field';
 import {
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
 } from '@/components/ui/select'
 
 import styles from '../../Dashboard.module.scss';
 
 interface CategoriesFieldsProps {
     control: Control<IProductForm>
-    categoryId: number
+    parentId: number
 }
 
 export const CategoriesFields = ({
     control,
-    categoryId,
+    parentId,
 }: CategoriesFieldsProps) => {
 
     const { data: categories } = useQuery({
@@ -37,20 +37,20 @@ export const CategoriesFields = ({
     })
 
     const { data: subcategories } = useQuery({
-        queryKey: ['subcategory', categoryId],
-        queryFn: () => CategoryService.getSubcategoryByCategory(categoryId),
-        enabled: !!categoryId,
+        queryKey: ['subcategory', parentId],
+        queryFn: () => CategoryService.getSubcategoriesByParentId(parentId),
+        enabled: !!parentId,
         select: ({ data }) =>
             data.map((item: ICategory) => ({
-            value: String(item.id),
-            label: item.name
+                value: String(item.id),
+                label: item.name
             })),
     })
 
     return (
         <div className={styles.categories}>
             <Controller
-                name='categoryId'
+                name='selectedParentCategoryId'
                 control={control}
                 rules={{ required: 'Поле Категория обязательное' }}
                 render={({ field, fieldState }) => (
@@ -70,11 +70,11 @@ export const CategoriesFields = ({
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
-                                {categories && categories.map((item: SelectType) => (
-                                    <SelectItem key={item.value} value={item.value} className={styles.select_item}>
-                                    {item.label}
-                                    </SelectItem>
-                                ))}
+                                    {categories && categories.map((item: SelectType) => (
+                                        <SelectItem key={item.value} value={item.value} className={styles.select_item}>
+                                            {item.label}
+                                        </SelectItem>
+                                    ))}
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
@@ -85,7 +85,7 @@ export const CategoriesFields = ({
 
             {subcategories?.length ?
                 <Controller
-                    name='subcategoryId'
+                    name='categoryId'
                     control={control}
                     rules={{ required: 'Поле Подкатегория обязательное' }}
                     render={({ field, fieldState }) => (
@@ -103,9 +103,9 @@ export const CategoriesFields = ({
                                 <SelectContent>
                                     <SelectGroup>
                                         {subcategories && subcategories.map((item: SelectType) => (
-                                        <SelectItem key={item.value} value={item.value} className={styles.select_item}>
-                                            {item.label}
-                                        </SelectItem>
+                                            <SelectItem key={item.value} value={item.value} className={styles.select_item}>
+                                                {item.label}
+                                            </SelectItem>
                                         ))}
                                     </SelectGroup>
                                 </SelectContent>
@@ -114,7 +114,7 @@ export const CategoriesFields = ({
                         </div>
                     )}
                 />
-            : null}
+                : null}
         </div>
     )
 }

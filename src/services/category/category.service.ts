@@ -2,12 +2,20 @@ import { axiosClassic, instance } from '@/api/api.interceptor'
 import { ICategory, ICreateSubcategory } from './category.types'
 
 const URL = '/categories' as const
-const SUBCATEGORY_URL = '/subcategory' as const
 
 export const CategoryService = {
 	async getAll(): Promise<Array<ICategory>> {
 		const { data } = await axiosClassic<Array<ICategory>>({
 			url: URL,
+			method: 'GET'
+		});
+
+		return data;
+	},
+
+	async getAllSubcategories(): Promise<Array<ICategory>> {
+		const { data } = await axiosClassic<Array<ICategory>>({
+			url: `${URL}/subcategories`,
 			method: 'GET'
 		});
 
@@ -21,39 +29,16 @@ export const CategoryService = {
 		})
 	},
 
-	async getAllSubcategory(): Promise<Array<ICategory>> {
-		const { data } = await axiosClassic<Array<ICategory>>({
-			url: SUBCATEGORY_URL,
-			method: 'GET'
-		});
-
-		return data;
-	},
-
-	async getSubcategoryByCategory(categoryId: number) {
-		return axiosClassic<Array<ICategory>>({
-			url: `${SUBCATEGORY_URL}/by-category/${categoryId}`,
+	async getSubcategoriesByParentId(parentId: number) {
+		return instance<Array<ICategory>>({
+			url: `${URL}/subcategories/${parentId}`,
 			method: 'GET'
 		})
 	},
 
-	async getSubcategoryBySlug(slug: string) {
-		return axiosClassic<ICategory>({
-			url: `${SUBCATEGORY_URL}/by-slug/${slug}`,
-			method: 'GET'
-		})
-	},
-
-	async getSubcategoryById(subcategoryId: number) {
-		return axiosClassic<ICategory>({
-			url: `${SUBCATEGORY_URL}/${subcategoryId}`,
-			method: 'GET'
-		})
-	},
-
-	async createSubcategory(data: ICreateSubcategory) {
-		return instance<ICreateSubcategory>({
-			url: SUBCATEGORY_URL,
+	async createCategory(data: ICreateSubcategory) {
+		return instance<ICategory>({
+			url: URL,
 			method: 'POST',
 			data
 		})

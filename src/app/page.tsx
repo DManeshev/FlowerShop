@@ -4,14 +4,8 @@ import Home from './home/Home'
 
 export const revalidate = 3600
 
-const getProducts = async () => {
-	const { data } = await ProductService.getAll()
-
-	return data
-}
-
 export default async function HomePage() {
-	const data = await getProducts()
+	const { data } = await ProductService.getAll()
 
 	return <Home paginationProducts={data} />
 }

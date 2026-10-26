@@ -46,7 +46,7 @@ export function Subcategories({
 	const [subcategoryValue, setSubcategoryValue] = useState<string>('');
 
 	const { mutateAsync } = useMutation({
-		mutationFn: (data: ICreateSubcategory) => CategoryService.createSubcategory(data),
+		mutationFn: (data: ICreateSubcategory) => CategoryService.createCategory(data),
 		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: ['categories']
@@ -58,15 +58,14 @@ export function Subcategories({
 	})
 
 	const handleAddNewSubcategory = async () => {
-		if (!category) return 
+		if (!category) return
 		if (subcategoryValue.length === 0) return;
 
 		try {
 			const data: ICreateSubcategory = {
-				categoryId: category.id,
+				parentId: category.id,
 				name: subcategoryValue,
 				order: subcategories.length + 1,
-				icon: '',
 			}
 
 			await mutateAsync(data);
@@ -134,7 +133,7 @@ export function Subcategories({
 									>
 										<span>Добавить</span>
 									</Button>
-									
+
 									<Button
 										className="h-full"
 										size="xs"

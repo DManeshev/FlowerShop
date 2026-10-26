@@ -17,10 +17,10 @@ export default function Navigation() {
 	const [hoveredSubcategory, setHoveredSubcategory] = useState<Array<ICategory>>([]);
 
 	const { data: categories } = useQuery({
-        queryKey: ['categories'],
-        queryFn: () => CategoryService.getAll(),
-        select: (data) => data.sort((a, b) => a.order - b.order)
-    })
+		queryKey: ['categories'],
+		queryFn: () => CategoryService.getAll(),
+		select: (data) => data.sort((a, b) => a.order - b.order)
+	})
 
 	function setSubcategory(subCategories: Array<ICategory>): void {
 		setHoveredSubcategory(subCategories);
@@ -35,11 +35,11 @@ export default function Navigation() {
 			<ul className={styles.nav__list} >
 				{categories ? (
 					<div className={styles.nav__categories}>
-						{categories.map(({ id, name, subCategories }) => (
+						{categories.map(({ id, name, subcategories }) => (
 							<li
 								key={id}
 								className={styles.nav__item}
-								onMouseEnter={() => setSubcategory(subCategories)}
+								onMouseEnter={() => setSubcategory(subcategories)}
 							>
 								<span>{name}</span>
 							</li>

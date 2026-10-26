@@ -7,25 +7,18 @@ import styles from './Page.module.scss'
 
 type Params = Promise<{ slug: string }>
 
-const getProductsBySubcategorySlug = async (slug: string) => {
-	const { data } = await ProductService.getBySubcategory(slug)
-
-	return data
-}
-
 export default async function Page(props: { params: Params }) {
-  const params = await props.params
-  const slug = params.slug
-  
-	const products: Array<IProduct> = (await getProductsBySubcategorySlug(slug))
-		.sort((a: IProduct, b: IProduct) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+	const params = await props.params
+	const slug = params.slug
+
+	const { data: products } = await ProductService.getByCategory(slug)
 
 	return (
 		<>
 			{products.length > 0 ? (
 				<div className={styles.products}>
-					{products.map(item => 
-						<ProductCard key={item.id} {...item } />
+					{products.map(item =>
+						<ProductCard key={item.id} {...item} />
 					)}
 				</div>
 			) : (

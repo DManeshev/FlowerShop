@@ -29,8 +29,8 @@ export default function CategoriesPage() {
 
 	useEffect(() => {
 		if (!selectedCategory) return
-		
-		setListSubcategories(selectedCategory.subCategories)
+
+		setListSubcategories(selectedCategory.subcategories)
 	}, [categories])
 
 	return (
@@ -63,7 +63,7 @@ export default function CategoriesPage() {
 										aria-pressed={isActive}
 										onClick={() => {
 											setActiveCategory(item.id)
-											setListSubcategories(item.subCategories)
+											setListSubcategories(item.subcategories)
 										}}
 										className={clsx(styles.item, isActive && styles.itemActive)}
 									>
@@ -74,7 +74,7 @@ export default function CategoriesPage() {
 											{item.name}
 										</span>
 										<span className={styles.itemCount}>
-											{item.subCategories.length}
+											{item.subcategories.length}
 										</span>
 									</button>
 								</li>

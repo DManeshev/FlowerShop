@@ -49,7 +49,7 @@ export default function ProductAction() {
 			onSuccess({ data }) {
 				reset({
 					...data,
-					categoryName: String(data.categoryId),
+					selectedParentCategoryId: data.category?.parentId ?? 0,
 					statusName: data.status,
 					isDeliveryName: data.isDelivery ? 'Да' : 'Нет',
 				})
@@ -70,12 +70,7 @@ export default function ProductAction() {
 	}, [productId])
 
 	const onSubmit: SubmitHandler<IProductForm> = async data => {
-		const {
-			categoryName,
-			subcategoryName,
-			statusName,
-			...rest
-		} = data
+		const { selectedParentCategoryId, statusName, ...rest } = data
 
 		if (data.id) {
 			await ProductService.update(data.id, {
@@ -101,10 +96,13 @@ export default function ProductAction() {
 	return (
 		<div>
 			<form className={clsx(styles.form)}>
-				<CategoriesFields control={control} categoryId={watch('categoryId')} />
+				<CategoriesFields
+					control={control}
+					parentId={watch('selectedParentCategoryId')}
+				/>
 
 				<div className={styles.container}>
-					<Controller 
+					<Controller
 						name='name'
 						control={control}
 						rules={{ required: 'Поле Название обязательное' }}
@@ -121,7 +119,7 @@ export default function ProductAction() {
 						)}
 					/>
 
-					<Controller 
+					<Controller
 						name='price'
 						control={control}
 						rules={{ required: 'Поле Стоимость обязательное' }}
@@ -141,7 +139,7 @@ export default function ProductAction() {
 
 					<FlowersField control={control} />
 
-					<Controller 
+					<Controller
 						name='description'
 						control={control}
 						render={({ field }) => (
