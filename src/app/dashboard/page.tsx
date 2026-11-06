@@ -19,14 +19,14 @@ import styles from './Dashboard.module.scss'
 
 const DashboardPage: NextPage = () => {
 	const router = useRouter()
-	
+
 	const [searchTerm, setSearchTerm] = useState<string>('');
 
 	const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
 	const { data, isFetching } = useProductQuery({
 		searchTerm: debouncedSearchTerm,
-		enabled: debouncedSearchTerm.length >= 3 
+		enabled: debouncedSearchTerm.length >= 3
 	})
 
 	const sortedProducts = data &&

@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import { ProductService } from '@/services'
 
 import Product from './Product'
@@ -9,6 +11,8 @@ export default async function ProductDetailPage(props: { params: Params }) {
 	const slug = params.slug
 
 	const { data } = await ProductService.getBySlug(slug)
+
+	if (!data?.id) notFound()
 
 	return <Product {...data} />
 }

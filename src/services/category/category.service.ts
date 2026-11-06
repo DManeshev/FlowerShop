@@ -29,6 +29,13 @@ export const CategoryService = {
 		})
 	},
 
+	async getBySlug(slug: string) {
+		return axiosClassic<ICategory>({
+			url: `${URL}/by-slug/${slug}`,
+			method: 'GET'
+		})
+	},
+
 	async getSubcategoriesByParentId(parentId: number) {
 		return instance<Array<ICategory>>({
 			url: `${URL}/subcategories/${parentId}`,

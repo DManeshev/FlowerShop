@@ -12,7 +12,7 @@ Next.js 16 (App Router) + TypeScript frontend for a flower shop. Single package,
 - `yarn lint` is currently broken: `next lint` was removed in Next.js 16 and ESLint is not installed. There is no working lint step.
 
 ## Environment
-- `.env` is gitignored but required. Variables: `SERVER_URL`, `APP_URL`, `DADATA_ACCESS_KEY`, `DADATA_SECRET_KEY`. `next.config.js` forwards them to `process.env`.
+- `.env` is gitignored but required. Variables: `SERVER_URL`, `APP_URL`. `next.config.js` forwards them to `process.env`.
 - Backend currently `http://83.220.168.220:4200/api`; `APP_URL` drives `metadataBase` and a missing value breaks root layout metadata.
 
 ## Architecture
@@ -42,3 +42,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## SEO audit context
+- Full audit report: `docs/seo/SEO-AUDIT.md` (dated 2026-11-06). Read it before any SEO-related work.
+- Headline: site is effectively CSR-only because `PersistGate loading={null}` in `src/providers/Providers.tsx:27` returns `null` on the server, so no `<header>`, `<h1>`, `<img>` or category links reach SSR HTML. Fixing this is P0 #1.
+- Other P0 blockers: sitemap has 2 of 4 URLs returning 404 and no products/categories; soft 404 on invalid slugs; `/dashboard`, `/auth`, `/thanks` indexed; no canonical/unique metadata; no H1; production build fails on `/_global-error`; DaData secrets in `next.config.js` env.
+- Full prioritized plan (P0/P1/P2/P3) and verification commands are in `docs/seo/SEO-AUDIT.md`.

@@ -1,3 +1,10 @@
+import { NO_INDEX_PAGE } from "@/constants/seo.constants"
+
+export const metadata = {
+  ...NO_INDEX_PAGE,
+  title: 'Ваш заказ принят | Твои цветы 21',
+}
+
 export default function ThanksPage() {
   return (
     <div className="flex flex-col items-center">

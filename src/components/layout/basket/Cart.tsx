@@ -2,13 +2,14 @@
 
 import { useMediaQuery } from "usehooks-ts";
 import { useMemo, useState } from "react";
+import { PersistGate } from 'redux-persist/integration/react'
 
-import { ICart } from "@/store";
+import { persistor, ICart } from "@/store";
 import { useActions } from "@/hooks/useAction";
 import { formatPrice } from "@/lib/utils";
 import { useTypedSelector } from "@/hooks/useTypedSelector";
 
-import { 
+import {
     Drawer,
     DrawerClose,
     DrawerHeader,
@@ -29,8 +30,8 @@ export const Cart = () => {
 
     const isDesktop: boolean = useMediaQuery('(min-width: 991px)')
 
-	const { cart } = useTypedSelector(state => state.cart);
-	const { clearCart, toggleCheckoutDrawer } = useActions();
+    const { cart } = useTypedSelector(state => state.cart);
+    const { clearCart, toggleCheckoutDrawer } = useActions();
 
     const totalProducts: number = cart.length;
 
@@ -45,75 +46,77 @@ export const Cart = () => {
     }
 
     return (
-        <Drawer 
-            open={open}
-            onOpenChange={setOpen}
-            swipeDirection={isDesktop ? 'right' : 'down'}
-        >
-            <DrawerTrigger
-                render={
-                    <button className={styles.cart__btn}>
-                        <span>Корзина</span>
-                        {!!totalProducts ? 
-                            <Badge className={styles.cart__btn_badge}>{totalProducts}</Badge>
-                            : null 
-                        }
-                    </button>
-                }
-            />
-
-            <DrawerContent className={styles.drawer}>
-                <DrawerHeader className={styles.drawer__header}>
-                    <div className={styles.header}>
-                        <div className="w-5 h-5 opacity-0" />
-                        <h2 className={styles.header__title}>Корзина</h2>
-                        <DrawerClose
-                            render={
-                                <button className={styles.header__close}>
-                                    <span>
-                                        <IoClose size={16} />
-                                    </span>
-                                </button>
+        <PersistGate loading={null} persistor={persistor}>
+            <Drawer
+                open={open}
+                onOpenChange={setOpen}
+                swipeDirection={isDesktop ? 'right' : 'down'}
+            >
+                <DrawerTrigger
+                    render={
+                        <button className={styles.cart__btn}>
+                            <span>Корзина</span>
+                            {!!totalProducts ?
+                                <Badge className={styles.cart__btn_badge}>{totalProducts}</Badge>
+                                : null
                             }
-                        />
+                        </button>
+                    }
+                />
+
+                <DrawerContent className={styles.drawer}>
+                    <DrawerHeader className={styles.drawer__header}>
+                        <div className={styles.header}>
+                            <div className="w-5 h-5 opacity-0" />
+                            <h2 className={styles.header__title}>Корзина</h2>
+                            <DrawerClose
+                                render={
+                                    <button className={styles.header__close}>
+                                        <span>
+                                            <IoClose size={16} />
+                                        </span>
+                                    </button>
+                                }
+                            />
+                        </div>
+
+                        {!!cart.length ? (
+                            <button onClick={() => clearCart()} className={styles.clear}>
+                                <span>Удалить все</span>
+                            </button>
+                        ) : null}
+                    </DrawerHeader>
+
+                    <div className={styles.content}>
+                        {!!cart.length ? (
+                            <div className={styles.cards}>
+                                {cart.map((item: ICart) => (
+                                    <CartCard
+                                        key={item.product.id}
+                                        product={item.product}
+                                        setOpen={setOpen}
+                                    />
+                                ))}
+                            </div>
+                        ) : <EmptyBasket />}
                     </div>
 
                     {!!cart.length ? (
-                        <button onClick={() => clearCart()} className={styles.clear}>
-                            <span>Удалить все</span>
-                        </button>
+                        <DrawerFooter className={styles.drawer__footer}>
+                            <div className={styles.total}>
+                                <span>{formatPrice(total)}</span>
+                            </div>
+
+                            <Button
+                                size="xl"
+                                onClick={navigateToCheckout}
+                            >
+                                <span>Оформить заказ</span>
+                            </Button>
+                        </DrawerFooter>
                     ) : null}
-                </DrawerHeader>
-
-                <div className={styles.content}>
-					{!!cart.length ? (
-                        <div className={styles.cards}>
-                            {cart.map((item: ICart) => (
-								<CartCard
-                                    key={item.product.id}
-                                    product={item.product}
-                                    setOpen={setOpen}
-                                />
-                            ))}
-                        </div>
-                    ) : <EmptyBasket />}
-                </div>
-
-                {!!cart.length ? (
-                    <DrawerFooter className={styles.drawer__footer}>
-                        <div className={styles.total}>
-                            <span>{formatPrice(total)}</span>
-                        </div>
-
-                        <Button
-                            size="xl"
-                            onClick={navigateToCheckout}
-                        >
-                            <span>Оформить заказ</span>    
-                        </Button>
-                    </DrawerFooter>
-                ) : null}
-            </DrawerContent>
-        </Drawer>
+                </DrawerContent>
+            </Drawer>
+        </PersistGate>
     )
 }

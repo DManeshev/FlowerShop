@@ -18,10 +18,17 @@ const nextConfig = {
   env: {
     SERVER_URL: process.env.SERVER_URL,
     APP_URL: process.env.APP_URL,
-    DADATA_ACCESS_KEY: process.env.DADATA_ACCESS_KEY,
-    DADATA_SECRET_KEY: process.env.DADATA_SECRET_KEY,
+  },
+  async headers() {
+    return [
+      {
+        source: '/dashboard/:path*',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow' }
+        ]
+      }
+    ]
   },
 }
 
 module.exports = nextConfig
-  
