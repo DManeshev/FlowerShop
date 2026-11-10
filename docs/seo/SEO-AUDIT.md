@@ -791,7 +791,7 @@ CWV: PageSpeed Insights (мобильный) после фикса; цели LCP
 | T3 | ✅ Выполнено | `notFound()` добавлен в `product/[slug]/page.tsx` и `category/[slug]/page.tsx`. Невалидные slug теперь отдают 404. `CategoryService.getBySlug` деструктурирует `data`. |
 | T4 | ✅ Выполнено | `/auth` — серверный page с metadata + клиентский `Auth.tsx`. `/dashboard` — клиентский page + серверный `layout.tsx` с metadata (noindex). `/thanks` — серверный с metadata. `robots.ts` и `next.config.js` headers корректны. Build проходит. |
 | M1 | ✅ Выполнено | layout.tsx: metadataBase (fallback), title template, description, canonical, OG-изображение, verification (yandex/google через env). generateMetadata для product/[slug], category/[slug], delivery, subscription, privacy. |
-| H1 | ⬜ | — |
+| H1 | ✅ Выполнено | H1 добавлен на главную (sr-only), категорию (sr-only), товар, /privacy, /auth, /thanks, /delivery, /subscription, not-found. Карточки товаров → h3. Heading рендерит h1. Мелочи: emoji в H1 на /delivery и /subscription (можно вынести в span); EmptyBasket использует Heading (h1) внутри drawer — при пустой корзине возможен второй h1 на странице. |
 | S1 | ⬜ | — |
 | C1 | ⬜ | — |
 | L1 | ⬜ | — |

@@ -1,7 +1,7 @@
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
 
 import { AuthPage } from './Auth'
-import SubHeading from '@/components/ui/heading/SubHeading'
+import Heading from '@/components/ui/heading/Heading'
 
 import styles from './Auth.module.scss'
 
@@ -14,7 +14,7 @@ export default function Page() {
 	return (
 		<div className={styles.auth}>
 			<div className="pb-4">
-				<SubHeading title="Авторизация" />
+				<Heading title="Авторизация" />
 			</div>
 
 			<AuthPage />

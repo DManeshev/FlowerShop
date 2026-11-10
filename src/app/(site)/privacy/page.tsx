@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import Link from 'next/link'
 
-import SubHeading from '@/components/ui/heading/SubHeading'
+import Heading from '@/components/ui/heading/Heading'
 
 export const metadata: Metadata = {
 	title: 'Политика конфиденциальности',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
 	return (
 		<div className="container py-5 font-lora">
-			<SubHeading title="Политика в отношении обработки персональных данных" />
+			<Heading title="Политика в отношении обработки персональных данных" />
 			<ol>
 				<li className="pb-5">
 					1. Общие положения
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
 						<li>
 							2.3. Веб-сайт — совокупность графических и информационных
 							материалов, а также программ для ЭВМ и баз данных, обеспечивающих
-							их доступность в сети интернет по сетевому адресу 
+							их доступность в сети интернет по сетевому адресу
 							<Link href='/' className='text-(--colorSalmon)'>https://yourflowers21</Link>.
 						</li>
 						<li>

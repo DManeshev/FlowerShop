@@ -52,6 +52,7 @@ export default async function Page(props: { params: Params }) {
 
 	return (
 		<>
+			<h1 className="sr-only">{category.name}</h1>
 			{products.length > 0 ? (
 				<div className={styles.products}>
 					{products.map(item =>

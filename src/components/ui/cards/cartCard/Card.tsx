@@ -59,7 +59,7 @@ export default function Card({ product, setOpen }: CardProps) {
 						onClick={() => setOpen(false)}
 						className={styles.title}
 					>
-						<h2>{product.name}</h2>
+						<h3>{product.name}</h3>
 					</Link>
 
 					<div className={styles.price}>{formatPrice(product.price)}</div>

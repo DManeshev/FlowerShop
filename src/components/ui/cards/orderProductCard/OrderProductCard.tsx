@@ -21,13 +21,3 @@ export const OrderProductCard = ({ product }: OrderProductCardProps) => {
         </AspectRatio>
     )
 }
-
-// <div className={styles.products}>
-    {/* <div className={styles.products__scroll}>
-        <div className={styles.products__cards}>
-            {cart.map(({ product }) => (
-                <CartCard key={product.id} product={product} setOpen={() => {}} />
-            ))}
-        </div>
-    </div> */}
-// </div>

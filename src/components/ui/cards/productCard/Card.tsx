@@ -32,7 +32,7 @@ export const ProductCard = memo(function Card(props: IProduct) {
 				</div>
 
 				<section className={styles.section}>
-					<h2 className={styles.card__logo}>{name}</h2>
+					<h3 className={styles.card__logo}>{name}</h3>
 					<div className={styles.card__price}>
 						<span>{formatPrice(price)}</span>
 					</div>

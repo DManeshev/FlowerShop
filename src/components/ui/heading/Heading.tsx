@@ -6,7 +6,7 @@ interface IHeading {
 }
 
 const Heading = ({ title, className = '' }: IHeading) => {
-  return <h2 className={`${styles.title} ${className}`}>{title}</h2>
+  return <h1 className={`${styles.title} ${className}`}>{title}</h1>
 }
 
 export default Heading;
