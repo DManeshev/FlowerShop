@@ -1,5 +1,20 @@
+import type { Metadata } from 'next'
+
 import SubHeading from '@/components/ui/heading/SubHeading'
 import styles from './Subscription.module.scss'
+
+export const metadata: Metadata = {
+	title: 'Цветочная подписка',
+	description: 'Цветочная подписка — регулярная доставка свежих букетов по Чебоксарам, Новому Городу и Новочебоксарску. Сезонные цветы каждую неделю. Интернет-магазин «Твои цветы 21».',
+	alternates: { canonical: '/subscription' },
+	openGraph: {
+		type: 'website',
+		url: '/subscription',
+		title: 'Цветочная подписка — Твои цветы 21',
+		description: 'Регулярная доставка свежих букетов по Чебоксарам и Новочебоксарску.',
+		images: [{ url: '/og/og-home.jpg', width: 1200, height: 630, alt: 'Цветочная подписка — Твои цветы 21' }]
+	}
+}
 
 export default function SubscriptionPage() {
 	return (

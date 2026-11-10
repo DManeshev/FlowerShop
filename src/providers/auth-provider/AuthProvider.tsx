@@ -41,7 +41,7 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
 
 	if (user && isAdminRoute) return <NotFound />
 
-	pathname !== '/' && router.replace('/')
+	if (pathname !== '/' && typeof window !== 'undefined') router.replace('/')
 	return null
 }
 

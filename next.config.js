@@ -18,6 +18,8 @@ const nextConfig = {
   env: {
     SERVER_URL: process.env.SERVER_URL,
     APP_URL: process.env.APP_URL,
+    YANDEX_WEBMASTER: process.env.YANDEX_WEBMASTER,
+    GOOGLE_GSC: process.env.GOOGLE_GSC,
   },
   async headers() {
     return [

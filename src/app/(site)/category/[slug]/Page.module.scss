@@ -1,4 +1,4 @@
-@reference "../theme.css";
+@reference "../../../theme.css";
 
 .products {
   @apply grid grid-cols-4 gap-7 p-4;
@@ -11,4 +11,3 @@
     @apply grid-cols-2;
   }
 }
-

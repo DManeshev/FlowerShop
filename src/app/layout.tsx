@@ -1,81 +1,57 @@
-import { headers } from 'next/headers'
 import type { Metadata, Viewport } from 'next'
 import type { PropsWithChildren, ReactNode } from 'react'
 
 import Providers from '@/providers/Providers'
-import { SITE_NAME } from '@/constants/seo.constants'
-import { getSiteUrl } from '@/config/url.config'
-import { protectedRoutes } from '@/providers/auth-provider/protected-routes.data'
-
-import Header from '@/components/layout/header/Header'
-import Footer from '@/components/layout/footer/Footer'
-import Checkout from '@/components/layout/checkout/Checkout'
-import Navigation from '@/components/layout/navigation/Navigation'
 
 import './theme.css'
 import './global.scss'
 
 export const metadata: Metadata = {
-  title: 'Цветы в Чебоксарах - доставка букетов по Новому Городу, Чебоксарам и Новочебоксарску | Твои цветы 21',
-  description: 'Свежие цветы и букеты с доставкой по Чебоксарам, Новому Городу и Новочебоксарску. Букеты на заказ и доставка от 2500 ₽. Интернет-магазин «Твои цветы 21».',
-
-  metadataBase: new URL(getSiteUrl()),
-
-  robots: {
-    index: true,
-    follow: true,
-  },
-
-  openGraph: {
-    title: 'Цветы в Чебоксарах — доставка букетов | Твои цветы 21',
-    description: 'Свежие цветы и букеты с доставкой по Чебоксарам, Новому Городу и Новочебоксарску.',
-    type: 'website',
-    locale: 'ru_RU',
-    siteName: 'Твои цветы 21',
-  }
+	metadataBase: new URL(process.env.APP_URL ?? 'https://yourflowers21.ru'),
+	title: {
+		default: 'Доставка цветов в Чебоксарах и Новочебоксарах — Твои цветы 21',
+		template: '%s | Твои цветы 21'
+	},
+	description: 'Свежие цветы и букеты с доставкой по Чебоксарам, Новому Городу и Новочебоксарску. Букеты на заказ и доставка от 2500 ₽. Интернет-магазин «Твои цветы 21».',
+	alternates: {
+		canonical: '/'
+	},
+	robots: {
+		index: true,
+		follow: true,
+	},
+	openGraph: {
+		type: 'website',
+		locale: 'ru_RU',
+		siteName: 'Твои цветы 21',
+		url: '/',
+		images: [
+			{ url: '/og/og-home.jpg', width: 1200, height: 630, alt: 'Твои цветы 21', }
+		],
+	},
+	verification: {
+		yandex: process.env.YANDEX_WEBMASTER,
+		google: process.env.GOOGLE_GSC
+	}
 }
 
 export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1
+	width: "device-width",
+	initialScale: 1
 }
 
 interface ILayoutRoot extends PropsWithChildren<unknown> {
-  children: ReactNode
+	children: ReactNode
 }
 
-export default async function RootLayout({ children }: ILayoutRoot) {
-  const header = await headers()
-  const pathname = header.get('x-invoke-path') || ''
-  const isProtectedRoute = protectedRoutes.some(route =>
-    pathname.startsWith(route)
-  )
-
-  return (
-    <html lang="ru">
-      <body>
-        <Providers>
-          {!isProtectedRoute ? (
-            <div className="wrapper">
-              <div className='desktop__view relative'>
-                <Header />
-
-                <Navigation />
-
-                <main className='main'>
-                  {children}
-                </main>
-
-                <Footer />
-
-                <Checkout />
-              </div>
-            </div>
-          ) : (
-            <div className="wrapper dashboard">{children}</div>
-          )}
-        </Providers>
-      </body>
-    </html>
-  )
+export default function RootLayout({ children }: ILayoutRoot) {
+	return (
+		<html lang="ru">
+			<body>
+				<Providers>
+					{children}
+				</Providers>
+			</body>
+		</html>
+	)
 }

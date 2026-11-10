@@ -1,6 +1,22 @@
+import type { Metadata } from 'next'
+
 import Link from 'next/link'
 
 import SubHeading from '@/components/ui/heading/SubHeading'
+
+export const metadata: Metadata = {
+	title: 'Политика конфиденциальности',
+	description: 'Политика в отношении обработки персональных данных интернет-магазина «Твои цветы 21». ИП Манешева Алина Яковлевна.',
+	alternates: { canonical: '/privacy' },
+	robots: { index: true, follow: true },
+	openGraph: {
+		type: 'website',
+		url: '/privacy',
+		title: 'Политика конфиденциальности — Твои цветы 21',
+		description: 'Политика обработки персональных данных магазина «Твои цветы 21».',
+		images: [{ url: '/og/og-home.jpg', width: 1200, height: 630, alt: 'Твои цветы 21' }]
+	}
+}
 
 export default function PrivacyPage() {
 	return (

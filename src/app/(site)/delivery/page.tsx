@@ -1,5 +1,20 @@
+import type { Metadata } from 'next'
+
 import SubHeading from '@/components/ui/heading/SubHeading'
 import styles from './Delivery.module.scss'
+
+export const metadata: Metadata = {
+	title: 'Доставка цветов по Чебоксарам и Новочебоксарску',
+	description: 'Доставка букетов по Чебоксарам от 2500 ₽, по Новому Городу от 1500 ₽, по Новочебоксарску от 2500 ₽. Бесплатная доставка в праздничные дни. Интернет-магазин «Твои цветы 21».',
+	alternates: { canonical: '/delivery' },
+	openGraph: {
+		type: 'website',
+		url: '/delivery',
+		title: 'Доставка цветов по Чебоксарам и Новочебоксарску',
+		description: 'Доставка букетов по Чебоксарам, Новому Городу и Новочебоксарску. Бесплатная доставка от 2500 ₽.',
+		images: [{ url: '/og/og-home.jpg', width: 1200, height: 630, alt: 'Доставка цветов — Твои цветы 21' }]
+	}
+}
 
 export default function DeliveryPage() {
   return (

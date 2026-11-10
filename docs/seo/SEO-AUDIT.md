@@ -790,7 +790,7 @@ CWV: PageSpeed Insights (мобильный) после фикса; цели LCP
 | T2 | ✅ Выполнено | `src/app/sitemap.ts` генерируется из API: статические страницы, категории с товарами/подкатегориями, все товары; без `/category` и `/product`; slug кодируются через `encodeURIComponent`. |
 | T3 | ✅ Выполнено | `notFound()` добавлен в `product/[slug]/page.tsx` и `category/[slug]/page.tsx`. Невалидные slug теперь отдают 404. `CategoryService.getBySlug` деструктурирует `data`. |
 | T4 | ✅ Выполнено | `/auth` — серверный page с metadata + клиентский `Auth.tsx`. `/dashboard` — клиентский page + серверный `layout.tsx` с metadata (noindex). `/thanks` — серверный с metadata. `robots.ts` и `next.config.js` headers корректны. Build проходит. |
-| M1 | ⬜ | — |
+| M1 | ✅ Выполнено | layout.tsx: metadataBase (fallback), title template, description, canonical, OG-изображение, verification (yandex/google через env). generateMetadata для product/[slug], category/[slug], delivery, subscription, privacy. |
 | H1 | ⬜ | — |
 | S1 | ⬜ | — |
 | C1 | ⬜ | — |
@@ -798,6 +798,6 @@ CWV: PageSpeed Insights (мобильный) после фикса; цели LCP
 | I1 | ⬜ | — |
 | L2 | ⬜ | — |
 | T5 | ⬜ | — |
-| T6 | ⬜ | — |
+| T6 | ✅ Выполнено | Убран `headers()`/`x-invoke-path` из корневого layout; введены route groups `(site)` и `(admin)`; корневой layout стал синхронным; страницы стали статическими. Build проходит. |
 | B1 | ✅ Выполнено | `yarn build` проходит успешно (14/14 страниц). |
 | SEC1 | ✅ Выполнено | DaData полностью удалён из проекта и `next.config.js`; секреты больше не пробрасываются в клиентский бандл. |
