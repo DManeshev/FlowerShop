@@ -17,7 +17,7 @@ import Heading from '@/components/ui/heading/Heading'
 import styles from './Page.module.scss'
 import clsx from 'clsx'
 
-const MotionButton = motion(Button)
+const MotionButton = motion.create(Button)
 
 const Product = memo(function Product(props: IProduct) {
 	const { id, name, description, price, images, flowers } = props;
@@ -66,7 +66,7 @@ const Product = memo(function Product(props: IProduct) {
 					<div className={styles.smallImages}>
 						{images.slice(1).map((image, index) => (
 							<div key={index} className={styles.smallImages__img}>
-								<Image src={image} alt={name} fill sizes="25vw" />
+								<Image src={image} alt={name} fill quality={100} />
 							</div>
 						))}
 					</div>
@@ -108,7 +108,6 @@ const Product = memo(function Product(props: IProduct) {
 						size="xl"
 						onClick={handleAddToCart}
 						className={clsx(styles.actions__btn, isFixed && styles['actions__btn--fixed'])}
-						aria-pressed={inCart}
 					>
 						<LuShoppingBag size={20} aria-hidden />
 						<span>{btnText}</span>

@@ -14,6 +14,7 @@ const nextConfig = {
       }
     ],
     deviceSizes: [320, 500, 768, 1024, 1300, 1500, 2048, 3840],
+    qualities: [25, 50, 75, 100]
   },
   env: {
     SERVER_URL: process.env.SERVER_URL,
