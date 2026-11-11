@@ -1,74 +1,35 @@
 @reference "../../../theme.css";
 
 .product {
-	@apply grid grid-cols-[520fr_250fr] py-5;
+	@apply grid grid-cols-[520fr_250fr];
 
 	@variant max-lg {
 		@apply grid-cols-1;
 	}
+}
 
-	&__images {
-		@apply grid gap-2 grid-cols-[1fr_250px];
+/* ---------- Images (original) ---------- */
+.product__images {
+	@apply grid gap-2 grid-cols-[1fr_250px];
 
-		@variant max-lg {
-			@apply grid-cols-1;
-		}
-
-		@variant max-md {
-			@apply mb-5;
-		}
+	@variant max-md {
+		@apply grid-cols-1 gap-1;
 	}
 
-	&__content {
-		@apply px-5;
-
-		@variant max-xl {
-			@apply pt-5;
-		}
-
-		&_info {
-			@apply grid gap-3 border-b pb-5;
-		}
-	}
-
-	&__attribute {
-		@apply flex items-start gap-2;
-
-		&_title {
-			@apply text-base
-		}
-
-		&__text {
-			@apply text-(--colorSalmon) font-bold;
-		}
-	}
-
-	&__price {
-		@apply text-3xl text-(--colorSalmon) font-bold;
-    }
-
-	&__description {
-		@apply border-b py-5 mb-5 text-lg;
-	}
-
-	&__btn_container {
-		@apply w-full;
-	}
-
-	&__btn {
-		@apply w-full bg-(--colorSalmon) text-white cursor-pointer;
+	@variant max-sm {
+		@apply gap-0;
 	}
 }
 
 .bigImage {
-	@apply relative h-200;
+	@apply relative h-full;
 
-	@variant max-lg {
-		@apply relative h-150;
+	@variant max-md {
+		@apply h-200;
 	}
 
 	@variant max-sm {
-		@apply h-100;
+		@apply h-125;
 	}
 
 	& img {
@@ -79,19 +40,97 @@
 .smallImages {
 	@apply grid gap-2 auto-rows-87.5;
 
-	@variant sm:max-lg {
-		@apply grid-cols-3;
+	@variant max-md {
+		@apply gap-1 grid-cols-3 auto-rows-75;
 	}
+
+	@variant max-sm {
+		@apply grid-cols-1 auto-rows-125 gap-0;
+	}
+}
+
+.smallImages__img {
+	@apply relative w-full h-full;
+
+	& img {
+		@apply object-cover;
+	}
+}
+
+/* ---------- Details (new) ---------- */
+.details {
+	@apply flex flex-col gap-6 py-10 px-5;
 
 	@variant max-md {
-		@apply auto-rows-100;
+		@apply p-5;
+	}
+}
+
+.details__header {
+	@apply flex flex-col gap-3 border-b pb-6;
+	border-color: var(--colorGreyLight);
+}
+
+.details__title {
+	@apply font-lora text-3xl lg:text-4xl font-semibold text-(--colorBlue) leading-tight tracking-tight;
+}
+
+.details__price {
+	@apply font-lora text-3xl text-(--colorSalmon) font-bold;
+}
+
+/* ---------- Flowers ---------- */
+.flowers {
+	@apply flex flex-col gap-3;
+}
+
+.flowers__label {
+	@apply text-sm text-(--colorGreyDark);
+}
+
+.flowers__list {
+	@apply flex flex-wrap gap-2 list-none p-0 m-0;
+}
+
+.flower {
+	@apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm;
+	background: var(--colorSalmonSoft);
+	color: var(--colorBlue);
+
+	& svg {
+		color: var(--colorGreen);
+	}
+}
+
+/* ---------- Description ---------- */
+.description {
+	@apply text-base lg:text-lg leading-relaxed text-(--colorBlue)/90 border-b pb-5;
+	border-color: var(--colorGreyLight);
+
+	& p {
+		@apply m-0;
+	}
+}
+
+/* ---------- Actions ---------- */
+.actions {
+	@apply flex flex-col gap-3 min-h-12;
+}
+
+.actions__btn {
+	@apply w-full border-none bg-(--colorSalmon) text-white transition-colors;
+
+	&:hover {
+		@apply bg-(--colorSalmonHover);
 	}
 
-	&__img {
-		@apply relative w-full h-full;
-
-		& img {
-			@apply object-cover;
+	&--fixed {
+		@variant max-lg {
+			@apply fixed bottom-8 w-auto left-5 right-5 z-50;
 		}
 	}
+}
+
+.actions__note {
+	@apply text-xs text-(--colorGreyDark) leading-relaxed m-0;
 }

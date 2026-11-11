@@ -1,8 +1,9 @@
 'use client'
 
-import { memo } from 'react'
 import Image from 'next/image'
-import { LuFlower2 } from 'react-icons/lu'
+import { motion } from 'framer-motion'
+import { LuFlower2, LuShoppingBag } from 'react-icons/lu'
+import { memo, useEffect, useRef, useState } from 'react'
 
 import { ICart } from '@/store'
 import { IProduct } from '@/services'
@@ -14,25 +15,41 @@ import { Button } from '@/components/ui/button'
 import Heading from '@/components/ui/heading/Heading'
 
 import styles from './Page.module.scss'
+import clsx from 'clsx'
+
+const MotionButton = motion(Button)
 
 const Product = memo(function Product(props: IProduct) {
-	const {
-		id,
-		name,
-		description,
-		price,
-		images,
-		flowers
-	} = props;
+	const { id, name, description, price, images, flowers } = props;
+
+	const [isFixed, setIsFixed] = useState(true);
+
+	const actionsRef = useRef<HTMLDivElement>(null);
 
 	const { addToCart } = useActions();
 	const { cart } = useTypedSelector(state => state.cart);
 
-	const btnText: string = cart.find((item: ICart) => item.product.id === id)
-		? 'Букет в корзине'
-		: `Добавить в корзину ${price}`;
+	const inCart = cart.some((item: ICart) => item.product.id === id);
+	const btnText = inCart
+		? 'Букет уже в корзине'
+		: `Добавить в корзину — ${formatPrice(price)}`;
 
 	const handleAddToCart = () => addToCart({ product: props, quantity: 1 });
+
+	useEffect(() => {
+		const node = actionsRef.current;
+		if (!node || typeof IntersectionObserver === 'undefined') return;
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				setIsFixed(!entry.isIntersecting);
+			},
+			{ threshold: 0 }
+		);
+
+		observer.observe(node);
+		return () => observer.disconnect();
+	}, []);
 
 	const imagesAfterBig: Array<string> = images.slice(1);
 
@@ -41,7 +58,7 @@ const Product = memo(function Product(props: IProduct) {
 			<section className={styles.product__images}>
 				{/* BIG IMAGE */}
 				<div className={styles.bigImage}>
-					<Image src={images[0]} alt={name} fill />
+					<Image src={images[0]} alt={name} fill priority sizes="(max-width: 768px) 100vw, 55vw" />
 				</div>
 
 				{/* SMALL IMAGE */}
@@ -49,7 +66,7 @@ const Product = memo(function Product(props: IProduct) {
 					<div className={styles.smallImages}>
 						{images.slice(1).map((image, index) => (
 							<div key={index} className={styles.smallImages__img}>
-								<Image src={image} alt={name} fill />
+								<Image src={image} alt={name} fill sizes="25vw" />
 							</div>
 						))}
 					</div>
@@ -57,38 +74,49 @@ const Product = memo(function Product(props: IProduct) {
 				}
 			</section>
 
-			<section className={styles.product__content}>
-				<div className={styles.product__content_info}>
-					<Heading title={name} className={styles.product__content_title} />
+			<section className={styles.details}>
+				<header className={styles.details__header}>
+					<Heading title={name} className={styles.details__title} />
+					<p className={styles.details__price}>{formatPrice(price)}</p>
+				</header>
 
-					<div className={styles.product__attribute}>
-						<span className={styles.product__attribute_title}>Цветы:</span>
-						<div className="flex flex-col gap-1">
+				{flowers?.length ? (
+					<div className={styles.flowers}>
+						<span className={styles.flowers__label}>Состав букета</span>
+						<ul className={styles.flowers__list}>
 							{flowers.map(item => (
-								<div key={item.id} className="flex items-center gap-1">
-									<LuFlower2 size={20} color="var(--colorGreen)" />
+								<li key={item.id} className={styles.flower}>
+									<LuFlower2 size={16} aria-hidden />
 									<span>{item.name}</span>
-								</div>
+								</li>
 							))}
-						</div>
+						</ul>
 					</div>
+				) : null}
 
-					<div className={styles.product__price}>
-                        <span>{formatPrice(price)}</span>
+				{description ? (
+					<div className={styles.description}>
+						<p>{description}</p>
 					</div>
-				</div>
+				) : null}
 
-				<div className={styles.product__description}>{description}</div>
-
-				<div className={styles.product__btn_container}>
-					<Button
+				<div className={styles.actions} ref={actionsRef}>
+					<MotionButton
+						layout="position"
+						transition={{ type: 'spring', stiffness: 320, damping: 30 }}
 						variant="outline"
 						size="xl"
 						onClick={handleAddToCart}
-						className={styles.product__btn}
+						className={clsx(styles.actions__btn, isFixed && styles['actions__btn--fixed'])}
+						aria-pressed={inCart}
 					>
+						<LuShoppingBag size={20} aria-hidden />
 						<span>{btnText}</span>
-					</Button>
+					</MotionButton>
+
+					<p className={styles.actions__note}>
+						Доставка по Чебоксарам и Новочебоксарску. Оформление заказа — в корзине.
+					</p>
 				</div>
 			</section>
 		</div>

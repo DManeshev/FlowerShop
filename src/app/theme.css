@@ -5,16 +5,14 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --breakpoint-sm: 480px;
+  --breakpoint-sm: 500px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 991px;
   --breakpoint-xl: 1280px;
 
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
-  --background-image-gradient-conic: conic-gradient(
-    from 180deg at 50% 50%,
-    var(--tw-gradient-stops)
-  );
+  --background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%,
+      var(--tw-gradient-stops));
 
   --font-pacifico: "Pacifico", cursive;
   --font-lora: "Lora", serif;
