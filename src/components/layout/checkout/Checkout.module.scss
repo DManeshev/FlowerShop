@@ -25,7 +25,7 @@
 }
 
 .content {
-    @apply flex-1 h-full px-4 pb-4;
+    @apply flex-1 h-full px-4 pb-4 overflow-y-auto;
 }
 
 .types {
@@ -38,4 +38,12 @@
 
 .active__type {
     @apply text-(--colorSalmon) border-(--colorSalmon);
+}
+
+.footer {
+    @apply mt-auto flex flex-col gap-2;
+}
+
+.total {
+    @apply flex items-center justify-center text-4xl text-(--colorSalmon) font-semibold;
 }

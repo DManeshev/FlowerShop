@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import clsx from 'clsx'
 import { useState, Dispatch, SetStateAction } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -21,7 +20,6 @@ import {
 } from './Delivery.constants'
 
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import { InputGroupAddon } from '@/components/ui/input-group'
@@ -49,7 +47,7 @@ export default function DeliveryForm({ setCheckoutStep, control, watch, handleSu
 
 	const isPickup: boolean = watch('deliveryMethod') === EnumDeliveryMethod.pickup;
 
-	const setCurrentCoords = (city: string) :void => {
+	const setCurrentCoords = (city: string): void => {
 		const deliveryCity: DeliveryCity | undefined = listDeliveryCity.find(({ value }) => value === city);
 
 		if (deliveryCity) setCoords(deliveryCity.coords)
@@ -166,9 +164,9 @@ export default function DeliveryForm({ setCheckoutStep, control, watch, handleSu
 						</div>
 					) : null}
 
-					{ watch('deliveryMethod') && <Separator className='my-5' /> }
+					{watch('deliveryMethod') && <Separator className='my-5' />}
 
-					{ !isPickup ? (
+					{!isPickup ? (
 						<div>
 							<Controller
 								name='city'
@@ -269,29 +267,6 @@ export default function DeliveryForm({ setCheckoutStep, control, watch, handleSu
 					) : null}
 				</form>
 			) : null}
-
-			{watch('deliveryMethod') ? (
-				<div className="text-sm mb-2">
-					Нажимая «{CREATE_ORDER_TEXT}», Вы подтверждаете, что ознакомились с
-					<Link
-						href="/privacy"
-						target="_blank"
-						className="pl-1 text-sm text-(--colorSalmon) underline"
-					>
-						Политикой конфиденциальности.
-					</Link>
-				</div>
-			) : null}
-
-			<Button
-				type="submit"
-				form="deliveryForm"
-				size="xl"
-				className={styles.delivery__btn}
-				disabled={!watch('deliveryMethod')}
-			>
-				<span>{watch('deliveryMethod') ? CREATE_ORDER_TEXT : CHOOSE_DELIVERY_TYPE_TEXT}</span>
-			</Button>
 		</div>
 	)
 }

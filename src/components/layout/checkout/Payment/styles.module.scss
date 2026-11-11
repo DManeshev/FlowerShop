@@ -33,14 +33,6 @@
     }
 }
 
-.footer {
-    @apply mt-auto flex flex-col gap-2;
-}
-
-.total {
-    @apply flex items-center justify-center text-4xl text-(--colorSalmon) font-semibold;
-}
-
 .highlight {
     @apply text-(--colorSalmon)
 }
