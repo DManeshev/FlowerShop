@@ -1,7 +1,11 @@
 @reference "../../../app/theme.css";
 
 .drawer {
-  @apply lg:w-[50vw] max-lg:h-screen;
+  @apply lg:w-[50vw];
+
+  @variant max-lg {
+    @apply h-dvh max-h-dvh;
+  }
 
   &__header,
   &__footer {

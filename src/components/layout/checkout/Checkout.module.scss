@@ -4,7 +4,7 @@
     @apply w-[50vw];
 
     @variant max-lg {
-        @apply w-full h-screen max-h-screen;
+        @apply w-full h-dvh max-h-dvh;
     }
 
     &__header {
